@@ -1,7 +1,8 @@
-import Navbar from "@/components/Navbar";
+import Provider from "@/components/Provider";
 import "./globals.css";
-import TestBar from "@/components/TestBar";
-import ScratchBar from "@/components/ScrathNavbar";
+import Navbar from "@/components/Navbar/Navbar";
+import { Session } from "next-auth";
+
 export const metadata = {
   title: "The Soul Space | Home",
   description: "Find your aesthetic enjoyment through art",
@@ -9,15 +10,18 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  session,
 }: {
   children: React.ReactNode;
+  session: Session;
 }) {
   return (
     <html lang="en">
       <body>
-        {/* <Navbar /> */}
-        <ScratchBar />
-        {children}
+        <Provider session={session}>
+          <Navbar />
+          {children}
+        </Provider>
       </body>
     </html>
   );
