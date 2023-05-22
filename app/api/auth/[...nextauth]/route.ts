@@ -6,38 +6,71 @@ import type { NextAuthOptions } from "next-auth";
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: "Credentials",
+      name: "NextAuth",
+      id: "credentials",
       credentials: {
-        email: {
-          label: "email",
-          type: "email",
-          placeholder: "jsmith@gmail.com",
-        },
-        password: { label: "Password", type: "password" },
+        email: { label: "email", type: "email" },
+        password: { label: "password", type: "password" },
       },
-
       async authorize(credentials) {
-        try {
-          const res = await axios.post(
-            `${process.env.NEXT_PUBLIC_API_URL}/auth/local`,
-            {
+        return (
+          axios
+            .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/local`, {
               identifier: credentials?.email,
               password: credentials?.password,
-            }
-          );
-          const user = res.data;
-          if (user) {
-            return user;
-          } else {
-            return null;
-          }
-        } catch (err: any) {
-          console.log("ERRR");
-          const keys = err.response.data.error;
-          console.log(keys);
-          console.log(err.response.data.error.details);
-          throw new Error("Failed to authenticate"); // Throw an error to handle authentication failure
-        }
+            })
+            .then((res) => {
+              return res.data;
+            })
+            // If no error and we have user data, return it
+            .catch((err) => {
+              if (
+                err.response &&
+                err.response.data.error.name === "ValidationError" &&
+                err.response.data.error.message ===
+                  "Invalid identifier or password"
+              ) {
+                throw new Error("Invalid email or password");
+              } else if (
+                err.response &&
+                err.response.data.error.name === "ApplicationError" &&
+                err.response.data.error.message ===
+                  "Your account has been blocked by an administrator"
+              ) {
+                throw new Error(
+                  "Your account has been blocked, please contact support."
+                );
+              } else if (err.code) {
+                // Handle all axios errors here
+                if (err.code === "ECONNREFUSED") {
+                  throw new Error("Server refused to connect");
+                }
+              } else {
+                throw new Error("Failed to authenticate, please try again");
+              }
+            }) || null
+        );
+        // try {
+        //   const res = await axios.post(
+        //     `${process.env.NEXT_PUBLIC_API_URL}/auth/local`,
+        //     {
+        //       identifier: credentials?.email,
+        //       password: credentials?.password,
+        //     }
+        //   );
+        //   const user = res.data;
+        //   if (user) {
+        //     return user;
+        //   } else {
+        //     return null;
+        //   }
+        // } catch (err: any) {
+        //   console.log("ERRR");
+        //   const keys = err.response.data.error;
+        //   console.log(keys);
+        //   console.log(err.response.data.err.details);
+        //   throw new Error("Failed to authenticate"); // Throw an error to handle authentication failure
+        // }
       },
     }),
   ],
@@ -65,6 +98,10 @@ export const authOptions: NextAuthOptions = {
       }
       return Promise.resolve(session);
     },
+  },
+  pages: {
+    signIn: "/login",
+    error: "/login",
   },
   debug: true,
 };

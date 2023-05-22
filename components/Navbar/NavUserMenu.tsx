@@ -20,7 +20,7 @@ const NavUserAccMenu = ({ session }: { session: any }) => {
         <Image src={session?.user.image || avatar} alt="User" />
       </label>
       {/* User Acc Menu Dropdown */}
-      <div className="z-20 invisible scale-95 opacity-0 absolute top-0 w-80 p-6 transition-all transform peer-checked/navUserMenu:translate-y-14 peer-checked/navUserMenu:visible peer-checked/navUserMenu:opacity-100 peer-checked/navUserMenu:scale-100 duration-300 rounded-lg shadow-xl backdrop-blur-xl border bg-white">
+      <div className="z-20 invisible scale-95 opacity-0 absolute top-0 w-80 p-6 transition-all transform peer-checked/navUserMenu:translate-y-14 peer-checked/navUserMenu:visible peer-checked/navUserMenu:opacity-100 peer-checked/navUserMenu:scale-100 duration-300 rounded-lg shadow-xl backdrop-blur-xl border bg-white -right-[25vw] lg:right-0">
         <div className="flex gap-5 pb-5 border-b-[1.5px] border-gray-300">
           <div className="flex items-center">
             <div className="max-w-[2rem]">
@@ -35,7 +35,7 @@ const NavUserAccMenu = ({ session }: { session: any }) => {
           </div>
         </div>
         <ul className="flex flex-col mt-2">
-          <li className="p-3 rounded-md hover:bg-gray-100 hover:scale-110 font-medium w-full transition duration-300">
+          <li className="p-3 rounded-md hover:bg-gray-100 hover:scale-110 font-normal w-full transition duration-300">
             <Link href="/my-account/">
               <div className="flex gap-3">
                 <span className="flex items-center max-w-[1.5em]">
@@ -45,7 +45,7 @@ const NavUserAccMenu = ({ session }: { session: any }) => {
               </div>
             </Link>
           </li>
-          <li className="p-3 rounded-md hover:bg-gray-100 hover:scale-110 font-medium w-full transition duration-300">
+          <li className="p-3 rounded-md hover:bg-gray-100 hover:scale-110 font-normal w-full transition duration-300">
             <Link href="/my-account/orders">
               {" "}
               <div className="flex gap-3">
@@ -56,7 +56,7 @@ const NavUserAccMenu = ({ session }: { session: any }) => {
               </div>
             </Link>
           </li>
-          <li className="p-3 rounded-md hover:bg-gray-100 hover:scale-110 font-medium w-full transition duration-300">
+          <li className="p-3 rounded-md hover:bg-gray-100 hover:scale-110 font-normal w-full transition duration-300">
             <NavSignOutBtn>
               <div className="flex gap-3">
                 <span className="flex items-center max-w-[1.5em] p-[2px]">

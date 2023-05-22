@@ -2,6 +2,7 @@ import Provider from "@/components/Provider";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import { Session } from "next-auth";
+import { ToastMessageContainer } from "@/components/Toast";
 
 export const metadata = {
   title: "The Soul Space | Home",
@@ -17,10 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className=" overflow-x-hidden">
         <Provider session={session}>
           <Navbar />
           {children}
+          <ToastMessageContainer />
         </Provider>
       </body>
     </html>
