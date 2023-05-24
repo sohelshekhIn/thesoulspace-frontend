@@ -39,7 +39,7 @@ const Login: any = async () => {
             </h1>
           </div>
           <LoginForm csrfToken={csrfToken} />
-          <div className="">
+          <div>
             <Link
               href="/register"
               className="text-gray-600 text-sm font-medium transition-all hover:scale-110"

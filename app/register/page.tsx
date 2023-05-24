@@ -4,8 +4,12 @@ import Image from "next/image";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import RegisterForm from "@/components/Auth/RegisterForm";
+import { cookies } from "next/headers";
 
 const RegisterUser: any = async () => {
+  const csrfToken = cookies().get("next-auth.csrf-token")?.value.split("|")[0];
+
   const session = await getServerSession(authOptions);
 
   if (session?.user) {
@@ -18,13 +22,13 @@ const RegisterUser: any = async () => {
           <Image src={login_asset} alt="Log In" />
         </div>
         <div className="flex flex-col gap-5 transform lg:translate-y-14 2xl:items-end">
-          <h1 className="font-extrabold md:font-bold text-gray-900 text-6xl xl:text-8xl font-sans flex flex-col 2xl:text-right">
-            <span className="text-2xl font-bold">Welcome Back,</span>
-            <span className="text-yellow-400">Art Enthusiast!</span>
+          <h1 className="font-extrabold md:font-bold text-gray-900 text-6xl xl:text-7xl font-sans flex flex-col 2xl:text-right">
+            Ready to dive into the world of
+            <span className="text-yellow-500"> fine art?</span>
           </h1>
           <h1 className="font-medium text-lg text-gray-600 max-w-xl 2xl:text-right">
-            Login to reconnect with your saved favorites and explore new
-            paintings.
+            Register now to start your journey and experience the joy of owning
+            a art.
           </h1>
         </div>
       </div>
@@ -32,16 +36,17 @@ const RegisterUser: any = async () => {
         <div className="flex flex-col gap-3 lg:gap-6 w-full lg:mt-5">
           <div className="w-full mt-8">
             <h1 className="p-1 pl-0 text-gray-900 font-bold text-2xl lg:text-3xl border-b-4 border-yellow-500 w-fit">
-              Log In
+              Register
             </h1>
           </div>
+          <RegisterForm csrfToken={csrfToken} />
           <div className="">
             <Link
-              href="/register"
+              href="/login"
               className="text-gray-600 text-sm font-medium transition-all hover:scale-110"
             >
-              Don't have an account?{" "}
-              <span className="text-yellow-500">Register Now</span>
+              Already have an account!{" "}
+              <span className="text-yellow-500">Login Now</span>
             </Link>
           </div>
         </div>
