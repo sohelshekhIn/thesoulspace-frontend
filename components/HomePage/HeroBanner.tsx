@@ -27,7 +27,7 @@ const HeroBanner = () => {
     },
   };
   return (
-    <div className="h-[80dvh] md:h-[65dvh] bg-gray-300 rounded-lg m-2 lg:max-w-[90dvw] mx-auto lg:mt-8">
+    <div className="h-[80dvh] md:h-[65dvh] bg-gray-300 m-2 rounded-lg sm:max-w-[95dvw] sm:mx-auto lg:max-w-[90dvw] lg:mt-8">
       <Carousel
         responsive={responsive}
         swipeable={true}
