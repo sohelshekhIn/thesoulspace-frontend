@@ -33,18 +33,18 @@ const ProductCard = () => {
           height={300}
           src="https://source.unsplash.com/random/300x300/?modernart"
           alt="pr1"
-          className="object-cover"
+          className=""
         />
       </div>
       <div className=" px-2">
         <Link href={"/pr1"} className="flex flex-col gap-2">
-          <div className="flex justify-between">
-            <h2 className="font-semibold text-lg">Canvas Quote Table</h2>
-            <p className="font-semibold">&#x20B9;150</p>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, modi!
-          </p>
+          <span>
+            <h2 className="text-lg font-semibold">
+              Natural Pindola Art Canvas Painting
+            </h2>
+            <p className="text-sm text-gray-500">by Pindola Art</p>
+          </span>
+          <p className="text-lg font-semibold ">&#x20B9;150</p>
         </Link>
       </div>
     </div>
