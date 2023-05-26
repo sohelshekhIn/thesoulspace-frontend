@@ -5,11 +5,11 @@ const BestSeller = () => {
   return (
     <div className="mt-14">
       <div className="flex items-center w-full justify-center gap-5 mb-7">
-        <span className="h-[2px] px-3 bg-gray-200 w-[15%]"></span>
+        <span className="h-[2px] px-3 bg-yellow-200 w-[15%]"></span>
         <h1 className="text-gray-800 font-bold text-4xl text-center">
           Best Sellers
         </h1>
-        <span className="h-[2px] px-3 bg-gray-200 w-[15%]"></span>
+        <span className="h-[2px] px-3 bg-yellow-200 w-[15%]"></span>
       </div>
       <div className="mt-3 flex justify-center flex-wrap w-full gap-8 md:gap-5">
         <ProductCard />

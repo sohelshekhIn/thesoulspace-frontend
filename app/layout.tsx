@@ -3,6 +3,13 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import { Session } from "next-auth";
 import { ToastMessageContainer } from "@/components/Toast";
+import { Montserrat } from "next/font/google";
+import Footer from "@/components/Footer/Footer";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata = {
   title: "The Soul Space | Home",
@@ -17,12 +24,13 @@ export default function RootLayout({
   session: Session;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={montserrat.className}>
       <body className=" overflow-x-hidden">
         <Provider session={session}>
           <Navbar />
           {children}
           <ToastMessageContainer />
+          <Footer />
         </Provider>
       </body>
     </html>

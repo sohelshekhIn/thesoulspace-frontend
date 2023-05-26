@@ -13,7 +13,7 @@ const Navbar: any = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <nav className="w-full sticky top-0 bg-white shadow-sm z-50">
+    <nav className="w-full sticky top-0 bg-white shadow-sm z-[9999999999999999999999999999999999999999999999999999]">
       <div className="flex py-3 px-4 md:px-10 lg:py-4 xl:py-5 xl:px-12 2xl:px-24 justify-between">
         {/* Logo Link */}
         <div className="z-30 w-7/12 lg:w-4/12 flex items-center">
