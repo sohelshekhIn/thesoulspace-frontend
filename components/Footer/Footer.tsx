@@ -4,8 +4,8 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <div>
-      <footer className="bg-black text-white w-full p-8 rounded-t-xl">
-        <div className="container">
+      <footer className="bg-black text-white w-full p-8 rounded-t-3xl">
+        <div className="container lg:max-w-[90vdw] lg:px-36">
           <div className="w-full p-3">
             <div className="w-[3rem]">
               <Image src={footer_logo} alt="Footer Logo" />
@@ -56,7 +56,7 @@ const Footer = () => {
         </div>
       </footer>
       <div className="w-full py-2 bg-white text-black ">
-        <p className="text-sm w-full text-center">
+        <p className=" text-xs w-full text-center">
           Designed and Developed by Sohel Shekh
         </p>
       </div>

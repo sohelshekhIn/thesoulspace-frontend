@@ -1,22 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
+import TitleDivider from "../Divider";
 
-const BestSeller = () => {
+const BestSeller = ({ bestSellerData }: { bestSellerData: object[] }) => {
+  console.log(bestSellerData);
+
   return (
     <div className="mt-14">
-      <div className="flex items-center w-full justify-center gap-5 mb-7">
-        <span className="h-[2px] px-3 bg-yellow-200 w-[15%]"></span>
+      <div className="flex flex-col items-center w-full justify-center gap-5 mb-7">
         <h1 className="text-gray-800 font-bold text-4xl text-center">
           Best Sellers
         </h1>
-        <span className="h-[2px] px-3 bg-yellow-200 w-[15%]"></span>
+        <TitleDivider />
       </div>
       <div className="mt-3 flex justify-center flex-wrap w-full gap-8 md:gap-5">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {bestSellerData.map((product: any) => (
+          <ProductCard key={product._id} product={product} />
+        ))}
       </div>
     </div>
   );
@@ -24,27 +24,42 @@ const BestSeller = () => {
 
 export default BestSeller;
 
-const ProductCard = () => {
+interface ProductProps {
+  Name: string;
+  Price: number;
+  Description: string;
+  Product_Link: string;
+  Product_Thumbnail: {
+    data: {
+      attributes: {
+        formats: {
+          small: {
+            url: string;
+          };
+        };
+      };
+    };
+  };
+}
+const ProductCard = ({ product }: { product: ProductProps }) => {
   return (
     <div className="hover:scale-105 w-[300px] transition-all duration-200 p-3 flex flex-col gap-2">
       <div className="rounded-xl overflow-hidden">
         <Image
           width={300}
           height={300}
-          src="https://source.unsplash.com/random/300x300/?modernart"
+          src={product.Product_Thumbnail.data.attributes.formats.small.url}
           alt="pr1"
           className=""
         />
       </div>
-      <div className=" px-2">
-        <Link href={"/pr1"} className="flex flex-col gap-2">
+      <div className="px-2">
+        <Link href={product.Product_Link} className="flex flex-col gap-2">
           <span>
-            <h2 className="text-lg font-semibold">
-              Natural Pindola Art Canvas Painting
-            </h2>
-            <p className="text-sm text-gray-500">by Pindola Art</p>
+            <h2 className="text-lg font-semibold">{product.Name}</h2>
+            <p className="text-sm text-gray-500">{product.Description}</p>
           </span>
-          <p className="text-lg font-semibold ">&#x20B9;150</p>
+          <p className="text-lg font-semibold ">&#x20B9;{product.Price}</p>
         </Link>
       </div>
     </div>

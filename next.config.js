@@ -2,7 +2,7 @@
 const nextConfig = {};
 // allow pexel.com images
 nextConfig.images = {
-  domains: ["images.pexels.com", "images.unsplash.com", "source.unsplash.com"],
+  domains: ["images.pexels.com", "res.cloudinary.com", "source.unsplash.com"],
 };
 
 module.exports = nextConfig;
