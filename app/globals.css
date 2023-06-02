@@ -14,3 +14,7 @@
 .noSelect:focus {
   outline: none !important;
 }
+
+.custom-dot-list-style {
+  justify-content: start !important;
+}

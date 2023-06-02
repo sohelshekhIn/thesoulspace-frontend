@@ -1,50 +1,15 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import { HeroBannerCarouselComp } from "../CarouselComp";
 
 const HeroBanner = ({ bannerData }: { bannerData: any }) => {
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 1,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 1,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 1,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
   return (
     <div className="h-[80dvh] md:h-[65dvh] bg-gray-300 m-2 rounded-lg sm:max-w-[95dvw] sm:mx-auto lg:max-w-[90dvw] lg:mt-8">
-      <Carousel
-        responsive={responsive}
-        swipeable={true}
-        showDots={false}
-        ssr={true}
-        infinite={true}
-        autoPlay={bannerData.length === 1 ? false : true}
-        autoPlaySpeed={5000}
-        removeArrowOnDeviceType={["tablet", "mobile"]}
-        // deviceType={this.props.deviceType}
-        containerClass="h-[110%] pb-[15%] md:h-[105%] md:pb-[5%]"
-        itemClass="h-full"
-        sliderClass="h-full"
-      >
+      <HeroBannerCarouselComp>
         {bannerData.map((banner: any) => (
           <Banner key={banner._id} data={banner} />
         ))}
-      </Carousel>
+      </HeroBannerCarouselComp>
     </div>
   );
 };

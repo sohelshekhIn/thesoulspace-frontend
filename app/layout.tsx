@@ -5,6 +5,7 @@ import { Session } from "next-auth";
 import { ToastMessageContainer } from "@/components/Toast";
 import { Montserrat } from "next/font/google";
 import Footer from "@/components/Footer/Footer";
+import { StateProvider } from "@/context/StateContext";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -27,10 +28,12 @@ export default function RootLayout({
     <html lang="en" className={montserrat.className}>
       <body className=" overflow-x-hidden">
         <Provider session={session}>
-          <Navbar />
-          {children}
-          <ToastMessageContainer />
-          <Footer />
+          <StateProvider>
+            <Navbar />
+            {children}
+            <ToastMessageContainer />
+            <Footer />
+          </StateProvider>
         </Provider>
       </body>
     </html>

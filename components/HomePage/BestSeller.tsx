@@ -25,10 +25,17 @@ const BestSeller = ({ bestSellerData }: { bestSellerData: object[] }) => {
 export default BestSeller;
 
 interface ProductProps {
-  Name: string;
-  Price: number;
-  Description: string;
-  Product_Link: string;
+  product: {
+    data: {
+      id: number;
+      attributes: {
+        Name: string;
+        Price: number;
+        Short_Description: string;
+        slug: string;
+      };
+    };
+  };
   Product_Thumbnail: {
     data: {
       attributes: {
@@ -54,12 +61,21 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
         />
       </div>
       <div className="px-2">
-        <Link href={product.Product_Link} className="flex flex-col gap-2">
+        <Link
+          href={`/shop/${product.product.data.attributes.slug}-${product.product.data.id}`}
+          className="flex flex-col gap-2"
+        >
           <span>
-            <h2 className="text-lg font-semibold">{product.Name}</h2>
-            <p className="text-sm text-gray-500">{product.Description}</p>
+            <h2 className="text-lg font-semibold">
+              {product.product.data.attributes.Name}
+            </h2>
+            <p className="text-sm text-gray-500">
+              {product.product.data.attributes.Short_Description}
+            </p>
           </span>
-          <p className="text-lg font-semibold ">&#x20B9;{product.Price}</p>
+          <p className="text-lg font-semibold ">
+            &#x20B9;{product.product.data.attributes.Price}
+          </p>
         </Link>
       </div>
     </div>

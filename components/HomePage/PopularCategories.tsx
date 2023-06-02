@@ -1,4 +1,3 @@
-import { canvasPainting } from "@/public/images";
 import Image from "next/image";
 import Link from "next/link";
 

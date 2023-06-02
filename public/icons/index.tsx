@@ -4,5 +4,17 @@ import logout from "./logout.png";
 import orders from "./orders.png";
 import myAccount from "./myAccount.png";
 import footer_logo from "./footer_logo.jpg";
-
-export { cart, avatar, logout, orders, myAccount, footer_logo };
+import plus from "./plus.png";
+import minus from "./minus.png";
+import star from "./star.png";
+export {
+  cart,
+  avatar,
+  logout,
+  orders,
+  myAccount,
+  footer_logo,
+  plus,
+  minus,
+  star,
+};
