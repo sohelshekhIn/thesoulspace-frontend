@@ -57,8 +57,9 @@ const ProductCarouselComp = ({
       responsive={responsive}
       ssr={true}
       showDots={true}
-      containerClass="pb-[20%]"
-      dotListClass="custom-dot-list-style transform translate-y-[-20%] gap-2"
+      removeArrowOnDeviceType={["tablet", "mobile"]}
+      containerClass="pb-[10%]"
+      dotListClass="custom-dot-list-style transform -translate-y-[50%]  gap-2"
       customDot={<CustomDot data={data.attributes.Product_Image} />}
     >
       {children}
@@ -70,13 +71,15 @@ const CustomDot = ({
   onClick,
   active,
   data,
+  index = 0,
 }: {
   onClick?: any;
-  active?: any;
+  active?: boolean;
   data: any;
+  index?: number;
 }) => {
   // console.log(data.data[0]);
-  let containerSize = 70;
+  let containerSize = 60;
   return (
     <button
       className={`${
@@ -85,7 +88,7 @@ const CustomDot = ({
       onClick={() => onClick()}
     >
       <Image
-        src={data.data[0].attributes.formats.small.url}
+        src={data.data[index].attributes.formats.small.url}
         width={containerSize}
         height={containerSize}
         alt="product image"

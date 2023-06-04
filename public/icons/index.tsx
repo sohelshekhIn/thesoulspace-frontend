@@ -7,6 +7,8 @@ import footer_logo from "./footer_logo.jpg";
 import plus from "./plus.png";
 import minus from "./minus.png";
 import star from "./star.png";
+import deleteIcon from "./delete.png";
+
 export {
   cart,
   avatar,
@@ -17,4 +19,5 @@ export {
   plus,
   minus,
   star,
+  deleteIcon,
 };

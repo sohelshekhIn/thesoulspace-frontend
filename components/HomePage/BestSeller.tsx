@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import TitleDivider from "../Divider";
+import TitleDivider from "../Global/Divider";
 
 const BestSeller = ({ bestSellerData }: { bestSellerData: object[] }) => {
   console.log(bestSellerData);

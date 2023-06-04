@@ -55,7 +55,7 @@ const NavLinks = ({
       <Link
         href={href}
         onClick={() => setCartOpen(false)}
-        className="block border-b-2 border-transparent hover:border-gray-700 p-3 transition-all hover:scale-105 "
+        className="block border-b-2 w-full border-transparent hover:border-gray-700 p-3 transition-all hover:scale-105 "
       >
         <span>{children}</span>
       </Link>

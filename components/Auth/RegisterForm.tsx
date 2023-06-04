@@ -2,7 +2,7 @@
 
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
-import { showToast } from "../Toast";
+import { showToast } from "../Global/Toast";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import axios from "axios";

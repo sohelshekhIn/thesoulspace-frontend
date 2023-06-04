@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { HeroBannerCarouselComp } from "../CarouselComp";
+import { HeroBannerCarouselComp } from "../Global/CarouselComp";
 
 const HeroBanner = ({ bannerData }: { bannerData: any }) => {
   return (
@@ -49,13 +49,13 @@ const Banner = ({ data }: { data: BannerProps }) => {
             {data.Big_Text}
           </h1>
           <Link
-            className="z-20 w-fit mt-5 rounded-lg px-5 py-3 bg-black text-white font-normal text-lg"
             href={data.CTA_Button.Button_Link}
+            className="z-20 w-fit mt-5 rounded-lg px-5 py-3 bg-black text-white font-normal text-lg"
           >
             {data.CTA_Button.Button_Text}
           </Link>
         </div>
-        <div className="absolute top-[70%] sm:top-[30%] sm:w-3/4 sm:left-[20%] md:top-0 md:w-2/3 md:left-[35%] lg:left-[35%] lg:w-full xl:left-[45%] 2xl:-top-[10%] 3xl:top-0">
+        <div className="absolute top-[50%] sm:top-[30%] sm:w-3/4 sm:left-[20%] md:top-0 md:w-2/3 md:left-[35%] lg:left-[35%] lg:w-full xl:left-[45%] 2xl:-top-[10%] 3xl:top-0">
           <Image
             width={data.BannerImage.data.attributes.width}
             height={data.BannerImage.data.attributes.height}

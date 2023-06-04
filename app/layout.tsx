@@ -1,8 +1,8 @@
-import Provider from "@/components/Provider";
+import Provider from "@/components/Global/Provider";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import { Session } from "next-auth";
-import { ToastMessageContainer } from "@/components/Toast";
+import { ToastMessageContainer } from "@/components/Global/Toast";
 import { Montserrat } from "next/font/google";
 import Footer from "@/components/Footer/Footer";
 import { StateProvider } from "@/context/StateContext";
@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={montserrat.className}>
-      <body className=" overflow-x-hidden">
+      <body className="overflow-x-hidden">
         <Provider session={session}>
           <StateProvider>
             <Navbar />

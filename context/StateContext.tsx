@@ -1,17 +1,34 @@
 "use client";
 
+import { ProductCarouselComp } from "@/components/Global/CarouselComp";
+import { showToast } from "@/components/Global/Toast";
 import { createContext, useContext, useState } from "react";
-const StateContext = createContext({});
+const StateContext = createContext<any>(null);
 
 export const StateProvider = ({ children }: { children: React.ReactNode }) => {
-  const [cartItem, setCartItem] = useState([]);
+  const [cartItems, setCartItems] = useState<any>([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [cartOpen, setCartOpen] = useState(false);
   const [qty, setQty] = useState(1);
 
+  type foundProductType = {
+    quantity: number;
+    Total_Price: number;
+    attributes: {
+      Price: number;
+    };
+  };
+
+  let foundProduct: foundProductType;
+  let index: number;
+
   const incQty = () => {
-    setQty((prevQty) => prevQty + 1);
+    setQty((prevQty) => {
+      // max qty is 10
+      if (prevQty + 1 > 10) return 10;
+      return prevQty + 1;
+    });
   };
   const decQty = () => {
     setQty((prevQty) => {
@@ -20,19 +37,94 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
+  const toggleCartItemQuantity = (id: number, value: string) => {
+    foundProduct = cartItems.find((item: any) => item.id === id);
+    index = cartItems.findIndex((item: any) => item.id === id);
+    if (value === "inc") {
+      if (foundProduct.quantity + 1 > 10) return;
+      foundProduct.quantity += 1;
+      setTotalPrice(
+        (prevTotalPrice) => prevTotalPrice + foundProduct.attributes.Price * qty
+      );
+      setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + qty);
+    } else if (value === "dec") {
+      setTotalPrice(
+        (prevTotalPrice) => prevTotalPrice - foundProduct.attributes.Price * qty
+      );
+      setTotalQuantity((prevTotalQuantity) => prevTotalQuantity - qty);
+
+      // quantity can't be less than 1 then remove
+      if (foundProduct.quantity - 1 < 1) {
+        setCartItems((prevCartItem: any) => {
+          prevCartItem.splice(index, 1);
+          return [...prevCartItem];
+        });
+        return;
+      }
+      foundProduct.quantity -= 1;
+    }
+    foundProduct.Total_Price =
+      foundProduct.attributes.Price * foundProduct.quantity;
+    setCartItems((prevCartItem: any) => {
+      prevCartItem[index] = foundProduct;
+      return [...prevCartItem];
+    });
+  };
+
+  const onAdd = (product: any, quantity: number) => {
+    const checkProductInCart = cartItems.find(
+      (item: any) => item.id === product.id
+    );
+    setTotalPrice(
+      (prevTotalPrice) => prevTotalPrice + product.attributes.Price * quantity
+    );
+    setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + quantity);
+    if (checkProductInCart) {
+      const updatedCartItems = cartItems.map((cartProduct: any) => {
+        console.log(cartProduct._id);
+        console.log(product._id);
+        if (cartProduct.id === product.id) {
+          cartProduct = {
+            ...cartProduct,
+            Total_Price: cartProduct.attributes.Price * quantity,
+            quantity: cartProduct.quantity + quantity,
+          };
+        }
+        return cartProduct;
+      });
+
+      // ...cartProduct,
+      //       Total_Price: cartProduct.attributes.Price * quantity,
+      //       quantity: cartProduct.quantity + quantity,
+
+      setCartItems(updatedCartItems);
+    } else {
+      product.quantity = quantity;
+      product.Total_Price = product.attributes.Price * quantity;
+      setCartItems([...cartItems, { ...product }]);
+    }
+    setQty(1);
+    showToast(`${quantity} ${product.attributes.Name} added to bag`, "success");
+  };
+
   return (
     <StateContext.Provider
       value={{
-        cartItem,
+        cartItem: cartItems,
         totalPrice,
         totalQuantity,
         cartOpen,
         qty,
+        setCartOpen,
         incQty,
         decQty,
+        onAdd,
+        toggleCartItemQuantity,
       }}
     >
       {children}
     </StateContext.Provider>
   );
 };
+
+export const useStateContext = () => useContext(StateContext);

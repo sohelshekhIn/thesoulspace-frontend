@@ -7,6 +7,10 @@ const RichTextMarkdown = ({ markdownString }: { markdownString: string }) => {
       remarkPlugins={[breaks]}
       children={markdownString}
       components={{
+        //   bold
+        strong: ({ node, ...props }) => (
+          <strong className="font-semibold" {...props} />
+        ),
         h1: ({ node, ...props }) => <h1 className="text-5xl" {...props} />,
         h2: ({ node, ...props }) => <h2 className="text-4xl" {...props} />,
         h3: ({ node, ...props }) => <h3 className="text-3xl" {...props} />,

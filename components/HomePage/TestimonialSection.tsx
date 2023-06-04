@@ -1,6 +1,6 @@
 import { Tomorrow } from "next/font/google";
 import Image from "next/image";
-import TitleDivider from "../Divider";
+import TitleDivider from "../Global/Divider";
 
 const TestimonialSection = () => {
   return (
