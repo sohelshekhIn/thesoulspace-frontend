@@ -1,33 +1,13 @@
 "use client";
 
 import { useStateContext } from "@/context/StateContext";
-
-type AddToCartProduct = {
-  id: number;
-  attributes: {
-    Name: string;
-    Price: number;
-    Short_Description: string;
-    slug: string;
-    Product_Image: {
-      data: {
-        attributes: {
-          formats: {
-            thumbnail: {
-              url: string;
-            };
-          };
-        };
-      }[];
-    };
-  };
-};
+import { AddToCartProductType } from "@/types/GlobalTypes";
 
 const AddToCartButton = ({
   product,
   small = false,
 }: {
-  product: AddToCartProduct | any;
+  product: AddToCartProductType;
   small: boolean;
 }) => {
   const { onAdd, qty } = useStateContext();

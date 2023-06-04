@@ -3,7 +3,6 @@ import CartSummary from "@/components/Shop/CartSummaryComp";
 import { OfferComp } from "@/components/Shop/OfferComp";
 
 const Cart = () => {
-  //   const { cartItems } = useStateContext();
   return (
     <div className="w-full lg:w-[90dvw] md:px-16 lg:px-16 mx-auto">
       <div className="w-full my-8">

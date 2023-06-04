@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { HeroBannerCarouselComp } from "../Global/CarouselComp";
+import { BannerDataType } from "@/types/GlobalTypes";
 
 const HeroBanner = ({ bannerData }: { bannerData: any }) => {
   return (
@@ -16,28 +17,7 @@ const HeroBanner = ({ bannerData }: { bannerData: any }) => {
 
 export default HeroBanner;
 
-interface BannerProps {
-  Short_Text: string;
-  Mid_Text: string;
-  Big_Text: string;
-  Description_Title: string;
-  Description_Text: string;
-  CTA_Button: {
-    Button_Text: string;
-    Button_Link: string;
-  };
-  BannerImage: {
-    data: {
-      attributes: {
-        url: string;
-        width: number;
-        height: number;
-      };
-    };
-  };
-}
-
-const Banner = ({ data }: { data: BannerProps }) => {
+const Banner = ({ data }: { data: BannerDataType }) => {
   return (
     <div className="flex flex-col justify-between h-full p-5">
       <div className="flex flex-col relative max-h-[70dvh] w-full md:max-w-[80dvw] lg:max-w-[70dvw] xl:max-w-[55dvw] mx-auto  select-none">

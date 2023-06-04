@@ -3,7 +3,7 @@
 import { useStateContext } from "@/context/StateContext";
 import { showToast } from "../Global/Toast";
 
-const OfferComp = async () => {
+const OfferComp = () => {
   const { offer, setOffer } = useStateContext();
   const checkOffer = async () => {
     // showToast("Checking offer code", "info");

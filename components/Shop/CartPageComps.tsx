@@ -4,6 +4,7 @@ import Image from "next/image";
 import { IndividualCartProductInputComp } from "./CartInputComp";
 import { useStateContext } from "@/context/StateContext";
 import Link from "next/link";
+import { CartProductType } from "@/types/GlobalTypes";
 
 const CartItems = () => {
   const { cartItems } = useStateContext();
@@ -48,27 +49,6 @@ const CartContainer = () => {
     );
   }
   return <CartItems />;
-};
-
-type CartProductType = {
-  id: number;
-  quantity: number;
-  Total_Price: number;
-  attributes: {
-    Name: string;
-    Price: number;
-    Product_Image: {
-      data: {
-        attributes: {
-          formats: {
-            thumbnail: {
-              url: string;
-            };
-          };
-        };
-      }[];
-    };
-  };
 };
 
 const CartProduct = ({ product }: { product: CartProductType }) => {

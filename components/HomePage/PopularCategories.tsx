@@ -1,3 +1,4 @@
+import { ProductCategoryCardType } from "@/types/GlobalTypes";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -26,22 +27,7 @@ const PopularCategories = ({
 
 export default PopularCategories;
 
-interface CategoryProps {
-  Title: string;
-  Description: string;
-  Icon: {
-    data: {
-      attributes: {
-        formats: {
-          thumbnail: {
-            url: string;
-          };
-        };
-      };
-    };
-  };
-}
-const ProductCard = ({ category }: { category: CategoryProps }) => {
+const ProductCard = ({ category }: { category: ProductCategoryCardType }) => {
   return (
     <Link
       href={"/somewhere"}

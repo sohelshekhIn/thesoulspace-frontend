@@ -14,12 +14,7 @@ export const authOptions: NextAuthOptions = {
         password: { label: "password", type: "password" },
       },
       async authorize(credentials, req) {
-        // const authType = req.headers!["auth-type"];
-        // if (authType === "register") {
-        //   return await handleRegister(credentials);
-        // } else {
         return await handleLogin(credentials);
-        // }
       },
     }),
   ],

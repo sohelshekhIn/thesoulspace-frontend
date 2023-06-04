@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import TitleDivider from "../Global/Divider";
+import { ProductCardType } from "@/types/GlobalTypes";
 
 const BestSeller = ({ bestSellerData }: { bestSellerData: object[] }) => {
   return (
@@ -22,31 +23,7 @@ const BestSeller = ({ bestSellerData }: { bestSellerData: object[] }) => {
 
 export default BestSeller;
 
-interface ProductProps {
-  product: {
-    data: {
-      id: number;
-      attributes: {
-        Name: string;
-        Price: number;
-        Short_Description: string;
-        slug: string;
-      };
-    };
-  };
-  Product_Thumbnail: {
-    data: {
-      attributes: {
-        formats: {
-          small: {
-            url: string;
-          };
-        };
-      };
-    };
-  };
-}
-const ProductCard = ({ product }: { product: ProductProps }) => {
+const ProductCard = ({ product }: { product: ProductCardType }) => {
   return (
     <div className="hover:scale-105 w-[300px] transition-all duration-200 p-3 flex flex-col gap-2">
       <div className="rounded-xl overflow-hidden">

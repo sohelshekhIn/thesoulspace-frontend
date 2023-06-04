@@ -2,29 +2,9 @@ import { star } from "@/public/icons";
 import Image from "next/image";
 import Link from "next/link";
 import { AddToCartButton } from "./ShopButtons";
+import { ShopProductCardType } from "@/types/GlobalTypes";
 
-interface ProductProps {
-  id: number;
-  attributes: {
-    Name: string;
-    Price: number;
-    Short_Description: string;
-    slug: string;
-    Product_Image: {
-      data: {
-        attributes: {
-          formats: {
-            small: {
-              url: string;
-            };
-          };
-        };
-      }[];
-    };
-  };
-}
-
-const ShopProductCard = ({ product }: { product: ProductProps }) => {
+const ShopProductCard = ({ product }: { product: ShopProductCardType }) => {
   return (
     <div className="w-[300px] noSelect">
       <div className="p-2 transition-all duration-200">

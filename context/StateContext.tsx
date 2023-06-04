@@ -1,6 +1,7 @@
 "use client";
 
 import { showToast } from "@/components/Global/Toast";
+import { CartProductType, foundProductType } from "@/types/GlobalTypes";
 import { createContext, useContext, useState } from "react";
 const StateContext = createContext<any>(null);
 
@@ -11,16 +12,6 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartOpen, setCartOpen] = useState(false);
   const [qty, setQty] = useState(1);
   const [offer, setOffer] = useState({});
-
-  // console.log(RetrieveCartFromLocalStorage());
-
-  type foundProductType = {
-    quantity: number;
-    Total_Price: number;
-    attributes: {
-      Price: number;
-    };
-  };
 
   let foundProduct: foundProductType;
   let index: number;
@@ -59,7 +50,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
-  const onAdd = (product: any, quantity: number) => {
+  const onAdd = (product: CartProductType, quantity: number) => {
     const checkProductInCart = cartItems.find(
       (item: any) => item.id === product.id
     );
