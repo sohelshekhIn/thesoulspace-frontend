@@ -7,7 +7,8 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../app/api/auth/[...nextauth]/route";
 import { NavSignInBtn } from "./NavBtns";
 import NavUserAccMenu from "./NavUserMenu";
-import NavMenu from "./NavMenu";
+import { NavMenu, NavMenuHamburger } from "./NavMenu";
+import NavCartButton from "./NavCartButton";
 
 const Navbar: any = async () => {
   const session = await getServerSession(authOptions);
@@ -38,36 +39,13 @@ const Navbar: any = async () => {
               href="/cart"
               className="cursor-pointer transition-all relative p-1 min-w-[2.5em] max-w-[2.7em] hover:scale-105 hover:bg-gray-100 rounded-full"
             >
-              <span className="hidden absolute top-0 right-0 w-5 h-5 bg-black rounded-full justify-center items-center">
-                <p className="text-gray-100 text-sm">+1</p>
-              </span>
+              <NavCartButton />
               <Image src={cart} alt="Cart" />
             </Link>
           </div>
           <NavMenu />
           {/* Nav Hamburger Icon*/}
-          <div className="z-30 w-1/2 md:w-3/12 lg:hidden">
-            <div className="h-full flex justify-end items-center">
-              <label
-                role="button"
-                htmlFor="toggle_nav"
-                aria-label="humburger"
-                id="hamburger"
-                className="relative p-4"
-              >
-                <div
-                  aria-hidden="true"
-                  id="line"
-                  className="m-auto h-0.5 w-5 rounded bg-gray-700 transition duration-300"
-                ></div>
-                <div
-                  aria-hidden="true"
-                  id="line2"
-                  className="m-auto mt-2 h-0.5 w-5 rounded bg-gray-700 transition duration-300"
-                ></div>
-              </label>
-            </div>
-          </div>
+          <NavMenuHamburger />
         </div>
       </div>
     </nav>
