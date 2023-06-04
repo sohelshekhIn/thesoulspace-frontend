@@ -4,7 +4,6 @@ import ShopProductCard from "@/components/Shop/ShopCard";
 
 const Shop = async () => {
   const data = await getStaticData("/products?populate=deep,3", 60 * 2);
-  console.log(data);
   return (
     <div className="w-full">
       <div className="flex flex-col align-middle justify-center mt-3">

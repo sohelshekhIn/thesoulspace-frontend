@@ -1,6 +1,5 @@
 "use client";
 
-import { ProductCarouselComp } from "@/components/Global/CarouselComp";
 import { showToast } from "@/components/Global/Toast";
 import { createContext, useContext, useState } from "react";
 const StateContext = createContext<any>(null);
@@ -11,6 +10,9 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [cartOpen, setCartOpen] = useState(false);
   const [qty, setQty] = useState(1);
+  const [offer, setOffer] = useState({});
+
+  // console.log(RetrieveCartFromLocalStorage());
 
   type foundProductType = {
     quantity: number;
@@ -22,20 +24,6 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
 
   let foundProduct: foundProductType;
   let index: number;
-
-  const incQty = () => {
-    setQty((prevQty) => {
-      // max qty is 10
-      if (prevQty + 1 > 10) return 10;
-      return prevQty + 1;
-    });
-  };
-  const decQty = () => {
-    setQty((prevQty) => {
-      if (prevQty - 1 < 1) return 1;
-      return prevQty - 1;
-    });
-  };
 
   const toggleCartItemQuantity = (id: number, value: string) => {
     foundProduct = cartItems.find((item: any) => item.id === id);
@@ -81,8 +69,6 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + quantity);
     if (checkProductInCart) {
       const updatedCartItems = cartItems.map((cartProduct: any) => {
-        console.log(cartProduct._id);
-        console.log(product._id);
         if (cartProduct.id === product.id) {
           cartProduct = {
             ...cartProduct,
@@ -92,10 +78,6 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
         }
         return cartProduct;
       });
-
-      // ...cartProduct,
-      //       Total_Price: cartProduct.attributes.Price * quantity,
-      //       quantity: cartProduct.quantity + quantity,
 
       setCartItems(updatedCartItems);
     } else {
@@ -107,14 +89,30 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     showToast(`${quantity} ${product.attributes.Name} added to bag`, "success");
   };
 
+  const incQty = () => {
+    setQty((prevQty) => {
+      // max qty is 10
+      if (prevQty + 1 > 10) return 10;
+      return prevQty + 1;
+    });
+  };
+  const decQty = () => {
+    setQty((prevQty) => {
+      if (prevQty - 1 < 1) return 1;
+      return prevQty - 1;
+    });
+  };
+
   return (
     <StateContext.Provider
       value={{
-        cartItem: cartItems,
+        cartItems,
         totalPrice,
         totalQuantity,
         cartOpen,
         qty,
+        offer,
+        setOffer,
         setCartOpen,
         incQty,
         decQty,

@@ -3,8 +3,6 @@ import Link from "next/link";
 import TitleDivider from "../Global/Divider";
 
 const BestSeller = ({ bestSellerData }: { bestSellerData: object[] }) => {
-  console.log(bestSellerData);
-
   return (
     <div className="mt-14">
       <div className="flex flex-col items-center w-full justify-center gap-5 mb-7">

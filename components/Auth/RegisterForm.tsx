@@ -33,7 +33,6 @@ const RegisterForm = ({ csrfToken }: { csrfToken: any }) => {
           .max(25, "Password must be at most 25 characters"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        console.log(process.env.NEXTAUTH_URL);
         await axios
           .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/local/register`, {
             name: values.name,

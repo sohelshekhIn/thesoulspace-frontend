@@ -78,7 +78,6 @@ const CustomDot = ({
   data: any;
   index?: number;
 }) => {
-  // console.log(data.data[0]);
   let containerSize = 60;
   return (
     <button
