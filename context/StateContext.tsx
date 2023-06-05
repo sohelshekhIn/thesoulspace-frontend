@@ -78,6 +78,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     }
     setQty(1);
     showToast(`${quantity} ${product.attributes.Name} added to bag`, "success");
+    console.log(cartItems);
   };
 
   const incQty = () => {

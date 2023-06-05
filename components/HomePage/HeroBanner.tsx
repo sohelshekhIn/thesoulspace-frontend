@@ -40,7 +40,8 @@ const Banner = ({ data }: { data: BannerDataType }) => {
             width={data.BannerImage.data.attributes.width}
             height={data.BannerImage.data.attributes.height}
             src={data.BannerImage.data.attributes.url}
-            alt="Demo"
+            priority={true}
+            alt="Hero Banner Image"
           />
         </div>
       </div>
