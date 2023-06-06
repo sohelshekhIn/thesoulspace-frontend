@@ -57,8 +57,8 @@ const CartProduct = ({ product }: { product: CartProductType }) => {
       <div className="w-[130px] lg:w-[100px] lg:h-[100px] h-[100px] bg-gray-200">
         <Image
           src={
-            product.attributes.Product_Image.data[0].attributes.formats
-              .thumbnail.url
+            // @ts-ignore
+            product.Product_Image[0].formats.thumbnail.url
           }
           width={150}
           height={150}
@@ -68,7 +68,7 @@ const CartProduct = ({ product }: { product: CartProductType }) => {
       {/* list of items added in cart */}
       <div className="flex gap-3 flex-col sm:flex-row w-[70%] sm:justify-between">
         <div className="flex flex-col gap-1">
-          <h1 className="text-lg">{product.attributes.Name}</h1>
+          <h1 className="text-lg">{product.Name}</h1>
           {/* <p className="text-sm">Product Description</p> */}
           <p className="font-semibold">₹ {product.Total_Price}</p>
         </div>

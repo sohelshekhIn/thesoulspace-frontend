@@ -2,17 +2,14 @@ import { star } from "@/public/icons";
 import Image from "next/image";
 import Link from "next/link";
 import { AddToCartButton } from "./ShopButtons";
-import { ShopProductCardType } from "@/types/GlobalTypes";
+import { ProductType } from "@/types/GlobalTypes";
 
-const ShopProductCard = ({ product }: { product: ShopProductCardType }) => {
+const ShopProductCard = ({ product }: { product: ProductType }) => {
   return (
     <div className="w-[300px] noSelect">
       <div className="p-2 transition-all duration-200">
         <Image
-          src={
-            product.attributes.Product_Image.data[0].attributes.formats.small
-              .url
-          }
+          src={product.Product_Image[0].formats.small.url}
           alt="pr1"
           width={300}
           height={300}
@@ -25,19 +22,15 @@ const ShopProductCard = ({ product }: { product: ShopProductCardType }) => {
           <p className="text-sm">4/5</p>
         </div>
         <Link
-          href={`/shop/${product.attributes.slug}-${product.id}`}
+          href={`/shop/${product.slug}-${product.id}`}
           className="hover:text-yellow-600 truncate"
         >
           <h1 className="text-2xl lg:text-xl whitespace-normal">
-            {product.attributes.Name}
+            {product.Name}
           </h1>
         </Link>
-        <p className="text-gray-500 truncate">
-          {product.attributes.Short_Description}
-        </p>
-        <p className="font-semibold text-lg mt-2">
-          &#x20B9; {product.attributes.Price}
-        </p>
+        <p className="text-gray-500 truncate">{product.Short_Description}</p>
+        <p className="font-semibold text-lg mt-2">&#x20B9; {product.Price}</p>
         <div className="py-2">
           <AddToCartButton product={product} small={true} />
         </div>

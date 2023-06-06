@@ -4,7 +4,7 @@ import HeroBanner from "@/components/HomePage/HeroBanner";
 import PopularCategories from "@/components/HomePage/PopularCategories";
 import RequestArtBanner from "@/components/HomePage/RequestArtBanner";
 import TestimonialSection from "@/components/HomePage/TestimonialSection";
-import { getStaticData } from "@/utils/api";
+import { getStaticData } from "@/utils/global";
 
 const Home = async () => {
   // set cache for 1 hour

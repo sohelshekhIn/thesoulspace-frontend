@@ -4,20 +4,18 @@ type CartProductType = {
   id: number;
   quantity: number;
   Total_Price: number;
-  attributes: {
-    Name: string;
-    Price: number;
-    Product_Image: {
-      data: {
-        attributes: {
-          formats: {
-            thumbnail: {
-              url: string;
-            };
+  Name: string;
+  Price: number;
+  Product_Image: {
+    data: {
+      attributes: {
+        formats: {
+          thumbnail: {
+            url: string;
           };
         };
-      }[];
-    };
+      };
+    }[];
   };
 };
 
@@ -25,9 +23,7 @@ type CartProductType = {
 type foundProductType = {
   quantity: number;
   Total_Price: number;
-  attributes: {
-    Price: number;
-  };
+  Price: number;
 };
 
 // Product Card, Best Seller - Homepage
@@ -73,28 +69,6 @@ type ProductCategoryCardType = {
   };
 };
 
-// Shop Product Card, Shop Page
-type ShopProductCardType = {
-  id: number;
-  attributes: {
-    Name: string;
-    Price: number;
-    Short_Description: string;
-    slug: string;
-    Product_Image: {
-      data: {
-        attributes: {
-          formats: {
-            small: {
-              url: string;
-            };
-          };
-        };
-      }[];
-    };
-  };
-};
-
 type BannerDataType = {
   Short_Text: string;
   Mid_Text: string;
@@ -117,25 +91,29 @@ type BannerDataType = {
 };
 
 // Add to Cart Button, Product Page
-type AddToCartProductType = {
+// Shop Product Card, Shop Page
+
+type ProductType = {
   id: number;
-  attributes:
+
+  Name: string;
+  Price: number;
+  Short_Description: string;
+  slug: string;
+  Product_Image:
     | {
-        Name: string;
-        Price: number;
-        Short_Description: string;
-        slug: string;
-        Product_Image: {
-          data: {
-            attributes: {
-              formats: {
-                thumbnail: {
-                  url: string;
-                };
+        data: {
+          attributes: {
+            formats: {
+              thumbnail: {
+                url: string;
+              };
+              small: {
+                url: string;
               };
             };
-          }[];
-        };
+          };
+        }[];
       }
     | any;
 };
@@ -145,7 +123,6 @@ export type {
   foundProductType,
   ProductCardType,
   ProductCategoryCardType,
-  ShopProductCardType,
   BannerDataType,
-  AddToCartProductType,
+  ProductType,
 };

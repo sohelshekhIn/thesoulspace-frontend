@@ -1,20 +1,20 @@
 "use client";
 
 import { useStateContext } from "@/context/StateContext";
-import { AddToCartProductType } from "@/types/GlobalTypes";
+import { ProductType } from "@/types/GlobalTypes";
 
 const AddToCartButton = ({
   product,
   small = false,
 }: {
-  product: AddToCartProductType;
+  product: ProductType;
   small: boolean;
 }) => {
   const { onAdd, qty } = useStateContext();
   return (
     <button
       onClick={() => onAdd(product, qty)}
-      className={`bg-gray-300 
+      className={`bg-gray-300
         hover:bg-gray-400
       rounded-lg text-black w-1/2 ${small ? "px-2 py-3" : "px-5 py-4"}`}
     >

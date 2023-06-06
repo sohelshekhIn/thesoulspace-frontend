@@ -2,7 +2,7 @@ import { ProductCarouselComp } from "@/components/Global/CarouselComp";
 import { CartInputComp } from "@/components/Shop/CartInputComp";
 import { RichTextMarkdown } from "@/components/Global/RichTextMarkdown";
 import { minus, plus, star } from "@/public/icons";
-import { getStaticData } from "@/utils/api";
+import { getStaticData } from "@/utils/global";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { AddToCartButton, BuyNowButton } from "@/components/Shop/ShopButtons";

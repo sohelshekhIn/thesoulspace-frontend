@@ -2,10 +2,11 @@
 
 import { showToast } from "@/components/Global/Toast";
 import { CartProductType, foundProductType } from "@/types/GlobalTypes";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 const StateContext = createContext<any>(null);
 
 export const StateProvider = ({ children }: { children: React.ReactNode }) => {
+  // get cart items from local storage
   const [cartItems, setCartItems] = useState<any>([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
@@ -23,12 +24,12 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
       if (foundProduct.quantity + 1 > 10) return;
       foundProduct.quantity += 1;
       setTotalPrice(
-        (prevTotalPrice) => prevTotalPrice + foundProduct.attributes.Price * qty
+        (prevTotalPrice) => prevTotalPrice + foundProduct.Price * qty
       );
       setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + qty);
     } else if (value === "dec") {
       setTotalPrice(
-        (prevTotalPrice) => prevTotalPrice - foundProduct.attributes.Price * qty
+        (prevTotalPrice) => prevTotalPrice - foundProduct.Price * qty
       );
       setTotalQuantity((prevTotalQuantity) => prevTotalQuantity - qty);
 
@@ -42,8 +43,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
       }
       foundProduct.quantity -= 1;
     }
-    foundProduct.Total_Price =
-      foundProduct.attributes.Price * foundProduct.quantity;
+    foundProduct.Total_Price = foundProduct.Price * foundProduct.quantity;
     setCartItems((prevCartItem: any) => {
       prevCartItem[index] = foundProduct;
       return [...prevCartItem];
@@ -55,7 +55,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
       (item: any) => item.id === product.id
     );
     setTotalPrice(
-      (prevTotalPrice) => prevTotalPrice + product.attributes.Price * quantity
+      (prevTotalPrice) => prevTotalPrice + product.Price * quantity
     );
     setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + quantity);
     if (checkProductInCart) {
@@ -63,7 +63,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
         if (cartProduct.id === product.id) {
           cartProduct = {
             ...cartProduct,
-            Total_Price: cartProduct.attributes.Price * quantity,
+            Total_Price: cartProduct.Price * quantity,
             quantity: cartProduct.quantity + quantity,
           };
         }
@@ -73,12 +73,11 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
       setCartItems(updatedCartItems);
     } else {
       product.quantity = quantity;
-      product.Total_Price = product.attributes.Price * quantity;
+      product.Total_Price = product.Price * quantity;
       setCartItems([...cartItems, { ...product }]);
     }
     setQty(1);
-    showToast(`${quantity} ${product.attributes.Name} added to bag`, "success");
-    console.log(cartItems);
+    showToast(`${quantity} ${product.Name} added to bag`, "success");
   };
 
   const incQty = () => {
