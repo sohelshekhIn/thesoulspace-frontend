@@ -6,16 +6,27 @@ import { createContext, useContext, useEffect, useState } from "react";
 const StateContext = createContext<any>(null);
 
 export const StateProvider = ({ children }: { children: React.ReactNode }) => {
-  // get cart items from local storage
-  const [cartItems, setCartItems] = useState<any>([]);
+  const localCartItems = localStorage.getItem("cartItems");
+  const localTotalQuantity = localStorage.getItem("totalQuantity");
+  const [cartItems, setCartItems] = useState<any>(
+    localCartItems ? JSON.parse(localCartItems) : []
+  );
   const [totalPrice, setTotalPrice] = useState(0);
-  const [totalQuantity, setTotalQuantity] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState<number>(
+    localTotalQuantity ? JSON.parse(localTotalQuantity) : 0
+  );
+
   const [cartOpen, setCartOpen] = useState(false);
   const [qty, setQty] = useState(1);
   const [offer, setOffer] = useState({});
 
   let foundProduct: foundProductType;
   let index: number;
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem("totalQuantity", JSON.stringify(totalQuantity));
+  }, [cartItems, totalQuantity]);
 
   const toggleCartItemQuantity = (id: number, value: string) => {
     foundProduct = cartItems.find((item: any) => item.id === id);
