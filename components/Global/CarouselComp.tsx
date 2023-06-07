@@ -60,7 +60,7 @@ const ProductCarouselComp = ({
       removeArrowOnDeviceType={["tablet", "mobile"]}
       containerClass="pb-[10%]"
       dotListClass="custom-dot-list-style transform -translate-y-[50%]  gap-2"
-      customDot={<CustomDot data={data.attributes.Product_Image} />}
+      customDot={<CustomDot data={data.Product_Image} />}
     >
       {children}
     </Carousel>
@@ -87,7 +87,7 @@ const CustomDot = ({
       onClick={() => onClick()}
     >
       <Image
-        src={data.data[index].attributes.formats.small.url}
+        src={data[index].formats.small.url}
         width={containerSize}
         height={containerSize}
         alt="product image"

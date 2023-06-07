@@ -95,7 +95,6 @@ type BannerDataType = {
 
 type ProductType = {
   id: number;
-
   Name: string;
   Price: number;
   Short_Description: string;

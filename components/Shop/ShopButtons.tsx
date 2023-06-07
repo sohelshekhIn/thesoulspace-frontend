@@ -8,7 +8,7 @@ const AddToCartButton = ({
   small = false,
 }: {
   product: ProductType;
-  small: boolean;
+  small?: boolean;
 }) => {
   const { onAdd, qty } = useStateContext();
   return (

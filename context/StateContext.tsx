@@ -7,26 +7,33 @@ const StateContext = createContext<any>(null);
 
 export const StateProvider = ({ children }: { children: React.ReactNode }) => {
   const localCartItems = localStorage.getItem("cartItems");
+  const localTotalPrice = localStorage.getItem("totalPrice");
   const localTotalQuantity = localStorage.getItem("totalQuantity");
+
   const [cartItems, setCartItems] = useState<any>(
     localCartItems ? JSON.parse(localCartItems) : []
   );
-  const [totalPrice, setTotalPrice] = useState(0);
+
+  const [totalPrice, setTotalPrice] = useState<number>(
+    localTotalPrice ? JSON.parse(localTotalPrice) : 0
+  );
   const [totalQuantity, setTotalQuantity] = useState<number>(
     localTotalQuantity ? JSON.parse(localTotalQuantity) : 0
   );
 
-  const [cartOpen, setCartOpen] = useState(false);
-  const [qty, setQty] = useState(1);
-  const [offer, setOffer] = useState({});
+  const [cartOpen, setCartOpen] = useState<boolean>(false);
+  const [qty, setQty] = useState<number>(1);
+
+  const [offer, setOffer] = useState<object>({});
 
   let foundProduct: foundProductType;
   let index: number;
 
   useEffect(() => {
+    localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     localStorage.setItem("totalQuantity", JSON.stringify(totalQuantity));
-  }, [cartItems, totalQuantity]);
+  }, [cartItems, totalQuantity, totalPrice]);
 
   const toggleCartItemQuantity = (id: number, value: string) => {
     foundProduct = cartItems.find((item: any) => item.id === id);
@@ -34,15 +41,11 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     if (value === "inc") {
       if (foundProduct.quantity + 1 > 10) return;
       foundProduct.quantity += 1;
-      setTotalPrice(
-        (prevTotalPrice) => prevTotalPrice + foundProduct.Price * qty
-      );
-      setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + qty);
+      setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.Price);
+      setTotalQuantity((prevTotalQuantity) => prevTotalQuantity + 1);
     } else if (value === "dec") {
-      setTotalPrice(
-        (prevTotalPrice) => prevTotalPrice - foundProduct.Price * qty
-      );
-      setTotalQuantity((prevTotalQuantity) => prevTotalQuantity - qty);
+      setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.Price);
+      setTotalQuantity((prevTotalQuantity) => prevTotalQuantity - 1);
 
       // quantity can't be less than 1 then remove
       if (foundProduct.quantity - 1 < 1) {
@@ -88,6 +91,8 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
       setCartItems([...cartItems, { ...product }]);
     }
     setQty(1);
+    console.log(product);
+
     showToast(`${quantity} ${product.Name} added to bag`, "success");
   };
 
