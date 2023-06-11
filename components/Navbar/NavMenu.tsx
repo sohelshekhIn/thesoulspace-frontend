@@ -30,11 +30,11 @@ const NavMenu = () => {
       >
         <div className="text-black lg:w-auto w-full lg:pt-0">
           <ul className="tracking-wide font-medium lg:text-base flex-col flex lg:flex-row gap-1 lg:gap-0">
-            <NavLinks href="/">Home</NavLinks>
-            <NavLinks href="/shop/">Shop</NavLinks>
-            <NavLinks href="/order-your-design/">Order Your Design</NavLinks>
-            <NavLinks href="/about/">About</NavLinks>
-            <NavLinks href="/contact/">Contact</NavLinks>
+            <NavLinks href="/">home</NavLinks>
+            <NavLinks href="/shop/">shop</NavLinks>
+            <NavLinks href="/order-your-design/">order your design</NavLinks>
+            <NavLinks href="/about/">about</NavLinks>
+            <NavLinks href="/contact/">contact</NavLinks>
           </ul>
         </div>
       </div>

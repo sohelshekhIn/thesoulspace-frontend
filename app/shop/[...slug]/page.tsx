@@ -13,7 +13,7 @@ const ProductPage = async (context: any) => {
   const id = slugParts.pop();
   const slugName = slugParts.join("-");
 
-  const data = await getStaticData(`/products/${id}`, 60);
+  const data = await getStaticData(`/products/${id}`, 60 * 3);
 
   if (!data) {
     return (

@@ -8,7 +8,7 @@ import { getStaticData } from "@/utils/global";
 
 const Home = async () => {
   // set cache for 1 hour
-  const data = await getStaticData("/homepage?populate=deep,3");
+  const data = await getStaticData("/homepage?populate=deep,3", 60 * 60);
 
   return (
     <div>
