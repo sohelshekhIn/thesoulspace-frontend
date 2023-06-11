@@ -3,14 +3,15 @@
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import { showToast } from "../Global/Toast";
-import { useSearchParams } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import axios from "axios";
-import { signIn } from "next-auth/react";
+import LoadingSpinner from "../Global/LoadingSpinner";
 
-const RegisterForm = ({ csrfToken }: { csrfToken: any }) => {
+const RegisterForm = () => {
   const searchParams = useSearchParams();
   const error = searchParams.get("error")!;
+
   useEffect(() => {
     if (error) {
       showToast(error, "error");
@@ -41,20 +42,10 @@ const RegisterForm = ({ csrfToken }: { csrfToken: any }) => {
             password: values.password,
           })
           .then(async (res) => {
-            showToast("Registration successful!", "success");
-            const reSign = await signIn("credentials", {
-              redirect: true,
-              email: values.email,
-              password: values.password,
-              csrfToken: csrfToken,
-            });
-            if (reSign?.error) {
-              showToast(reSign?.error, "error");
-              return;
-            } else if (reSign?.ok) {
-              showToast("Login successful, Redirecting...", "success");
-              return;
-            }
+            showToast("Check your email for confirmation link!", "success");
+            setTimeout(() => {
+              redirect("/login");
+            }, 5000);
           })
           .catch((err) => {
             if (
@@ -117,11 +108,18 @@ const RegisterForm = ({ csrfToken }: { csrfToken: any }) => {
             </p>
           </div>
           <button
-            className="flex mt-2 h-14 w-full items-center justify-center rounded-lg px-4 py-5 sm:w-max lg:w-full transition-all bg-gray-900 hover:scale-105 hover:text-white text-gray-100"
+            className="flex mt-2 h-14 w-full items-center justify-center rounded-lg px-4 py-5 sm:w-max lg:w-full transition-all bg-black hover:bg-gray-800 hover:text-white text-gray-100"
             type="submit"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Verifying..." : "Log In"}
+            {isSubmitting ? (
+              <div className="flex items-center gap-2">
+                <LoadingSpinner color="white" />
+                <p>Registing...</p>
+              </div>
+            ) : (
+              <p>Register</p>
+            )}
           </button>
         </form>
       )}

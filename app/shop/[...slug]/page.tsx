@@ -14,7 +14,6 @@ const ProductPage = async (context: any) => {
   const slugName = slugParts.join("-");
 
   const data = await getStaticData(`/products/${id}`, 60);
-  console.log(data);
 
   if (!data) {
     return (

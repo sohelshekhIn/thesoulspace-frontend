@@ -6,10 +6,16 @@ import { showToast } from "../Global/Toast";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import LoadingSpinner from "../Global/LoadingSpinner";
 
-const LoginForm = ({ csrfToken }: { csrfToken: any }) => {
+const LoginForm = ({ csrfToken }: { csrfToken: string }) => {
   const searchParams = useSearchParams();
   const error = searchParams.get("error")!;
+  // if callback url is present in query params, store it in session storage
+  if (searchParams.get("callbackUrl")) {
+    sessionStorage.setItem("callbackUrl", searchParams.get("callbackUrl")!);
+  }
+
   useEffect(() => {
     if (error) {
       showToast(error, "error");
@@ -37,6 +43,8 @@ const LoginForm = ({ csrfToken }: { csrfToken: any }) => {
         }
         const res = await signIn("credentials", {
           redirect: true,
+          // get callback url from query params
+          callbackUrl: sessionStorage.getItem("callbackUrl") || "/",
           email: values.email,
           password: values.password,
           csrfToken: csrfToken,
@@ -45,6 +53,8 @@ const LoginForm = ({ csrfToken }: { csrfToken: any }) => {
           showToast(res?.error, "error");
           return;
         } else if (res?.ok) {
+          // remove callback url from session storage
+          sessionStorage.removeItem("callbackUrl");
           showToast("Login successful!", "success");
           return;
         }
@@ -77,11 +87,18 @@ const LoginForm = ({ csrfToken }: { csrfToken: any }) => {
             </p>
           </div>
           <button
-            className="flex mt-2 h-14 w-full items-center justify-center rounded-lg px-4 py-5 sm:w-max lg:w-full transition-all bg-gray-900 hover:scale-105 hover:text-white text-gray-100"
+            className="flex mt-2 h-14 w-full items-center justify-center rounded-lg px-4 py-5 sm:w-max lg:w-full transition-all bg-black hover:bg-gray-800 hover:text-white text-gray-100"
             type="submit"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Verifying..." : "Log In"}
+            {isSubmitting ? (
+              <div className="flex items-center gap-2">
+                <LoadingSpinner color="white" />
+                <p>Verifying...</p>
+              </div>
+            ) : (
+              <p>Log In</p>
+            )}
           </button>
         </form>
       )}
