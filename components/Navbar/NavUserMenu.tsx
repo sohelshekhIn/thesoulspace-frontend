@@ -5,7 +5,7 @@ import { NavSignOutBtn } from "./NavBtns";
 
 const NavUserAccMenu = ({ session }: { session: any }) => {
   return (
-    <div className="z-30 transform -translate-x-3 lg:translate-x-0 flex relative justify-end items-center">
+    <div className="z-30 flex transform -translate-x-3 lg:translate-x-0 relative justify-end items-center">
       <input
         aria-hidden="true"
         type="checkbox"

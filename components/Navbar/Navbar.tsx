@@ -37,7 +37,7 @@ const Navbar: any = async () => {
           <div className="z-30 w-1/2 md:w-3/12 lg:w-1/12 flex justify-center items-center">
             <Link
               href="/cart"
-              className="cursor-pointer transition-all relative p-1 min-w-[2.5em] max-w-[2.7em] hover:scale-105 hover:bg-gray-100 rounded-full"
+              className="cursor-pointer transition-all relative p-1 min-w-[2.5em] max-w-[2.7em] hover:bg-gray-100 rounded-full"
             >
               <NavCartButton />
               <Image src={cart} alt="Cart" />

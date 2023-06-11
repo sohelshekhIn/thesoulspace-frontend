@@ -10,7 +10,7 @@ const NavSignInBtn = () => {
     <div className="z-30 flex items-center">
       <Link
         href={"/login"}
-        className="flex h-10 w-full items-center justify-center rounded-full px-4 py-5 sm:w-max transition-all bg-black hover:scale-110 hover:text-white text-gray-100"
+        className="flex h-10 w-full items-center justify-center rounded-full px-4 py-5 sm:w-max transition-all bg-black hover:bg-gray-800 hover:text-white text-gray-100"
       >
         <span className="text-sm font-semibold w-full">Login</span>
       </Link>
