@@ -10,14 +10,14 @@ const CartInputComp = () => {
     <div className="flex items-center noSelect">
       <button
         onClick={decQty}
-        className="w-9 h-9 flex justify-center items-center rounded-full focus:outline-none bg-gray-200"
+        className="w-9 h-9 flex justify-center items-center rounded-full focus:outline-none bg-gray-200 hover:bg-gray-300"
       >
         <Image className="w-3 h-3" alt="minus" src={minus} />
       </button>
       <span className="px-3 text-lg">{qty}</span>
       <button
         onClick={incQty}
-        className="w-9 h-9 flex justify-center items-center rounded-full focus:outline-none bg-gray-200"
+        className="w-9 h-9 flex justify-center items-center rounded-full focus:outline-none bg-gray-200 hover:bg-gray-300"
       >
         <Image className="w-3 h-3" alt="plus" src={plus} />
       </button>
@@ -37,14 +37,14 @@ const IndividualCartProductInputComp = ({
     <div className="flex items-center noSelect">
       <button
         onClick={() => toggleCartItemQuantity(productId, "dec")}
-        className="w-9 h-9 flex justify-center items-center rounded-full focus:outline-none bg-gray-200"
+        className="w-9 h-9 flex justify-center items-center rounded-full focus:outline-none bg-gray-200 hover:bg-gray-300"
       >
         <Image className="w-3 h-3" alt="minus" src={minus} />
       </button>
       <span className="px-3 text-lg">{quantity}</span>
       <button
         onClick={() => toggleCartItemQuantity(productId, "inc")}
-        className="w-9 h-9 flex justify-center items-center rounded-full focus:outline-none bg-gray-200"
+        className="w-9 h-9 flex justify-center items-center rounded-full focus:outline-none bg-gray-200 hover:bg-gray-300"
       >
         <Image className="w-3 h-3" alt="plus" src={plus} />
       </button>

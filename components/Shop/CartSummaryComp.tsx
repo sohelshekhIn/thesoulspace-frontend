@@ -1,6 +1,7 @@
 "use client";
 
 import { useStateContext } from "@/context/StateContext";
+import Link from "next/link";
 
 const CartSummary = () => {
   const { totalPrice, offer, setOffer } = useStateContext();
@@ -61,9 +62,11 @@ const CartSummary = () => {
         </div>
       </div>
       <div className="mt-5 bg-white fixed lg:static lg:p-0 w-full bottom-0 right-0 p-3">
-        <button className="w-full py-4 bg-black text-white rounded-lg">
-          Checkout
-        </button>
+        <Link href={"/checkout"}>
+          <button className="w-full py-4 bg-black text-white rounded-lg hover:bg-gray-800 active:bg-gray-900 transition duration-150 ease-in-out ">
+            Checkout
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -21,8 +21,11 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     localTotalQuantity ? JSON.parse(localTotalQuantity) : 0
   );
 
+  const [checkoutAuthType, setCheckoutAuthType] = useState<string>("resgister");
+
   const [cartOpen, setCartOpen] = useState<boolean>(false);
   const [qty, setQty] = useState<number>(1);
+  const [shippingCharge, setShippingCharge] = useState<number>(40);
 
   const [offer, setOffer] = useState<object>({});
 
@@ -119,6 +122,10 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
         cartOpen,
         qty,
         offer,
+        checkoutAuthType,
+        shippingCharge,
+        setShippingCharge,
+        setCheckoutAuthType,
         setOffer,
         setCartOpen,
         incQty,

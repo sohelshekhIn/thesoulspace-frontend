@@ -14,7 +14,7 @@ const BestSeller = ({ bestSellerData }: { bestSellerData: object[] }) => {
       </div>
       <div className="mt-3 flex justify-center flex-wrap w-full gap-8 md:gap-5">
         {bestSellerData.map((product: any) => (
-          <ProductCard key={product._id} product={product} />
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </div>

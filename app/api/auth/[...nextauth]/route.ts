@@ -63,12 +63,21 @@ const handleLogin = (credentials: any) => {
       })
       // If no error and we have user data, return it
       .catch((err) => {
+        console.log(err.response.data.error);
+
         if (
           err.response &&
           err.response.data.error.name === "ValidationError" &&
           err.response.data.error.message === "Invalid identifier or password"
         ) {
           throw new Error("Invalid email or password");
+        } else if (
+          err.response &&
+          err.response.data.error.name === "ApplicationError" &&
+          err.response.data.error.message ===
+            "Your account email is not confirmed"
+        ) {
+          throw new Error("Confirm your email address to login.");
         } else if (
           err.response &&
           err.response.data.error.name === "ApplicationError" &&

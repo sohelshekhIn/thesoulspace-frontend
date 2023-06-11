@@ -17,6 +17,12 @@ export default function Error({
   return (
     <div>
       <h2>Something went wrong!</h2>
+      <p>
+        {
+          // convert the error to a string to display to the user
+          error.toString()
+        }
+      </p>
       <button
         onClick={
           // Attempt to recover by trying to re-render the segment
