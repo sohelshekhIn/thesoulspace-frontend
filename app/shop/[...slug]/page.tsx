@@ -58,7 +58,7 @@ const ProductPage = async (context: any) => {
           </div>
           <div className="flex items-center mt-5 gap-2 w-full">
             <AddToCartButton product={data} />
-            <BuyNowButton />
+            <BuyNowButton product={data} />
           </div>
           <div className="my-5">
             Description

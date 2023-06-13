@@ -2,6 +2,7 @@
 
 import { useStateContext } from "@/context/StateContext";
 import { ProductType } from "@/types/GlobalTypes";
+import Link from "next/link";
 
 const AddToCartButton = ({
   product,
@@ -23,10 +24,14 @@ const AddToCartButton = ({
   );
 };
 
-const BuyNowButton = () => {
+const BuyNowButton = ({ product }: { product: ProductType }) => {
+  const { onAdd, qty } = useStateContext();
   return (
-    <button className="bg-black rounded-lg text-white w-1/2 px-5 py-4">
-      Buy Now
+    <button
+      onClick={() => onAdd(product, qty)}
+      className="bg-black rounded-lg text-white w-1/2 px-5 py-4"
+    >
+      <Link href="/cart">Buy Now</Link>
     </button>
   );
 };

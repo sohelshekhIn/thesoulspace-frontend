@@ -36,7 +36,7 @@ const NavUserAccMenu = ({ session }: { session: any }) => {
         </div>
         <ul className="flex flex-col mt-2">
           <li className="p-3 rounded-md hover:bg-gray-100 hover:scale-110 font-normal w-full transition duration-300">
-            <Link href="/my-account/">
+            <Link href="/account/manage">
               <div className="flex gap-3">
                 <span className="flex items-center max-w-[1.5em]">
                   <Image src={myAccount} alt="Manage Account" />
@@ -46,7 +46,7 @@ const NavUserAccMenu = ({ session }: { session: any }) => {
             </Link>
           </li>
           <li className="p-3 rounded-md hover:bg-gray-100 hover:scale-110 font-normal w-full transition duration-300">
-            <Link href="/my-account/orders">
+            <Link href="/account/my-orders">
               {" "}
               <div className="flex gap-3">
                 <span className="flex items-center max-w-[1.5em]">
