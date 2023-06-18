@@ -44,7 +44,7 @@ const Login: any = async () => {
               href="/register"
               className="text-gray-600 text-sm font-medium transition-all hover:scale-110"
             >
-              Don't have an account?{" "}
+              {"Don't have an account? "}
               <span className="text-yellow-500">Register Now</span>
             </Link>
           </div>
