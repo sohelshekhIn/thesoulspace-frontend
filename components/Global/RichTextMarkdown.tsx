@@ -1,11 +1,11 @@
 import ReactMarkdown from "react-markdown";
 import breaks from "remark-breaks";
 
-const RichTextMarkdown = ({ markdownString }: { markdownString: string }) => {
+const RichTextMarkdown = ({ children }: { children: string }) => {
   return (
     <ReactMarkdown
       remarkPlugins={[breaks]}
-      children={markdownString}
+      children={children}
       components={{
         //   bold
         strong: ({ node, ...props }) => (

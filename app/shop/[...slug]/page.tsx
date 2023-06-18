@@ -62,7 +62,7 @@ const ProductPage = async (context: any) => {
           </div>
           <div className="my-5">
             Description
-            <RichTextMarkdown markdownString={data.Product_Description} />
+            <RichTextMarkdown>{data.Product_Description}</RichTextMarkdown>
           </div>
         </div>
       </div>
