@@ -32,7 +32,7 @@ const ProductPage = async (context: any) => {
         <div className="w-full lg:w-1/3">
           <ProductCarouselComp data={data}>
             {data.Product_Image.map((image: any) => (
-              <div className="w-[400px] sm:w-[500px]">
+              <div key={image.url} className="w-[400px] sm:w-[500px]">
                 <Image
                   src={image.formats.medium.url}
                   width={800}

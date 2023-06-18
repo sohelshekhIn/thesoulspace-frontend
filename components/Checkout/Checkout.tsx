@@ -49,7 +49,7 @@ const ContactDetailsComp = ({
         ) : (
           <button onClick={() => setCheckoutAuthType("register")}>
             <p className="text-sm">
-              Don't have an account!{" "}
+              {"Don't have an account! "}
               <span className="text-yellow-600">Register Now</span>
             </p>
           </button>
