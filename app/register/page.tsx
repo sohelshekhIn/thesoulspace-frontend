@@ -39,7 +39,7 @@ const RegisterUser: any = async () => {
               Register
             </h1>
           </div>
-          <RegisterForm csrfToken={csrfToken} />
+          <RegisterForm />
           <div className="">
             <Link
               href="/login"
