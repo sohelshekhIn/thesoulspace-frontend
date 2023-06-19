@@ -8,7 +8,7 @@ const HeroBanner = ({ bannerData }: { bannerData: any }) => {
     <div className="h-[80dvh] md:h-[65dvh] bg-gray-300 m-2 rounded-lg sm:max-w-[95dvw] sm:mx-auto lg:max-w-[90dvw] lg:mt-8">
       <HeroBannerCarouselComp>
         {bannerData.map((banner: any) => (
-          <Banner key={banner._id} data={banner} />
+          <Banner key={banner.id} data={banner} />
         ))}
       </HeroBannerCarouselComp>
     </div>
