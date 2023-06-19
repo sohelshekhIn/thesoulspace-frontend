@@ -62,10 +62,9 @@ const ProductPage = async (context: any) => {
           </div>
           <div className="my-5">
             Description
-            <RichTextMarkdown
-              // eslint-disable-next-line
-              children={data.Product_Description}
-            ></RichTextMarkdown>
+            <RichTextMarkdown>
+              {data.Product_Description || ""}
+            </RichTextMarkdown>
           </div>
         </div>
       </div>

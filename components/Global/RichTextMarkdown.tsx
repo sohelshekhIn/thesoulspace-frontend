@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import breaks from "remark-breaks";
 
@@ -5,6 +6,7 @@ const RichTextMarkdown = ({ children }: { children: string }) => {
   return (
     <ReactMarkdown
       remarkPlugins={[breaks]}
+      // eslint-disable-next-line
       children={children}
       components={{
         //   bold
