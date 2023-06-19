@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import LoadingSpinner from "../Global/LoadingSpinner";
 
-const LoginForm = ({ csrfToken }: { csrfToken: string }) => {
+const LoginForm = ({ csrfToken }: { csrfToken: string | undefined }) => {
   const searchParams = useSearchParams();
   const error = searchParams.get("error")!;
   // if callback url is present in query params, store it in session storage
