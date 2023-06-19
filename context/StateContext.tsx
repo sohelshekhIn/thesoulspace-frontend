@@ -6,21 +6,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 const StateContext = createContext<any>(null);
 
 export const StateProvider = ({ children }: { children: React.ReactNode }) => {
-  const localCartItems = localStorage.getItem("cartItems");
-  const localTotalPrice = localStorage.getItem("totalPrice");
-  const localTotalQuantity = localStorage.getItem("totalQuantity");
-
-  const [cartItems, setCartItems] = useState<any>(
-    localCartItems ? JSON.parse(localCartItems) : []
-  );
-
-  const [totalPrice, setTotalPrice] = useState<number>(
-    localTotalPrice ? JSON.parse(localTotalPrice) : 0
-  );
-  const [totalQuantity, setTotalQuantity] = useState<number>(
-    localTotalQuantity ? JSON.parse(localTotalQuantity) : 0
-  );
-
+  const [cartItems, setCartItems] = useState<any[]>([]);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [totalQuantity, setTotalQuantity] = useState<number>(0);
   const [checkoutAuthType, setCheckoutAuthType] = useState<string>("resgister");
 
   const [cartOpen, setCartOpen] = useState<boolean>(false);
@@ -31,6 +19,16 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
 
   let foundProduct: foundProductType;
   let index: number;
+
+  useEffect(() => {
+    const localCartItems = localStorage.getItem("cartItems");
+    const localTotalPrice = localStorage.getItem("totalPrice");
+    const localTotalQuantity = localStorage.getItem("totalQuantity");
+
+    setCartItems(localCartItems ? JSON.parse(localCartItems) : []);
+    setTotalPrice(localTotalPrice ? JSON.parse(localTotalPrice) : 0);
+    setTotalQuantity(localTotalQuantity ? JSON.parse(localTotalQuantity) : 0);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("totalPrice", JSON.stringify(totalPrice));

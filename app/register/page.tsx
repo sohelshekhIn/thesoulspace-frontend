@@ -5,11 +5,8 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import RegisterForm from "@/components/Auth/RegisterForm";
-import { cookies } from "next/headers";
 
 const RegisterUser: any = async () => {
-  const csrfToken = cookies().get("next-auth.csrf-token")?.value.split("|")[0];
-
   const session = await getServerSession(authOptions);
 
   if (session?.user) {
