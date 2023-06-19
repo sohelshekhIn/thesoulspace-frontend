@@ -15,7 +15,7 @@ const LaunchingSoon = () => {
           </div>
           <h1 className="text-6xl font-bold text-center mb-8">Coming Soon!</h1>
           <p className="text-lg text-gray-600 text-center mb-12">
-            Our website is under construction. We'll be back soon!
+            Our website is under construction. We&apos;ll be back soon!
           </p>
           <form
             onSubmit={(e) => {
