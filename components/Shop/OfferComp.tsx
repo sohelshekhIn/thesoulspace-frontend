@@ -6,7 +6,6 @@ import { showToast } from "../Global/Toast";
 const OfferComp = () => {
   const { offer, setOffer } = useStateContext();
   const checkOffer = async () => {
-    // showToast("Checking offer code", "info");
     const offerCode = (
       document.getElementById("offerCodeInput") as HTMLInputElement
     ).value;

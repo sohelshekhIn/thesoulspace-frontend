@@ -6,6 +6,7 @@ import { ToastMessageContainer } from "@/components/Global/Toast";
 import { Montserrat } from "next/font/google";
 import Footer from "@/components/Footer/Footer";
 import { StateProvider } from "@/context/StateContext";
+import { LaunchingSoon } from "@/components/Global/CommingSoon";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -27,14 +28,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={montserrat.className}>
       <body className="overflow-x-hidden">
-        <Provider session={session}>
-          <StateProvider>
-            <Navbar />
-            {children}
-            <ToastMessageContainer />
-            <Footer />
-          </StateProvider>
-        </Provider>
+        {process.env.SITE_STATUS === "live" ? (
+          <Provider session={session}>
+            <StateProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </StateProvider>
+          </Provider>
+        ) : (
+          <LaunchingSoon />
+        )}
+        <ToastMessageContainer />
       </body>
     </html>
   );
