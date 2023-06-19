@@ -1,4 +1,4 @@
-const getStaticData = async (url: string, expiresIn: number = 2) => {
+const getStaticData = async (url: string, expiresIn: number = 60 * 60) => {
   //
   const { data } = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
     next: { revalidate: expiresIn }, // 1 hour
@@ -8,16 +8,7 @@ const getStaticData = async (url: string, expiresIn: number = 2) => {
       Accept: "application/json",
       "User-Agent": "*",
     },
-  }).then(async (res) => {
-    console.log("Test here");
-    console.log(res);
-
-    let test = await res.json();
-    console.log("Hola here");
-
-    console.log(test);
-    return test;
-  });
+  }).then(async (res) => res.json());
 
   return data;
 };
