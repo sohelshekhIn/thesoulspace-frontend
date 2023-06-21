@@ -28,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={montserrat.className}>
       <body className="overflow-x-hidden">
+        {/* and also check the domain name */}
         {process.env.SITE_STATUS === "live" ? (
           <Provider session={session}>
             <StateProvider>
