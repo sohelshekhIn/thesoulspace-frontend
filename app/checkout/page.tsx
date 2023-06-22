@@ -11,6 +11,7 @@ const CheckoutPage = async () => {
 
   return (
     <div className="w-full h-[60dvh]">
+      <p>{csrfToken}</p>
       <div className="w-full bg-white mx-auto py-10">
         <ContactDetailsComp session={session} csrfToken={csrfToken} />
       </div>
