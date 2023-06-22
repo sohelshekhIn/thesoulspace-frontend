@@ -77,20 +77,25 @@ const Footer = () => {
               <Image className="rounded-sm" src={paytm} alt="PayTm" />{" "}
             </div>
             <div className="w-14 invisible lg:hidden"></div>
-            <Link href="https://trustlock.co">
+            <Link target="_blank" href="https://trustlock.co">
               <Image
                 alt="Trust Badges"
                 src="https://trustlock.co/wp-content/uploads/2019/01/guaranteed-safe-checkout-22.png"
                 width="115"
                 height="65"
+                style={{ width: "115px", height: "55px" }}
               />
             </Link>
-            <Link href="https://trustlock.co">
+            <Link
+              target="_blank"
+              href="https://sslcheck.liquidweb.com/?domain=thesoulspace.in"
+            >
               <Image
                 alt="Trust Badges"
                 src="https://trustlock.co/wp-content/uploads/2019/01/ssl-secure-checkout-trust-seal.png"
                 width="115"
                 height="65"
+                style={{ width: "115px", height: "55px" }}
               />
             </Link>
           </div>
