@@ -5,7 +5,9 @@ import { cookies } from "next/headers";
 const CheckoutPage = async () => {
   const session = await getServerSession();
   const csrfToken =
-    cookies().get("next-auth.csrf-token")?.value.split("|")[0] || "";
+    cookies().get("next-auth.csrf-token")?.value.split("|")[0] ||
+    cookies().get("__Host-next-auth.csrf-token")?.value.split("|")[0] ||
+    "";
 
   return (
     <div className="w-full h-[60dvh]">

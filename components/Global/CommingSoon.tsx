@@ -1,5 +1,4 @@
 import { logo } from "@/public/images";
-import { showToast } from "./Toast";
 import Image from "next/image";
 
 const LaunchingSoon = () => {
