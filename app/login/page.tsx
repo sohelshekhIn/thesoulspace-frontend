@@ -8,7 +8,10 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 
 const Login: any = async () => {
-  const csrfToken = cookies().get("next-auth.csrf-token")?.value.split("|")[0];
+  const csrfToken =
+    cookies().get("next-auth.csrf-token")?.value.split("|")[0] ||
+    cookies().get("__Host-next-auth.csrf-token")?.value.split("|")[0] ||
+    "";
   const session = await getServerSession(authOptions);
 
   if (session?.user) {
