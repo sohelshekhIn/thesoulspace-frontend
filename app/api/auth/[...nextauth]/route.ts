@@ -59,14 +59,11 @@ const handleLogin = (credentials: any) => {
         password: credentials?.password,
       })
       .then((res) => {
-        console.log(res.data);
-
         return res.data;
       })
       // If no error and we have user data, return it
       .catch((err) => {
         console.log(err.response.data.error);
-
         if (
           err.response &&
           err.response.data.error.name === "ValidationError" &&
