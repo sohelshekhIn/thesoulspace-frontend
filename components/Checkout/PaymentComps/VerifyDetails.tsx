@@ -9,7 +9,6 @@ const VerifyDetails = ({
 }) => {
   const localContactDetails = savedCheckoutContactDetails;
   const localShippingDetails = savedShippingAddressDetails;
-  console.log(localContactDetails, localShippingDetails);
 
   return (
     <div className="flex flex-col">

@@ -5,8 +5,6 @@ import Link from "next/link";
 
 const CartSummary = () => {
   const { totalPrice, offer, setOffer, shippingCharge } = useStateContext();
-  console.log(offer);
-
   const calculateDiscount: any = (offer: any) => {
     if (offer && offer.valid) {
       if (offer.offerType === "Flat") return offer.discountAmount;

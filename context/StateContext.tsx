@@ -103,8 +103,6 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
       setCartItems([...cartItems, { ...product }]);
     }
     setQty(1);
-    console.log(product);
-
     showToast(`${quantity} ${product.Name} added to bag`, "success");
   };
 
