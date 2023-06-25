@@ -1,7 +1,11 @@
 "use client";
 
 import { showToast } from "@/components/Global/Toast";
-import { CartProductType, foundProductType } from "@/types/GlobalTypes";
+import {
+  CartProductType,
+  OfferDetailsType,
+  foundProductType,
+} from "@/types/GlobalTypes";
 import { createContext, useContext, useEffect, useState } from "react";
 const StateContext = createContext<any>(null);
 
@@ -9,13 +13,13 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItems, setCartItems] = useState<any[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [totalQuantity, setTotalQuantity] = useState<number>(0);
-  const [checkoutAuthType, setCheckoutAuthType] = useState<string>("resgister");
+  const [checkoutAuthType, setCheckoutAuthType] = useState<string>("register");
 
   const [cartOpen, setCartOpen] = useState<boolean>(false);
   const [qty, setQty] = useState<number>(1);
   const [shippingCharge, setShippingCharge] = useState<number>(40);
 
-  const [offer, setOffer] = useState<object>({});
+  const [offer, setOffer] = useState<OfferDetailsType>();
 
   let foundProduct: foundProductType;
   let index: number;
@@ -24,10 +28,12 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     const localCartItems = localStorage.getItem("cartItems");
     const localTotalPrice = localStorage.getItem("totalPrice");
     const localTotalQuantity = localStorage.getItem("totalQuantity");
+    const localOffer = localStorage.getItem("offer");
 
     setCartItems(localCartItems ? JSON.parse(localCartItems) : []);
     setTotalPrice(localTotalPrice ? JSON.parse(localTotalPrice) : 0);
     setTotalQuantity(localTotalQuantity ? JSON.parse(localTotalQuantity) : 0);
+    setOffer(localOffer ? JSON.parse(localOffer) : {});
   }, []);
 
   useEffect(() => {
@@ -35,6 +41,11 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     localStorage.setItem("totalQuantity", JSON.stringify(totalQuantity));
   }, [cartItems, totalQuantity, totalPrice]);
+
+  useEffect(() => {
+    // save offer in localstorage
+    localStorage.setItem("offer", JSON.stringify(offer));
+  }, [offer]);
 
   const toggleCartItemQuantity = (id: number, value: string) => {
     foundProduct = cartItems.find((item: any) => item.id === id);
@@ -92,8 +103,6 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
       setCartItems([...cartItems, { ...product }]);
     }
     setQty(1);
-    console.log(product);
-
     showToast(`${quantity} ${product.Name} added to bag`, "success");
   };
 

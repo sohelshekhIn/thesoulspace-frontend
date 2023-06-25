@@ -117,6 +117,15 @@ type ProductType = {
     | any;
 };
 
+type OfferDetailsType = {
+  valid: boolean;
+  discountAmount: number;
+  discountPercentage: number;
+  maxDiscount: number;
+  offerName: string;
+  offerType: string;
+};
+
 export type {
   CartProductType,
   foundProductType,
@@ -124,4 +133,5 @@ export type {
   ProductCategoryCardType,
   BannerDataType,
   ProductType,
+  OfferDetailsType,
 };

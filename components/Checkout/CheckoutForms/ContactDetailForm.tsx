@@ -1,22 +1,25 @@
 "use client";
 
-import {
-  getSavedCheckoutContactDetails,
-  saveCheckoutContactDetails,
-} from "@/utils/clientcalls";
+import { saveCheckoutContactDetails } from "@/utils/checkoutDetailsCookies";
 import { Field, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import * as Yup from "yup";
 import LoadingSpinner from "../../Global/LoadingSpinner";
 
-const ContactDetailForm = ({ session }: { session: any }) => {
+const ContactDetailForm = ({
+  session,
+  checkoutContactDetails,
+}: {
+  session: any;
+  checkoutContactDetails: any;
+}) => {
   const router = useRouter();
 
   const sessionUserFirstName = session?.user?.name?.split(" ")[0] || "";
   const sessionUserLastName = session?.user?.name?.split(" ")[1] || "";
   const userEmail = session?.user?.email;
 
-  const localContactDetails = getSavedCheckoutContactDetails();
+  const localContactDetails = checkoutContactDetails;
   return (
     <Formik
       initialValues={{
@@ -113,7 +116,7 @@ const ContactDetailForm = ({ session }: { session: any }) => {
                 type="number"
                 name="phone"
                 aria-label="Enter your phone number"
-                placeholder="Enter your phone number (+91 xxxxx xxxxx)"
+                placeholder="Enter 10 digits contact number"
               />
               <p className="text-red-500 text-sm ">
                 {/* @ts-ignore */}

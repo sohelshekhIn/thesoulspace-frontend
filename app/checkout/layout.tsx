@@ -8,7 +8,7 @@ export default function ShopLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-[90dvw] lg:w-[70dvw] mx-auto p-3">
+    <div className="w-[90dvw] lg:w-[70dvw] h-[90dvh] mx-auto p-3">
       <CheckCartExists />
       <div className="">
         <CheckoutSteps />
@@ -17,3 +17,5 @@ export default function ShopLayout({
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";

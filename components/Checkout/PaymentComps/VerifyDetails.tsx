@@ -1,14 +1,15 @@
-"use client";
-
-import {
-  getSavedCheckoutContactDetails,
-  getShippingAddressDetails,
-} from "@/utils/clientcalls";
 import Link from "next/link";
 
-const VerifyDetails = () => {
-  const localContactDetails = getSavedCheckoutContactDetails();
-  const localShippingDetails = getShippingAddressDetails();
+const VerifyDetails = ({
+  savedCheckoutContactDetails,
+  savedShippingAddressDetails,
+}: {
+  savedCheckoutContactDetails: any;
+  savedShippingAddressDetails: any;
+}) => {
+  const localContactDetails = savedCheckoutContactDetails;
+  const localShippingDetails = savedShippingAddressDetails;
+
   return (
     <div className="flex flex-col">
       <div className="flex gap-3">
