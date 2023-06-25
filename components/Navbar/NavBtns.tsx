@@ -20,7 +20,7 @@ const NavSignInBtn = () => {
 
 const NavSignOutBtn = ({ children }: { children: any }) => {
   return (
-    <button className="w-full" onClick={() => signOut()}>
+    <button className="w-full py-2" onClick={() => signOut()}>
       {children}
     </button>
   );

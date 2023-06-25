@@ -20,3 +20,4 @@ const Shop = async () => {
 };
 
 export default Shop;
+export const dynamic = "force-dynamic";

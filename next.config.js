@@ -1,13 +1,16 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-// allow pexel.com images
-nextConfig.images = {
-  domains: [
-    "trustlock.co",
-    "res.cloudinary.com",
-    "source.unsplash.com",
-    "i.pravatar.cc",
-  ],
+const nextConfig = {
+  images: {
+    domains: [
+      "trustlock.co",
+      "res.cloudinary.com",
+      "source.unsplash.com",
+      "i.pravatar.cc",
+    ],
+  },
+  experimental: {
+    serverActions: true,
+  },
 };
 
 module.exports = nextConfig;

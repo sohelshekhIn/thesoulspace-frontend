@@ -73,3 +73,4 @@ const ProductPage = async (context: any) => {
 };
 
 export default ProductPage;
+export const dynamic = "force-dynamic";

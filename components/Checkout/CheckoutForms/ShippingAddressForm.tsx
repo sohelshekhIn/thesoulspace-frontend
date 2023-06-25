@@ -1,30 +1,34 @@
 "use client";
 
 import { Field, Formik } from "formik";
-import Link from "next/link";
 import * as Yup from "yup";
 import LoadingSpinner from "../../Global/LoadingSpinner";
-import {
-  getCityDistrictState,
-  getShippingAddressDetails,
-  setShippingAddressDetails,
-} from "@/utils/clientcalls";
+
+import { setShippingAddressDetails } from "@/utils/checkoutDetailsCookies";
 import { showToast } from "@/components/Global/Toast";
 import { useRouter } from "next/navigation";
+import { getCityDistrictState } from "@/utils/global";
+import { useState } from "react";
 
-const ShippingAddressForm = () => {
-  const localShippingAddressDetails = getShippingAddressDetails();
+const ShippingAddressForm = ({
+  shippingAddressDetails,
+}: {
+  shippingAddressDetails: any;
+}) => {
+  const localShippingAddressDetails = shippingAddressDetails;
   const router = useRouter();
+  const [pinCodeLoading, setPinCodeLoading] = useState<boolean>(false);
+
   return (
     <Formik
       initialValues={{
         addressLine1: localShippingAddressDetails?.addressLine1 || "",
         addressLine2: localShippingAddressDetails?.addressLine2 || "",
         landmark: localShippingAddressDetails?.landmark || "",
-        city: localShippingAddressDetails?.city || "Nadiad",
-        district: localShippingAddressDetails?.district || "Kheda",
-        state: localShippingAddressDetails?.state || "Gujarat",
-        pincode: localShippingAddressDetails?.pincode || "387001",
+        city: localShippingAddressDetails?.city || "",
+        district: localShippingAddressDetails?.district || "",
+        state: localShippingAddressDetails?.state || "",
+        pincode: localShippingAddressDetails?.pincode || "",
       }}
       validationSchema={Yup.object({
         addressLine1: Yup.string()
@@ -154,22 +158,31 @@ const ShippingAddressForm = () => {
                   <button
                     type="button"
                     onClick={async () => {
+                      setPinCodeLoading(true);
                       if (values.pincode.toString().length !== 6) {
                         showToast("Invalid Pincode", "error");
                         return;
                       }
                       const data = await getCityDistrictState(values.pincode);
-                      //   if (data.error) {
-                      //     showToast(data.error, "error");
-                      //     return;
-                      //   }
-                      setFieldValue("city", data.city);
-                      setFieldValue("district", data.district);
-                      setFieldValue("state", data.state);
+                      setPinCodeLoading(false);
+                      if (data.error) {
+                        showToast(data.error, "error");
+                        return;
+                      }
+                      setFieldValue("city", data.City);
+                      setFieldValue("district", data.District);
+                      setFieldValue("state", data.State);
                     }}
                     className="bg-gray-200 text-gray-900 px-5 py-3 rounded-lg"
                   >
-                    Get Info
+                    {pinCodeLoading ? (
+                      <div className="flex items-center gap-2">
+                        <LoadingSpinner color="black" />
+                        <p>Getting Info...</p>
+                      </div>
+                    ) : (
+                      <p>Get Info</p>
+                    )}
                   </button>
                 </div>
               </div>
@@ -224,7 +237,7 @@ const ShippingAddressForm = () => {
                 className="bg-yellow-500 text-white px-5 py-3 rounded-lg"
               >
                 {isSubmitting ? (
-                  <div className="">
+                  <div className="flex items-center gap-2">
                     <LoadingSpinner color="white" />
                     <p>Saving...</p>
                   </div>
