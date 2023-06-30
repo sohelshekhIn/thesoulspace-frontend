@@ -15,7 +15,7 @@ const VerifyDetails = ({
       <div className="flex gap-3">
         <h1 className="text-2xl font-semibold">Verify Details</h1>
         {/* edit button which takes to checkout */}
-        <button className="text-gray-500">
+        <button className="text-gray-500 underline">
           <Link href="/checkout">Edit</Link>
         </button>
       </div>

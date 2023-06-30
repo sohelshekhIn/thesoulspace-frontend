@@ -47,6 +47,7 @@ const ContactDetailForm = ({
       })}
       onSubmit={(values) => {
         saveCheckoutContactDetails(
+          session,
           values.firstName,
           values.lastName,
           session?.user?.email,
@@ -69,7 +70,7 @@ const ContactDetailForm = ({
                 {/* label */}
                 <label htmlFor="firstName">First Name</label>
                 <Field
-                  className="w-full p-3 rounded-lg border border-gray-300"
+                  className="w-full p-3 rounded-md border border-gray-300"
                   type="text"
                   name="firstName"
                   aria-label="Enter your first name"
@@ -84,7 +85,7 @@ const ContactDetailForm = ({
               <div className="w-1/2">
                 <label htmlFor="lastName">Last Name</label>
                 <Field
-                  className="w-full p-3 rounded-lg border border-gray-300"
+                  className="w-full p-3 rounded-md border border-gray-300"
                   type="text"
                   name="lastName"
                   aria-label="Enter your last name"
@@ -100,7 +101,7 @@ const ContactDetailForm = ({
               {/* non ediatble field */}
               <label htmlFor="email">Email</label>
               <Field
-                className="w-full p-3 rounded-lg border border-gray-300"
+                className="w-full p-3 rounded-md border border-gray-300"
                 type="email"
                 name="email"
                 aria-label="Enter your email"
@@ -112,7 +113,7 @@ const ContactDetailForm = ({
               {/* label */}
               <label htmlFor="phone">Phone (+91)</label>
               <Field
-                className="w-full p-3 rounded-lg border border-gray-300"
+                className="w-full p-3 rounded-md border border-gray-300"
                 type="number"
                 name="phone"
                 aria-label="Enter your phone number"
@@ -128,7 +129,7 @@ const ContactDetailForm = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-yellow-500 text-white px-5 py-3 rounded-lg"
+                className="bg-yellow-500 text-white px-5 py-3 rounded-md"
               >
                 {/* display loading spinner and text when submitting */}
                 {isSubmitting ? (

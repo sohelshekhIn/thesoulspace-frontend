@@ -8,12 +8,15 @@ const CheckoutAddress = async () => {
   if (!session) {
     redirect("/checkout");
   }
-  const shippingAddressDetails = await getSavedShippingAddressDetails();
+  const shippingAddressDetails = await getSavedShippingAddressDetails(session);
 
   return (
     <div className="w-full">
       <div className="w-full bg-white mx-auto py-10">
-        <ShippingAddressForm shippingAddressDetails={shippingAddressDetails} />
+        <ShippingAddressForm
+          shippingAddressDetails={shippingAddressDetails}
+          session={session}
+        />
       </div>
     </div>
   );

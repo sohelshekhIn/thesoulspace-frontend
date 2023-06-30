@@ -59,8 +59,12 @@ type ProductCategoryCardType = {
   Icon: {
     data: {
       attributes: {
+        url: string;
         formats: {
           thumbnail: {
+            url: string;
+          };
+          medium: {
             url: string;
           };
         };

@@ -28,7 +28,7 @@ const CartSummary = () => {
     <div className="">
       <div className="w-full flex gap-3">
         <h4 className="text-xl font-semibold">Summary</h4>
-        <button className="text-gray-500">
+        <button className="text-gray-500 underline">
           <Link href="/cart">Edit Cart</Link>
         </button>
       </div>

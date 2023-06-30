@@ -12,8 +12,10 @@ import { useState } from "react";
 
 const ShippingAddressForm = ({
   shippingAddressDetails,
+  session,
 }: {
   shippingAddressDetails: any;
+  session: any;
 }) => {
   const localShippingAddressDetails = shippingAddressDetails;
   const router = useRouter();
@@ -59,8 +61,9 @@ const ShippingAddressForm = ({
           .min(3, "State must be at least 3 characters")
           .max(25, "State must be at most 25 characters"),
       })}
-      onSubmit={async (values) => {
+      onSubmit={(values) => {
         setShippingAddressDetails(
+          session,
           values.addressLine1,
           values.addressLine2,
           values.landmark,
@@ -92,7 +95,7 @@ const ShippingAddressForm = ({
               {/* label */}
               <label htmlFor="addressLine1">Address Line 1</label>
               <Field
-                className="w-full p-3 rounded-lg border border-gray-300"
+                className="w-full p-3 rounded-md border border-gray-300"
                 type="text"
                 name="addressLine1"
                 aria-label="Enter your address line 1"
@@ -110,7 +113,7 @@ const ShippingAddressForm = ({
               {/* label */}
               <label htmlFor="addressLine2">Address Line 2</label>
               <Field
-                className="w-full p-3 rounded-lg border border-gray-300"
+                className="w-full p-3 rounded-md border border-gray-300"
                 type="text"
                 name="addressLine2"
                 aria-label="Enter your address line 2"
@@ -128,7 +131,7 @@ const ShippingAddressForm = ({
               {/* label */}
               <label htmlFor="landmark">Landmark</label>
               <Field
-                className="w-full p-3 rounded-lg border border-gray-300"
+                className="w-full p-3 rounded-md border border-gray-300"
                 type="text"
                 name="landmark"
                 aria-label="Enter nearest landmark"
@@ -147,7 +150,7 @@ const ShippingAddressForm = ({
                   {/* pincode */}
                   <label htmlFor="pincode">Pincode</label>
                   <Field
-                    className="w-full p-3 rounded-lg border border-gray-300"
+                    className="w-full p-3 rounded-md border border-gray-300"
                     type="number"
                     name="pincode"
                     aria-label="Enter your pincode"
@@ -173,7 +176,7 @@ const ShippingAddressForm = ({
                       setFieldValue("district", data.District);
                       setFieldValue("state", data.State);
                     }}
-                    className="bg-gray-200 text-gray-900 px-5 py-3 rounded-lg"
+                    className="bg-gray-200 text-gray-900 px-5 py-3 rounded-md"
                   >
                     {pinCodeLoading ? (
                       <div className="flex items-center gap-2">
@@ -197,7 +200,7 @@ const ShippingAddressForm = ({
                 {/* noneditable */}
                 <label htmlFor="city">City</label>
                 <Field
-                  className="w-full p-3 rounded-lg border border-gray-300"
+                  className="w-full p-3 rounded-md border border-gray-300"
                   type="text"
                   name="city"
                   aria-label="Get City from Pincode"
@@ -209,7 +212,7 @@ const ShippingAddressForm = ({
                 {/* noneditable */}
                 <label htmlFor="district">District</label>
                 <Field
-                  className="w-full p-3 rounded-lg border border-gray-300"
+                  className="w-full p-3 rounded-md border border-gray-300"
                   type="text"
                   name="district"
                   aria-label="Get District from Pincode"
@@ -222,7 +225,7 @@ const ShippingAddressForm = ({
               {/* noneditable */}
               <label htmlFor="state">State</label>
               <Field
-                className="w-full p-3 rounded-lg border border-gray-300"
+                className="w-full p-3 rounded-md border border-gray-300"
                 type="text"
                 name="state"
                 aria-label="Get State from Pincode"
@@ -234,7 +237,7 @@ const ShippingAddressForm = ({
               <button
                 disabled={isSubmitting}
                 type="submit"
-                className="bg-yellow-500 text-white px-5 py-3 rounded-lg"
+                className="bg-yellow-500 text-white px-5 py-3 rounded-md"
               >
                 {isSubmitting ? (
                   <div className="flex items-center gap-2">
