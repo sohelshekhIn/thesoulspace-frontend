@@ -5,10 +5,9 @@ import * as Yup from "yup";
 import LoadingSpinner from "../../Global/LoadingSpinner";
 
 import { setShippingAddressDetails } from "@/utils/checkoutDetailsCookies";
-import { showToast } from "@/components/Global/Toast";
 import { useRouter } from "next/navigation";
 import { getCityDistrictState } from "@/utils/global";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ShippingAddressForm = ({
   shippingAddressDetails,
@@ -19,7 +18,50 @@ const ShippingAddressForm = ({
 }) => {
   const localShippingAddressDetails = shippingAddressDetails;
   const router = useRouter();
-  const [pinCodeLoading, setPinCodeLoading] = useState<boolean>(false);
+
+  const [pincode, setPincode] = useState("");
+  const [pincodeError, setPincodeError] = useState("");
+  const [city, setCity] = useState("");
+  const [cityError, setCityError] = useState("");
+  const [district, setDistrict] = useState("");
+  const [state, setState] = useState("");
+
+  const getDetailsfromPincode = async () => {
+    const data = await getCityDistrictState(pincode);
+    if (data.error) {
+      setPincodeError(data.error);
+    } else {
+      setCity(data.City);
+      setDistrict(data.District);
+      setState(data.State);
+    }
+  };
+
+  useEffect(() => {
+    // convert string to number
+    const pincodeNumber = parseInt(pincode);
+    // if pincodeNumber between 100000 and 999999
+    if (pincodeNumber >= 100000 && pincodeNumber <= 999999) {
+      setPincodeError("");
+      getDetailsfromPincode();
+    } else {
+      setPincodeError("Pincode must be 6 digits");
+      4;
+    }
+  }, [pincode]);
+
+  useEffect(() => {
+    if (
+      city === "" ||
+      city === undefined ||
+      city.length < 3 ||
+      city.length > 25
+    ) {
+      setCityError("Enter valid city");
+    } else {
+      setCityError("");
+    }
+  }, [city]);
 
   return (
     <Formik
@@ -27,10 +69,9 @@ const ShippingAddressForm = ({
         addressLine1: localShippingAddressDetails?.addressLine1 || "",
         addressLine2: localShippingAddressDetails?.addressLine2 || "",
         landmark: localShippingAddressDetails?.landmark || "",
-        city: localShippingAddressDetails?.city || "",
-        district: localShippingAddressDetails?.district || "",
-        state: localShippingAddressDetails?.state || "",
-        pincode: localShippingAddressDetails?.pincode || "",
+        city: city || localShippingAddressDetails?.city,
+        district: district || localShippingAddressDetails?.district,
+        state: state || localShippingAddressDetails?.state,
       }}
       validationSchema={Yup.object({
         addressLine1: Yup.string()
@@ -44,10 +85,6 @@ const ShippingAddressForm = ({
         landmark: Yup.string()
           .min(3, "Landmark must be at least 3 characters")
           .max(50, "Landmark must be at most 50 characters"),
-        pincode: Yup.number()
-          .required("Pincode is required")
-          .min(100000, "Enter valid pincode")
-          .max(999999, "Enter valid pincode"),
         city: Yup.string()
           .required("City is required")
           .min(3, "City must be at least 3 characters")
@@ -70,7 +107,7 @@ const ShippingAddressForm = ({
           values.city,
           values.district,
           values.state,
-          values.pincode
+          pincode
         );
         router.push("/checkout/payment");
       }}
@@ -149,15 +186,19 @@ const ShippingAddressForm = ({
                   {/* label */}
                   {/* pincode */}
                   <label htmlFor="pincode">Pincode</label>
-                  <Field
+                  <input
                     className="w-full p-3 rounded-md border border-gray-300"
                     type="number"
                     name="pincode"
                     aria-label="Enter your pincode"
                     placeholder="Enter your pincode"
+                    value={pincode}
+                    onChange={(e) => {
+                      setPincode(e.target.value);
+                    }}
                   />
                 </div>
-                <div className="w-1/3 flex flex-col justify-end">
+                {/* <div className="w-1/3 flex flex-col justify-end">
                   <button
                     type="button"
                     onClick={async () => {
@@ -187,36 +228,44 @@ const ShippingAddressForm = ({
                       <p>Get Info</p>
                     )}
                   </button>
-                </div>
+                </div> */}
               </div>
               {/* error */}
               <p className="text-red-500 text-sm ">
                 {/* @ts-ignore */}
-                {errors.pincode && touched.pincode && errors.pincode}
+                {pincodeError != "" ? pincodeError : ""}
               </p>
             </div>
             <div className="flex gap-2">
               <div className="w-1/2">
                 {/* noneditable */}
                 <label htmlFor="city">City</label>
-                <Field
+                <input
                   className="w-full p-3 rounded-md border border-gray-300"
                   type="text"
                   name="city"
                   aria-label="Get City from Pincode"
                   placeholder="Get City from Pincode"
-                  disabled
+                  onChange={(e) => {
+                    setCity(e.target.value);
+                  }}
+                  value={city}
                 />
+                <p className="text-red-500 text-sm ">
+                  {/* @ts-ignore */}
+                  {cityError != "" ? cityError : ""}
+                </p>
               </div>
               <div className="w-1/2">
                 {/* noneditable */}
                 <label htmlFor="district">District</label>
-                <Field
+                <input
                   className="w-full p-3 rounded-md border border-gray-300"
                   type="text"
                   name="district"
                   aria-label="Get District from Pincode"
                   placeholder="Get District from Pincode"
+                  value={district}
                   disabled
                 />
               </div>
@@ -224,12 +273,13 @@ const ShippingAddressForm = ({
             <div className="">
               {/* noneditable */}
               <label htmlFor="state">State</label>
-              <Field
+              <input
                 className="w-full p-3 rounded-md border border-gray-300"
                 type="text"
                 name="state"
                 aria-label="Get State from Pincode"
                 placeholder="Get State from Pincode"
+                value={state}
                 disabled
               />
             </div>

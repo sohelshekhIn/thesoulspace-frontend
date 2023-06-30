@@ -31,7 +31,11 @@ async function getCityDistrictState(pincode: string) {
       }
     );
     const data = await response.json();
-    return data[0];
+    if (data.error) {
+      return data;
+    } else {
+      return data[0];
+    }
   } catch (error) {
     return error;
   }

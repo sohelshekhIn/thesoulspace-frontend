@@ -11,16 +11,33 @@ import LoadingSpinner from "../Global/LoadingSpinner";
 const LoginForm = ({ csrfToken }: { csrfToken: string | undefined }) => {
   const searchParams = useSearchParams();
   const error = searchParams.get("error")!;
-  // if callback url is present in query params, store it in session storage
-  if (searchParams.get("callbackUrl")) {
-    sessionStorage.setItem("callbackUrl", searchParams.get("callbackUrl")!);
-  }
+
+  useEffect(() => {
+    // if callback url is present in query params, store it in session storage
+    if (searchParams.get("callbackUrl")) {
+      sessionStorage.setItem("callbackUrl", searchParams.get("callbackUrl")!);
+    }
+  }, []);
 
   useEffect(() => {
     if (error) {
       showToast(error, "error");
     }
   }, [error]);
+
+  const getCallbackUrl = () => {
+    "use client";
+    if (searchParams.get("callbackUrl")) {
+      return searchParams.get("callbackUrl")!;
+    } else {
+      if (sessionStorage.getItem("callbackUrl")) {
+        return sessionStorage.getItem("callbackUrl")!;
+      } else {
+        return "/";
+      }
+    }
+  };
+
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -44,7 +61,7 @@ const LoginForm = ({ csrfToken }: { csrfToken: string | undefined }) => {
         const res = await signIn("credentials", {
           redirect: true,
           // get callback url from query params
-          callbackUrl: sessionStorage.getItem("callbackUrl") || "/",
+          callbackUrl: getCallbackUrl(),
           email: values.email,
           password: values.password,
           csrfToken: csrfToken,
