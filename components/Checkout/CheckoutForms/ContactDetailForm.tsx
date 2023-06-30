@@ -1,22 +1,25 @@
 "use client";
 
-import {
-  getSavedCheckoutContactDetails,
-  saveCheckoutContactDetails,
-} from "@/utils/clientcalls";
+import { saveCheckoutContactDetails } from "@/utils/checkoutDetailsCookies";
 import { Field, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import * as Yup from "yup";
 import LoadingSpinner from "../../Global/LoadingSpinner";
 
-const ContactDetailForm = ({ session }: { session: any }) => {
+const ContactDetailForm = ({
+  session,
+  checkoutContactDetails,
+}: {
+  session: any;
+  checkoutContactDetails: any;
+}) => {
   const router = useRouter();
 
   const sessionUserFirstName = session?.user?.name?.split(" ")[0] || "";
   const sessionUserLastName = session?.user?.name?.split(" ")[1] || "";
   const userEmail = session?.user?.email;
 
-  const localContactDetails = getSavedCheckoutContactDetails();
+  const localContactDetails = checkoutContactDetails;
   return (
     <Formik
       initialValues={{
@@ -44,6 +47,7 @@ const ContactDetailForm = ({ session }: { session: any }) => {
       })}
       onSubmit={(values) => {
         saveCheckoutContactDetails(
+          session,
           values.firstName,
           values.lastName,
           session?.user?.email,
@@ -66,7 +70,7 @@ const ContactDetailForm = ({ session }: { session: any }) => {
                 {/* label */}
                 <label htmlFor="firstName">First Name</label>
                 <Field
-                  className="w-full p-3 rounded-lg border border-gray-300"
+                  className="w-full p-3 rounded-md border border-gray-300"
                   type="text"
                   name="firstName"
                   aria-label="Enter your first name"
@@ -81,7 +85,7 @@ const ContactDetailForm = ({ session }: { session: any }) => {
               <div className="w-1/2">
                 <label htmlFor="lastName">Last Name</label>
                 <Field
-                  className="w-full p-3 rounded-lg border border-gray-300"
+                  className="w-full p-3 rounded-md border border-gray-300"
                   type="text"
                   name="lastName"
                   aria-label="Enter your last name"
@@ -97,7 +101,7 @@ const ContactDetailForm = ({ session }: { session: any }) => {
               {/* non ediatble field */}
               <label htmlFor="email">Email</label>
               <Field
-                className="w-full p-3 rounded-lg border border-gray-300"
+                className="w-full p-3 rounded-md border border-gray-300"
                 type="email"
                 name="email"
                 aria-label="Enter your email"
@@ -109,11 +113,11 @@ const ContactDetailForm = ({ session }: { session: any }) => {
               {/* label */}
               <label htmlFor="phone">Phone (+91)</label>
               <Field
-                className="w-full p-3 rounded-lg border border-gray-300"
+                className="w-full p-3 rounded-md border border-gray-300"
                 type="number"
                 name="phone"
                 aria-label="Enter your phone number"
-                placeholder="Enter your phone number (+91 xxxxx xxxxx)"
+                placeholder="Enter 10 digits contact number"
               />
               <p className="text-red-500 text-sm ">
                 {/* @ts-ignore */}
@@ -125,7 +129,7 @@ const ContactDetailForm = ({ session }: { session: any }) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-yellow-500 text-white px-5 py-3 rounded-lg"
+                className="bg-yellow-500 text-white px-5 py-3 rounded-md"
               >
                 {/* display loading spinner and text when submitting */}
                 {isSubmitting ? (

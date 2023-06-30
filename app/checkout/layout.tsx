@@ -1,5 +1,4 @@
 import { CheckCartExists } from "@/components/Checkout/CheckOutFuncs";
-import { CheckoutItemsContainer } from "@/components/Checkout/CheckoutItems";
 import { CheckoutSteps } from "@/components/Checkout/CheckoutSteps";
 
 export default function ShopLayout({
@@ -8,7 +7,7 @@ export default function ShopLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-[90dvw] lg:w-[70dvw] mx-auto p-3">
+    <div className="w-[90dvw] lg:w-[70dvw] h-[90vh] mx-auto p-3">
       <CheckCartExists />
       <div className="">
         <CheckoutSteps />
@@ -17,3 +16,5 @@ export default function ShopLayout({
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";

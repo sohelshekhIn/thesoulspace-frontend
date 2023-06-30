@@ -1,20 +1,21 @@
-"use client";
-
-import {
-  getSavedCheckoutContactDetails,
-  getShippingAddressDetails,
-} from "@/utils/clientcalls";
 import Link from "next/link";
 
-const VerifyDetails = () => {
-  const localContactDetails = getSavedCheckoutContactDetails();
-  const localShippingDetails = getShippingAddressDetails();
+const VerifyDetails = ({
+  savedCheckoutContactDetails,
+  savedShippingAddressDetails,
+}: {
+  savedCheckoutContactDetails: any;
+  savedShippingAddressDetails: any;
+}) => {
+  const localContactDetails = savedCheckoutContactDetails;
+  const localShippingDetails = savedShippingAddressDetails;
+
   return (
     <div className="flex flex-col">
       <div className="flex gap-3">
         <h1 className="text-2xl font-semibold">Verify Details</h1>
         {/* edit button which takes to checkout */}
-        <button className="text-gray-500">
+        <button className="text-gray-500 underline">
           <Link href="/checkout">Edit</Link>
         </button>
       </div>

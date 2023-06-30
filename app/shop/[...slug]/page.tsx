@@ -28,31 +28,31 @@ const ProductPage = async (context: any) => {
 
   return (
     <div>
-      <div className="flex flex-col lg:flex-row mt-5 mb-40 mx-auto w-[90dvw] sm:p-5 lg:justify-center lg:px-14 gap-8">
-        <div className="w-full lg:w-1/3">
+      <div className="flex flex-col lg:flex-row mt-5 mb-40 mx-auto w-[90dvw] sm:p-5 lg:justify-center lg:px-14 gap-2 lg:gap-8">
+        <div className="w-full lg:w-1/2">
           <ProductCarouselComp data={data}>
             {data.Product_Image.map((image: any) => (
-              <div key={image.url} className="w-[400px] sm:w-[500px]">
-                <Image
-                  src={image.formats.medium.url}
-                  width={800}
-                  height={800}
-                  alt="product image"
-                />
-              </div>
+              // <div key={image.url} className="w-[400px] sm:w-[500px]">
+              <Image
+                src={image.formats.medium.url}
+                width={800}
+                height={800}
+                alt="product image"
+              />
+              //</div>
             ))}
           </ProductCarouselComp>
         </div>
         <div className="flex flex-col gap-2">
-          <div className="flex gap-1">
+          <div className="flex gap-1 lg:mt-2">
             <div>
               <Image src={star} width={14} height={14} alt="Product Rating" />
             </div>
             <p className="text-sm">4/5</p>
           </div>
-          <h1 className="text-4xl font-semibold">{data.Name}</h1>
-          <p className="text-base">{data.Short_Description}</p>
-          <div className="flex pr-10 mt-5 justify-between items-center">
+          <h1 className="text-3xl font-semibold">{data.Name}</h1>
+          <p className="text-base text-gray-700">{data.Short_Description}</p>
+          <div className="flex pr-10 mt-5 justify-between lg:justify-normal lg:gap-24 items-center">
             <h1 className="text-2xl font-semibold">₹ {data.Price}</h1>
             <CartInputComp />
           </div>
@@ -73,3 +73,4 @@ const ProductPage = async (context: any) => {
 };
 
 export default ProductPage;
+export const dynamic = "force-dynamic";

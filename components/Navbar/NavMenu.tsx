@@ -81,14 +81,14 @@ const NavMenuHamburger = () => {
           <div
             aria-hidden="true"
             id="line"
-            className={`m-auto h-0.5 w-5 rounded transform bg-gray-700 transition duration-300 ${
+            className={`m-auto h-0.5 w-5 rounded transform bg-gray-700 transition duration-300 ease-[cubic-bezier(.62,-0.52,.43,1.45)] ${
               cartOpen ? "rotate-45 translate-y-[250%]" : ""
             }`}
           ></div>
           <div
             aria-hidden="true"
             id="line2"
-            className={`m-auto mt-2 h-0.5 w-5 rounded transform bg-gray-700 transition duration-300 ${
+            className={`m-auto mt-2 h-0.5 w-5 rounded transform bg-gray-700 transition duration-300 ease-[cubic-bezier(.62,-0.52,.43,1.45)] ${
               cartOpen ? "-rotate-45 mt-0 translate-y-[-250%]" : ""
             }`}
           ></div>

@@ -1,30 +1,36 @@
 "use client";
 
 import { Field, Formik } from "formik";
-import Link from "next/link";
 import * as Yup from "yup";
 import LoadingSpinner from "../../Global/LoadingSpinner";
-import {
-  getCityDistrictState,
-  getShippingAddressDetails,
-  setShippingAddressDetails,
-} from "@/utils/clientcalls";
+
+import { setShippingAddressDetails } from "@/utils/checkoutDetailsCookies";
 import { showToast } from "@/components/Global/Toast";
 import { useRouter } from "next/navigation";
+import { getCityDistrictState } from "@/utils/global";
+import { useState } from "react";
 
-const ShippingAddressForm = () => {
-  const localShippingAddressDetails = getShippingAddressDetails();
+const ShippingAddressForm = ({
+  shippingAddressDetails,
+  session,
+}: {
+  shippingAddressDetails: any;
+  session: any;
+}) => {
+  const localShippingAddressDetails = shippingAddressDetails;
   const router = useRouter();
+  const [pinCodeLoading, setPinCodeLoading] = useState<boolean>(false);
+
   return (
     <Formik
       initialValues={{
         addressLine1: localShippingAddressDetails?.addressLine1 || "",
         addressLine2: localShippingAddressDetails?.addressLine2 || "",
         landmark: localShippingAddressDetails?.landmark || "",
-        city: localShippingAddressDetails?.city || "Nadiad",
-        district: localShippingAddressDetails?.district || "Kheda",
-        state: localShippingAddressDetails?.state || "Gujarat",
-        pincode: localShippingAddressDetails?.pincode || "387001",
+        city: localShippingAddressDetails?.city || "",
+        district: localShippingAddressDetails?.district || "",
+        state: localShippingAddressDetails?.state || "",
+        pincode: localShippingAddressDetails?.pincode || "",
       }}
       validationSchema={Yup.object({
         addressLine1: Yup.string()
@@ -55,8 +61,9 @@ const ShippingAddressForm = () => {
           .min(3, "State must be at least 3 characters")
           .max(25, "State must be at most 25 characters"),
       })}
-      onSubmit={async (values) => {
+      onSubmit={(values) => {
         setShippingAddressDetails(
+          session,
           values.addressLine1,
           values.addressLine2,
           values.landmark,
@@ -88,7 +95,7 @@ const ShippingAddressForm = () => {
               {/* label */}
               <label htmlFor="addressLine1">Address Line 1</label>
               <Field
-                className="w-full p-3 rounded-lg border border-gray-300"
+                className="w-full p-3 rounded-md border border-gray-300"
                 type="text"
                 name="addressLine1"
                 aria-label="Enter your address line 1"
@@ -106,7 +113,7 @@ const ShippingAddressForm = () => {
               {/* label */}
               <label htmlFor="addressLine2">Address Line 2</label>
               <Field
-                className="w-full p-3 rounded-lg border border-gray-300"
+                className="w-full p-3 rounded-md border border-gray-300"
                 type="text"
                 name="addressLine2"
                 aria-label="Enter your address line 2"
@@ -124,7 +131,7 @@ const ShippingAddressForm = () => {
               {/* label */}
               <label htmlFor="landmark">Landmark</label>
               <Field
-                className="w-full p-3 rounded-lg border border-gray-300"
+                className="w-full p-3 rounded-md border border-gray-300"
                 type="text"
                 name="landmark"
                 aria-label="Enter nearest landmark"
@@ -143,7 +150,7 @@ const ShippingAddressForm = () => {
                   {/* pincode */}
                   <label htmlFor="pincode">Pincode</label>
                   <Field
-                    className="w-full p-3 rounded-lg border border-gray-300"
+                    className="w-full p-3 rounded-md border border-gray-300"
                     type="number"
                     name="pincode"
                     aria-label="Enter your pincode"
@@ -154,22 +161,31 @@ const ShippingAddressForm = () => {
                   <button
                     type="button"
                     onClick={async () => {
+                      setPinCodeLoading(true);
                       if (values.pincode.toString().length !== 6) {
                         showToast("Invalid Pincode", "error");
                         return;
                       }
                       const data = await getCityDistrictState(values.pincode);
-                      //   if (data.error) {
-                      //     showToast(data.error, "error");
-                      //     return;
-                      //   }
-                      setFieldValue("city", data.city);
-                      setFieldValue("district", data.district);
-                      setFieldValue("state", data.state);
+                      setPinCodeLoading(false);
+                      if (data.error) {
+                        showToast(data.error, "error");
+                        return;
+                      }
+                      setFieldValue("city", data.City);
+                      setFieldValue("district", data.District);
+                      setFieldValue("state", data.State);
                     }}
-                    className="bg-gray-200 text-gray-900 px-5 py-3 rounded-lg"
+                    className="bg-gray-200 text-gray-900 px-5 py-3 rounded-md"
                   >
-                    Get Info
+                    {pinCodeLoading ? (
+                      <div className="flex items-center gap-2">
+                        <LoadingSpinner color="black" />
+                        <p>Getting Info...</p>
+                      </div>
+                    ) : (
+                      <p>Get Info</p>
+                    )}
                   </button>
                 </div>
               </div>
@@ -184,7 +200,7 @@ const ShippingAddressForm = () => {
                 {/* noneditable */}
                 <label htmlFor="city">City</label>
                 <Field
-                  className="w-full p-3 rounded-lg border border-gray-300"
+                  className="w-full p-3 rounded-md border border-gray-300"
                   type="text"
                   name="city"
                   aria-label="Get City from Pincode"
@@ -196,7 +212,7 @@ const ShippingAddressForm = () => {
                 {/* noneditable */}
                 <label htmlFor="district">District</label>
                 <Field
-                  className="w-full p-3 rounded-lg border border-gray-300"
+                  className="w-full p-3 rounded-md border border-gray-300"
                   type="text"
                   name="district"
                   aria-label="Get District from Pincode"
@@ -209,7 +225,7 @@ const ShippingAddressForm = () => {
               {/* noneditable */}
               <label htmlFor="state">State</label>
               <Field
-                className="w-full p-3 rounded-lg border border-gray-300"
+                className="w-full p-3 rounded-md border border-gray-300"
                 type="text"
                 name="state"
                 aria-label="Get State from Pincode"
@@ -221,10 +237,10 @@ const ShippingAddressForm = () => {
               <button
                 disabled={isSubmitting}
                 type="submit"
-                className="bg-yellow-500 text-white px-5 py-3 rounded-lg"
+                className="bg-yellow-500 text-white px-5 py-3 rounded-md"
               >
                 {isSubmitting ? (
-                  <div className="">
+                  <div className="flex items-center gap-2">
                     <LoadingSpinner color="white" />
                     <p>Saving...</p>
                   </div>
