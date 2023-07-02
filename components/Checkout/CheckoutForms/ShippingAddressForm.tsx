@@ -19,7 +19,9 @@ const ShippingAddressForm = ({
   const localShippingAddressDetails = shippingAddressDetails;
   const router = useRouter();
 
-  const [pincode, setPincode] = useState("");
+  const [pincode, setPincode] = useState(
+    localShippingAddressDetails?.pincode || ""
+  );
   const [pincodeError, setPincodeError] = useState("");
   const [city, setCity] = useState("");
   const [cityError, setCityError] = useState("");
@@ -112,14 +114,7 @@ const ShippingAddressForm = ({
         router.push("/checkout/payment");
       }}
     >
-      {({
-        handleSubmit,
-        errors,
-        touched,
-        isSubmitting,
-        setFieldValue,
-        values,
-      }) => (
+      {({ handleSubmit, errors, touched, isSubmitting }) => (
         <div className="">
           <div className="mb-4">
             <h1 className="text-2xl font-semibold">Shipping Address</h1>
@@ -198,37 +193,6 @@ const ShippingAddressForm = ({
                     }}
                   />
                 </div>
-                {/* <div className="w-1/3 flex flex-col justify-end">
-                  <button
-                    type="button"
-                    onClick={async () => {
-                      setPinCodeLoading(true);
-                      if (values.pincode.toString().length !== 6) {
-                        showToast("Invalid Pincode", "error");
-                        return;
-                      }
-                      const data = await getCityDistrictState(values.pincode);
-                      setPinCodeLoading(false);
-                      if (data.error) {
-                        showToast(data.error, "error");
-                        return;
-                      }
-                      setFieldValue("city", data.City);
-                      setFieldValue("district", data.District);
-                      setFieldValue("state", data.State);
-                    }}
-                    className="bg-gray-200 text-gray-900 px-5 py-3 rounded-md"
-                  >
-                    {pinCodeLoading ? (
-                      <div className="flex items-center gap-2">
-                        <LoadingSpinner color="black" />
-                        <p>Getting Info...</p>
-                      </div>
-                    ) : (
-                      <p>Get Info</p>
-                    )}
-                  </button>
-                </div> */}
               </div>
               {/* error */}
               <p className="text-red-500 text-sm ">
@@ -287,7 +251,7 @@ const ShippingAddressForm = ({
               <button
                 disabled={isSubmitting}
                 type="submit"
-                className="bg-yellow-500 text-white px-5 py-3 rounded-md"
+                className="bg-yellow-500 transition-all text-white px-5 py-3 rounded-md"
               >
                 {isSubmitting ? (
                   <div className="flex items-center gap-2">

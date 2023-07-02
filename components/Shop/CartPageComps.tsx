@@ -13,6 +13,15 @@ const CartItems = () => {
       {cartItems.map((item: any) => (
         <CartProduct product={item} key={item.id} />
       ))}
+      {/* continue shoppping */}
+      <div className="w-full py-2 flex justify-center">
+        <Link
+          className="w-full lg:w-fit bg-gray-200 text-black text-sm p-4 rounded-lg text-center"
+          href={"/shop/"}
+        >
+          Continue Shopping
+        </Link>
+      </div>
     </div>
   );
 };

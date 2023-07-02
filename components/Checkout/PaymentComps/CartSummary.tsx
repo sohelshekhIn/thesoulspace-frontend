@@ -4,7 +4,14 @@ import { useStateContext } from "@/context/StateContext";
 import Link from "next/link";
 
 const CartSummary = () => {
-  const { totalPrice, offer, setOffer, shippingCharge } = useStateContext();
+  const {
+    totalPrice,
+    offer,
+    setOffer,
+    shippingCharge,
+    grandTotal,
+    setGrandTotal,
+  } = useStateContext();
   const calculateDiscount: any = (offer: any) => {
     if (offer && offer.valid) {
       if (offer.offerType === "Flat") return offer.discountAmount;
@@ -23,6 +30,7 @@ const CartSummary = () => {
   total = totalPrice - calculateDiscount(offer) + shippingCharge;
   if (totalPrice === 0) total = 0;
   if (total < 0) setOffer({});
+  setGrandTotal(total);
 
   return (
     <div className="">
@@ -60,7 +68,7 @@ const CartSummary = () => {
         </div>
         <div className="w-full flex justify-between border-t-[2px] pt-3  border-t-gray-200 font-semibold">
           <p>Grand Total</p>
-          <p>₹ {total}</p>
+          <p>₹ {grandTotal}</p>
         </div>
       </div>
     </div>
