@@ -21,7 +21,7 @@ const ShopProductCard = ({ product }: { product: ProductType }) => {
           <p className="text-sm">4/5</p>
         </div>
 
-        <h1 className="text-xl font-semibold">{product.Name}</h1>
+        <h1 className="text-xl font-semibold line-clamp-2">{product.Name}</h1>
         <p className="text-gray-700 text-base line-clamp-2">
           {product.Short_Description}
         </p>

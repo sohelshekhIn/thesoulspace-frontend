@@ -62,6 +62,7 @@ async function setShippingAddressDetails(
 
 async function getSavedShippingAddressDetails(session: any) {
   const shippingAddressDetails = cookies().get("shipping-address-details");
+
   if (shippingAddressDetails != undefined) {
     const add = JSON.parse(shippingAddressDetails.value);
     if (session && add.userEmail === session.user.email) {

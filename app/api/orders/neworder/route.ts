@@ -66,6 +66,7 @@ export async function POST(request: Request) {
     products,
   } = req;
 
+  console.time("fetching products");
   const urlFilterQuery = generateURLFilterQuery(products);
   const productsResponse = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products${urlFilterQuery}`,
@@ -149,6 +150,8 @@ export async function POST(request: Request) {
       return ReturnError();
     }
   }
+  console.timeEnd("fetching products");
+
   const refferenceId = Date.now();
   const orderId = refferenceId.toString(36);
   //   get current date and time (IST) till seconds

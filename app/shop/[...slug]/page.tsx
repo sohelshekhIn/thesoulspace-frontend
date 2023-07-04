@@ -29,7 +29,7 @@ const ProductPage = async (context: any) => {
   return (
     <div>
       <div className="flex flex-col lg:flex-row mt-5 mb-40 mx-auto w-[90dvw] sm:p-5 lg:justify-center lg:px-14 gap-2 lg:gap-8">
-        <div className="w-full lg:w-1/2">
+        <div className="w-full lg:w-1/2 lg:px-10 2xl:px-24">
           <ProductCarouselComp data={data}>
             {data.Product_Image.map((image: any) => (
               // <div key={image.url} className="w-[400px] sm:w-[500px]">
@@ -37,7 +37,7 @@ const ProductPage = async (context: any) => {
                 src={image.formats.medium.url}
                 width={800}
                 height={800}
-                alt="product image"
+                alt="Product Image"
               />
               //</div>
             ))}
@@ -51,7 +51,9 @@ const ProductPage = async (context: any) => {
             <p className="text-sm">4/5</p>
           </div>
           <h1 className="text-3xl font-semibold">{data.Name}</h1>
-          <p className="text-base text-gray-700">{data.Short_Description}</p>
+          <p className="text-base text-gray-700 max-w-2xl">
+            {data.Short_Description}
+          </p>
           <div className="flex pr-10 mt-5 justify-between lg:justify-normal lg:gap-24 items-center">
             <h1 className="text-2xl font-semibold">₹ {data.Price}</h1>
             <CartInputComp />

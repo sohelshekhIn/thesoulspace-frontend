@@ -8,6 +8,7 @@ import { setShippingAddressDetails } from "@/utils/checkoutDetailsCookies";
 import { useRouter } from "next/navigation";
 import { getCityDistrictState } from "@/utils/global";
 import { useEffect, useState } from "react";
+import { showToast } from "@/components/Global/Toast";
 
 const ShippingAddressForm = ({
   shippingAddressDetails,
@@ -22,16 +23,25 @@ const ShippingAddressForm = ({
   const [pincode, setPincode] = useState(
     localShippingAddressDetails?.pincode || ""
   );
-  const [pincodeError, setPincodeError] = useState("");
   const [city, setCity] = useState("");
-  const [cityError, setCityError] = useState("");
+  const [pincodeError, setPincodeError] = useState({
+    error: false,
+    message: "",
+  });
+  const [cityError, setCityError] = useState({
+    error: false,
+    message: "",
+  });
   const [district, setDistrict] = useState("");
   const [state, setState] = useState("");
 
   const getDetailsfromPincode = async () => {
     const data = await getCityDistrictState(pincode);
     if (data.error) {
-      setPincodeError(data.error);
+      setPincodeError({
+        error: true,
+        message: data.error,
+      });
     } else {
       setCity(data.City);
       setDistrict(data.District);
@@ -44,10 +54,22 @@ const ShippingAddressForm = ({
     const pincodeNumber = parseInt(pincode);
     // if pincodeNumber between 100000 and 999999
     if (pincodeNumber >= 100000 && pincodeNumber <= 999999) {
-      setPincodeError("");
-      getDetailsfromPincode();
+      setPincodeError({
+        error: false,
+        message: "",
+      });
+      if (localShippingAddressDetails?.city != undefined) {
+        setCity(localShippingAddressDetails?.city);
+        setDistrict(localShippingAddressDetails?.district);
+        setState(localShippingAddressDetails?.state);
+      } else {
+        getDetailsfromPincode();
+      }
     } else {
-      setPincodeError("Pincode must be 6 digits");
+      setPincodeError({
+        error: true,
+        message: "Pincode must be 6 digits",
+      });
       4;
     }
   }, [pincode]);
@@ -59,9 +81,15 @@ const ShippingAddressForm = ({
       city.length < 3 ||
       city.length > 25
     ) {
-      setCityError("Enter valid city");
+      setCityError({
+        error: true,
+        message: "Enter valid city",
+      });
     } else {
-      setCityError("");
+      setCityError({
+        error: false,
+        message: "",
+      });
     }
   }, [city]);
 
@@ -71,9 +99,6 @@ const ShippingAddressForm = ({
         addressLine1: localShippingAddressDetails?.addressLine1 || "",
         addressLine2: localShippingAddressDetails?.addressLine2 || "",
         landmark: localShippingAddressDetails?.landmark || "",
-        city: city || localShippingAddressDetails?.city,
-        district: district || localShippingAddressDetails?.district,
-        state: state || localShippingAddressDetails?.state,
       }}
       validationSchema={Yup.object({
         addressLine1: Yup.string()
@@ -87,31 +112,24 @@ const ShippingAddressForm = ({
         landmark: Yup.string()
           .min(3, "Landmark must be at least 3 characters")
           .max(50, "Landmark must be at most 50 characters"),
-        city: Yup.string()
-          .required("City is required")
-          .min(3, "City must be at least 3 characters")
-          .max(25, "City must be at most 25 characters"),
-        district: Yup.string()
-          .required("District is required")
-          .min(3, "District must be at least 3 characters")
-          .max(25, "District must be at most 25 characters"),
-        state: Yup.string()
-          .required("State is required")
-          .min(3, "State must be at least 3 characters")
-          .max(25, "State must be at most 25 characters"),
       })}
-      onSubmit={(values) => {
-        setShippingAddressDetails(
-          session,
-          values.addressLine1,
-          values.addressLine2,
-          values.landmark,
-          values.city,
-          values.district,
-          values.state,
-          pincode
-        );
-        router.push("/checkout/payment");
+      onSubmit={(values, { setSubmitting }) => {
+        if (pincodeError.error === false && cityError.error === false) {
+          setShippingAddressDetails(
+            session,
+            values.addressLine1,
+            values.addressLine2,
+            values.landmark,
+            city,
+            district,
+            state,
+            pincode
+          );
+          router.push("/checkout/payment");
+        } else {
+          setSubmitting(false);
+          showToast("Please enter valid pincode or city!", "error");
+        }
       }}
     >
       {({ handleSubmit, errors, touched, isSubmitting }) => (
@@ -197,7 +215,7 @@ const ShippingAddressForm = ({
               {/* error */}
               <p className="text-red-500 text-sm ">
                 {/* @ts-ignore */}
-                {pincodeError != "" ? pincodeError : ""}
+                {pincodeError.error === true ? pincodeError.message : ""}
               </p>
             </div>
             <div className="flex gap-2">
@@ -217,7 +235,7 @@ const ShippingAddressForm = ({
                 />
                 <p className="text-red-500 text-sm ">
                   {/* @ts-ignore */}
-                  {cityError != "" ? cityError : ""}
+                  {cityError.error === true ? cityError.message : ""}
                 </p>
               </div>
               <div className="w-1/2">
