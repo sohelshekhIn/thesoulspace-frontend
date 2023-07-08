@@ -2,7 +2,7 @@
 
 import { getStaticData } from "@/utils/global";
 import ShopProductCard from "@/components/Shop/ShopCard";
-import { getAlgoliaResults } from "@algolia/autocomplete-js";
+// import { getAlgoliaResults } from "@algolia/autocomplete-js";
 // import algoliasearch from "algoliasearch";
 // import { Autocomplete } from "@/components/Shop/Autocomplete";
 // import { ProductItem } from "@/components/Shop/ProductItem";
