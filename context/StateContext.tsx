@@ -34,7 +34,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     setCartItems(localCartItems ? JSON.parse(localCartItems) : []);
     setTotalPrice(localTotalPrice ? JSON.parse(localTotalPrice) : 0);
     setTotalQuantity(localTotalQuantity ? JSON.parse(localTotalQuantity) : 0);
-    setOffer(localOffer ? JSON.parse(localOffer) : {});
+    setOffer(localOffer ? JSON.parse(localOffer) : null);
   }, []);
 
   useEffect(() => {

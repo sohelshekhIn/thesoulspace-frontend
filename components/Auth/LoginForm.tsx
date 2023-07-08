@@ -17,7 +17,7 @@ const LoginForm = ({ csrfToken }: { csrfToken: string | undefined }) => {
     if (searchParams.get("callbackUrl")) {
       sessionStorage.setItem("callbackUrl", searchParams.get("callbackUrl")!);
     }
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     if (error) {
