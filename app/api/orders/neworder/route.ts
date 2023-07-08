@@ -160,41 +160,41 @@ export async function POST(request: Request) {
     timeZone: "Asia/Kolkata",
   });
 
-  //   const saveOrderResponse = await fetch(
-  //     `${process.env.NEXT_PUBLIC_API_URL}/up-orders`,
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: "Bearer " + process.env.STRAPI_API_TOKEN,
-  //       },
-  //       body: JSON.stringify({
-  //         data: {
-  //           orderId: orderId,
-  //           refferenceId: refferenceId.toString(),
-  //           dateTime: dateISTString,
-  //           cart: products,
-  //           contact: {
-  //             firstName: firstName,
-  //             lastName: lastName,
-  //             email: email,
-  //             phone: phone,
-  //             address: address,
-  //           },
-  //           value: {
-  //             totalPrice: totalPrice,
-  //             offer: offer,
-  //             totalQuantity: totalQuantity,
-  //             grandTotal: grandTotal,
-  //           },
-  //         },
-  //       }),
-  //     }
-  //   );
+  const saveOrderResponse = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/up-orders`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + process.env.STRAPI_API_TOKEN,
+      },
+      body: JSON.stringify({
+        data: {
+          orderId: orderId,
+          refferenceId: refferenceId.toString(),
+          dateTime: dateISTString,
+          cart: products,
+          contact: {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            address: address,
+          },
+          value: {
+            totalPrice: totalPrice,
+            offer: offer,
+            totalQuantity: totalQuantity,
+            grandTotal: grandTotal,
+          },
+        },
+      }),
+    }
+  );
 
-  //   const saveOrder = await saveOrderResponse.json();
-  const saveOrder: any = { data: "hello" };
-  console.log("Order Saved");
+  const saveOrder = await saveOrderResponse.json();
+  // const saveOrder: any = { data: "hello" };
+  // console.log("Order Saved");
 
   if (saveOrder.error) {
     return NextResponse.json(
