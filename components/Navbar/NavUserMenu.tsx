@@ -28,10 +28,10 @@ const NavUserAccMenu = ({ session }: { session: any }) => {
             </div>
           </div>
           <div className="flex flex-col">
-            <p className="text-black font-semibold text-lg">
+            <p className="text-black font-medium text-base">
               {session?.user.name}
             </p>
-            <p className="text-sm text-gray-500">{session?.user.email}</p>
+            <p className="text-xs text-gray-500">{session?.user.email}</p>
           </div>
         </div>
         <ul className="flex flex-col mt-2">

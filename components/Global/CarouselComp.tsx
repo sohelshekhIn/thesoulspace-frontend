@@ -58,8 +58,8 @@ const ProductCarouselComp = ({
       ssr={true}
       showDots={true}
       removeArrowOnDeviceType={["tablet", "mobile"]}
-      containerClass="pb-[10%]"
-      dotListClass="custom-dot-list-style transform -translate-y-[50%]  gap-2"
+      containerClass="pb-[15%]"
+      dotListClass="custom-dot-list-style transform translate-y-[10%] lg:-translate-y-[50%] gap-2"
       customDot={<CustomDot data={data.Product_Image} />}
     >
       {children}
@@ -83,7 +83,7 @@ const CustomDot = ({
     <button
       className={`${
         active ? "ring-2" : "ring-0"
-      } ring-offset-2 ring-gray-400 w-[${containerSize}px] h-[${containerSize}px]`}
+      } ring-offset-2 ring-gray-400 bg-white w-[${containerSize}px] h-[${containerSize}px]`}
       onClick={() => onClick()}
     >
       <Image

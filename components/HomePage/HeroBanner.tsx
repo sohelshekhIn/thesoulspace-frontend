@@ -30,20 +30,23 @@ const Banner = ({ data }: { data: BannerDataType }) => {
           </h1>
           <Link
             href={data.CTA_Button.Button_Link}
-            className="z-20 w-fit mt-5 rounded-lg px-5 py-3 bg-black text-white font-normal text-lg"
+            className="z-20 w-fit mt-5 px-5 py-3 bg-black text-white font-base text-lg hover:bg-gray-800"
           >
             {data.CTA_Button.Button_Text}
           </Link>
         </div>
-        <div className="absolute top-[50%] sm:top-[30%] sm:w-3/4 sm:left-[20%] md:top-0 md:w-2/3 md:left-[35%] lg:left-[35%] lg:w-full xl:left-[45%] 2xl:-top-[10%] 3xl:top-0">
-          <Image
-            width={data.BannerImage.data.attributes.width}
-            height={data.BannerImage.data.attributes.height}
-            src={data.BannerImage.data.attributes.url}
-            priority={true}
-            alt="Hero Banner Image"
-          />
-        </div>
+        {/* check if image exists */}
+        {!data.BannerImage.data ? null : (
+          <div className="absolute top-[50%] sm:top-[30%] sm:w-3/4 sm:left-[20%] md:top-0 md:w-2/3 md:left-[35%] lg:left-[35%] lg:w-full xl:left-[45%] 2xl:-top-[10%] 3xl:top-0">
+            <Image
+              width={data.BannerImage.data.attributes.width}
+              height={data.BannerImage.data.attributes.height}
+              src={data.BannerImage.data.attributes.url}
+              priority={true}
+              alt="Hero Banner Image"
+            />
+          </div>
+        )}
       </div>
       <div className="select-none md:pr-14 lg:pr-24 xl:pr-36">
         <p className="text-right font-medium text-gray-800">

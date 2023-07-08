@@ -9,7 +9,7 @@ const CheckoutPage = async () => {
     cookies().get("next-auth.csrf-token")?.value.split("|")[0] ||
     cookies().get("__Host-next-auth.csrf-token")?.value.split("|")[0] ||
     "";
-  const checkoutContactDetails = await getSavedCheckoutContactDetails();
+  const checkoutContactDetails = await getSavedCheckoutContactDetails(session);
 
   return (
     <div className="w-full h-[60dvh]">

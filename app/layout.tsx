@@ -81,7 +81,7 @@ export default function RootLayout({
   session: Session;
 }) {
   return (
-    <html lang="en" className={montserrat.className}>
+    <html lang="en" className={montserrat.className + " scroll-smooth"}>
       <Head>
         <meta
           name="viewport"

@@ -1,13 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
+import brushStroke from "@/public/images/brush-stroke.png";
 
 const RequestArtBanner = () => {
   return (
-    <div className="m-2 mx-auto bg-gray-400/90 max-w-[90dvw] rounded-xl mt-14">
-      <div className="p-8 flex flex-col gap-4 lg:p-14 lg:max-w-[70%] mx-auto">
-        <h1 className="text-6xl font-normal">
+    <div className="m-2 mx-auto bg-gray-200/90 max-w-[90dvw] mt-14">
+      <div className="p-8 py-16 flex flex-col gap-10 lg:p-14 lg:max-w-[70%] mx-auto">
+        <h1 className="text-2xl font-semibold text-gray-800">
           Transform Your Vision into Art with our{" "}
-          <span className="text-yellow-400 font-semibold">
-            Custom Artwork Requests
+          <span className="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-yellow-400/50 relative inline-block">
+            <span className="relative text-5xl text-gray-900 font-extrabold">
+              Custom Artwork Request
+            </span>
           </span>
         </h1>
         <p className="text-lg">
@@ -20,7 +24,7 @@ const RequestArtBanner = () => {
         </p>
         <Link
           href="/request-artwork"
-          className="bg-black text-white px-5 py-4 rounded-lg w-fit hover:bg-gray-800 hover:scale-105 transition-all duration-200 "
+          className="bg-black text-white px-5 py-4 w-fit hover:bg-gray-800 transition-all duration-200 "
         >
           Start Your Personalized Creation
         </Link>

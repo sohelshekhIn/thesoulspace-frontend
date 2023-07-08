@@ -14,7 +14,11 @@ const Footer = () => {
             </div>
             <div className="">
               <h1 className="text-2xl font-semibold px-2">the soul space</h1>
-              <Link href="https://www.instagram.com/_soul_space_67/" passHref>
+              <Link
+                target="_blank"
+                href="https://www.instagram.com/_soul_space_67/"
+                passHref
+              >
                 {/* insta */}
                 <div className="flex gap-1 items-center">
                   <Image className="p-2" src={instagram} alt="Instagram" />

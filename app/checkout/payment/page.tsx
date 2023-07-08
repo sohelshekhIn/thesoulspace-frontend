@@ -9,12 +9,16 @@ import {
 } from "@/utils/checkoutDetailsCookies";
 
 const CheckoutPaymentPage = async () => {
-  const session = getServerSession();
+  const session = await getServerSession();
   if (!session) {
     redirect("/checkout");
   }
-  const savedCheckoutContactDetails = await getSavedCheckoutContactDetails();
-  const savedShippingAddressDetails = await getSavedShippingAddressDetails();
+  const savedCheckoutContactDetails = await getSavedCheckoutContactDetails(
+    session
+  );
+  const savedShippingAddressDetails = await getSavedShippingAddressDetails(
+    session
+  );
 
   return (
     <div className="flex flex-col gap-8 py-10">
@@ -23,7 +27,10 @@ const CheckoutPaymentPage = async () => {
         savedShippingAddressDetails={savedShippingAddressDetails}
       />
       <CartSummary />
-      <PlaceOrder />
+      <PlaceOrder
+        contactDetails={savedCheckoutContactDetails}
+        shippingAddress={savedShippingAddressDetails}
+      />
     </div>
   );
 };

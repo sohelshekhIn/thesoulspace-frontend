@@ -13,6 +13,15 @@ const CartItems = () => {
       {cartItems.map((item: any) => (
         <CartProduct product={item} key={item.id} />
       ))}
+      {/* continue shoppping */}
+      <div className="w-full py-2 flex justify-center">
+        <Link
+          className="w-full lg:w-fit bg-gray-200 text-black text-sm p-4 rounded-lg text-center"
+          href={"/shop/"}
+        >
+          Continue Shopping
+        </Link>
+      </div>
     </div>
   );
 };
@@ -54,7 +63,7 @@ const CartContainer = () => {
 const CartProduct = ({ product }: { product: CartProductType }) => {
   return (
     <div className="flex gap-3 w-full px-4 py-1">
-      <div className="w-[130px] lg:w-[100px] lg:h-[100px] h-[100px] bg-gray-200">
+      <div className="w-[130px] lg:w-[90px] aspect-[4/5] overflow-hidden bg-gray-200">
         <Image
           src={
             // @ts-ignore
@@ -66,7 +75,7 @@ const CartProduct = ({ product }: { product: CartProductType }) => {
         />
       </div>
       {/* list of items added in cart */}
-      <div className="flex gap-3 flex-col sm:flex-row w-[70%] sm:justify-between">
+      <div className="flex gap-3 flex-col sm:flex-row w-[70%] sm:justify-between shadow-sm">
         <div className="flex flex-col gap-1">
           <h1 className="text-lg">{product.Name}</h1>
           {/* <p className="text-sm">Product Description</p> */}
