@@ -8,6 +8,7 @@ const RichTextMarkdown = ({ children }: { children: string }) => {
       remarkPlugins={[breaks]}
       // eslint-disable-next-line
       children={children}
+      className="transition-all max-w-xl "
       components={{
         //   bold
         strong: ({ node, ...props }) => (
@@ -19,7 +20,9 @@ const RichTextMarkdown = ({ children }: { children: string }) => {
         h4: ({ node, ...props }) => <h4 className="text-2xl" {...props} />,
         h5: ({ node, ...props }) => <h5 className="text-xl " {...props} />,
         h6: ({ node, ...props }) => <h6 className="text-lg" {...props} />,
-        p: ({ node, ...props }) => <p className="text-base" {...props} />,
+        p: ({ node, ...props }) => (
+          <p className="text-base text-gray-700" {...props} />
+        ),
         ol: ({ node, ...props }) => (
           <ol className="list-decimal list-inside" {...props} />
         ),

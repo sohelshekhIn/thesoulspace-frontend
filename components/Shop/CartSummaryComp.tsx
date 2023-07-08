@@ -23,7 +23,7 @@ const CartSummary = () => {
   let discount = calculateDiscount(offer);
   total = totalPrice - calculateDiscount(offer) + shippingCharge;
   if (totalPrice === 0) total = 0;
-  if (total < 0) setOffer({});
+  if (total < 0) setOffer(null);
 
   return (
     <div className="">
