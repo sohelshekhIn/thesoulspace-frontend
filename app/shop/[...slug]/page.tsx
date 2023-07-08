@@ -58,6 +58,7 @@ const ProductPage = async (context: any) => {
             <ProductCarouselComp data={data}>
               {data.Product_Image.map((image: any) => (
                 <Image
+                  key={image.id}
                   src={image.formats.medium.url}
                   width={800}
                   height={800}
