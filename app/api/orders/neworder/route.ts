@@ -67,7 +67,7 @@ export async function POST(request: Request) {
   } = req;
 
   console.log("start");
-  
+
   const urlFilterQuery = generateURLFilterQuery(products);
   const productsResponse = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products${urlFilterQuery}`,
@@ -78,7 +78,7 @@ export async function POST(request: Request) {
     }
   );
   console.log("after products");
-  
+
   let offerData = null;
   // fetch data if offer is passed in request
   if (offer) {
@@ -98,7 +98,7 @@ export async function POST(request: Request) {
     offerData = await offerResponse.json();
   }
   console.log("after offer");
-  
+
   // fetch both simultaneously
   const [{ data: productData }] = await Promise.all([
     productsResponse.json(),
@@ -109,7 +109,7 @@ export async function POST(request: Request) {
     return ReturnError();
   }
   console.log("feth both");
-  
+
   // returns calculated total price and quantity from strapi data
   const { calculatedTotalPrice, calculatedTotalQuantity } = products.reduce(
     (
@@ -131,8 +131,8 @@ export async function POST(request: Request) {
     },
     { calculatedTotalPrice: 0, calculatedTotalQuantity: 0 }
   );
-    console.log("after reduce");
-    
+  console.log("after reduce");
+
   if (calculatedTotalPrice != totalPrice) {
     return ReturnError();
   }
@@ -141,7 +141,7 @@ export async function POST(request: Request) {
     return ReturnError();
   }
   console.log("after if");
-  
+
   if (offer && offerData?.data?.valid) {
     if (
       calculatedTotalPrice -
@@ -157,7 +157,7 @@ export async function POST(request: Request) {
     }
   }
   console.log("new start");
-  
+
   const refferenceId = Date.now();
   const orderId = refferenceId.toString(36);
   //   get current date and time (IST) till seconds
@@ -167,6 +167,8 @@ export async function POST(request: Request) {
   const dateISTString = dateIST.toLocaleString("en-US", {
     timeZone: "Asia/Kolkata",
   });
+
+  console.log("before save");
 
   const saveOrderResponse = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/up-orders`,
@@ -201,6 +203,10 @@ export async function POST(request: Request) {
   );
 
   const saveOrder = await saveOrderResponse.json();
+  console.log(saveOrder);
+
+  console.log("after save");
+
   // const saveOrder: any = { data: "hello" };
   // console.log("Order Saved");
 
