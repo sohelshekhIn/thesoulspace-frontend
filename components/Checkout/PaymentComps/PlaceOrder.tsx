@@ -1,7 +1,9 @@
 "use client";
 
+import LoadingSpinner from "@/components/Global/LoadingSpinner";
 import { useStateContext } from "@/context/StateContext";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const PlaceOrder = ({
   contactDetails,
@@ -13,6 +15,8 @@ const PlaceOrder = ({
   const router = useRouter();
   const { cartItems, grandTotal, totalPrice, totalQuantity, offer } =
     useStateContext();
+
+  const [loading, setLoading] = useState(false);
 
   // loop through cart items and create an array of product ids and quantities
   const products = cartItems.map((item: any) => {
@@ -44,7 +48,7 @@ const PlaceOrder = ({
 
   // api call to create order "/orders/neworder"
   const createOrder = async (order: any) => {
-    console.log("Create order started");
+    setLoading(true);
 
     const res = await fetch("/api/orders/neworder", {
       method: "POST",
@@ -54,12 +58,12 @@ const PlaceOrder = ({
       body: JSON.stringify(order),
     });
     const data = await res.json();
-    console.log(data);
 
     if (data.error) {
       router.push(`/`);
     } else {
-      router.push(`/orders/${data.orderId}-${data.refferenceId}`);
+      // redirect to payment page (other website)
+      router.push(data.link);
     }
   };
 
@@ -70,7 +74,10 @@ const PlaceOrder = ({
       type="submit"
       onClick={() => createOrder(order)}
     >
-      Place Order
+      <span className="flex w-full justify-center">
+        {loading && <LoadingSpinner color="white" />}
+        Place Order
+      </span>
     </button>
   );
 };
