@@ -71,7 +71,10 @@ const ProductPage = async (context: any) => {
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               {Object.keys(data.categories).map((category: any) => (
-                <div className="bg-gray-200/90 px-3 py-1 rounded-full">
+                <div
+                  className="bg-gray-200/90 px-3 py-1 rounded-full"
+                  key={data.categories[category].Name}
+                >
                   <p className="text-xs font-medium text-gray-500">
                     {data.categories[category].Name}
                   </p>

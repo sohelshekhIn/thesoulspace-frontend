@@ -5,15 +5,20 @@ import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { showToast } from "../Global/Toast";
 
+// NOTE: REMOVE UNUSED USE STATE in v1.2.1
+
 export const CheckCartExists = () => {
-  const [reallyEmpty, setReallyEmpty] = useState<boolean>(false);
+  // const [reallyEmpty, setReallyEmpty] = useState<boolean>(false);
+  let reallyEmpty: boolean = false;
   const { totalQuantity } = useStateContext();
   useEffect(() => {
     if (totalQuantity === 0 && !reallyEmpty) {
-      setReallyEmpty(true);
+      // setReallyEmpty(true);
+      reallyEmpty = true;
     }
     if (totalQuantity > 0 && reallyEmpty) {
-      setReallyEmpty(false);
+      // setReallyEmpty(false);
+      reallyEmpty = false;
     }
     // cart is empty
     if (reallyEmpty && totalQuantity === 0) {

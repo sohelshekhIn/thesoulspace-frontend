@@ -72,6 +72,7 @@ const ShippingAddressForm = ({
       });
       4;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pincode]);
 
   useEffect(() => {
