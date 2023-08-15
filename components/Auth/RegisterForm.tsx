@@ -41,13 +41,14 @@ const RegisterForm = () => {
             email: values.email,
             password: values.password,
           })
-          .then(async (res) => {
+          .then(async () => {
             showToast("Check your email for confirmation link!", "success");
             setTimeout(() => {
               redirect("/login");
             }, 5000);
           })
           .catch((err) => {
+            setSubmitting(false);
             if (
               err.response &&
               err.response.data.error.name === "ApplicationError" &&

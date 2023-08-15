@@ -58,8 +58,8 @@ const ProductCarouselComp = ({
       ssr={true}
       showDots={true}
       removeArrowOnDeviceType={["tablet", "mobile"]}
-      containerClass="pb-[10%]"
-      dotListClass="custom-dot-list-style transform -translate-y-[50%] gap-2"
+      containerClass="pb-[15%]"
+      dotListClass="custom-dot-list-style transform translate-y-[10%] lg:-translate-y-[50%] gap-2"
       customDot={<CustomDot data={data.Product_Image} />}
     >
       {children}

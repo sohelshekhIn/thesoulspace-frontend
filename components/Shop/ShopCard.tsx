@@ -14,14 +14,19 @@ const ShopProductCard = ({ product }: { product: ProductType }) => {
           height={300}
         />
 
-        <div className="my-2 flex gap-1">
-          <div className="">
-            <Image src={star} width={14} height={14} alt="Product Rating" />
+        <div className="my-2 flex gap-4">
+          <div className="flex gap-2">
+            <Image
+              className="py-1"
+              src={star}
+              width={14}
+              alt="Product Rating"
+            />
+            <p className="text-sm">4/5</p>
           </div>
-          <p className="text-sm">4/5</p>
         </div>
 
-        <h1 className="text-xl font-semibold">{product.Name}</h1>
+        <h1 className="text-xl font-semibold line-clamp-2">{product.Name}</h1>
         <p className="text-gray-700 text-base line-clamp-2">
           {product.Short_Description}
         </p>

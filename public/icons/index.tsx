@@ -9,6 +9,8 @@ import minus from "./minus.png";
 import star from "./star.png";
 import deleteIcon from "./delete.png";
 import instagram from "./instagram.png";
+import confetti from "./confetti.png";
+import paymentFailed from "./credit-card.png";
 
 export {
   cart,
@@ -22,4 +24,6 @@ export {
   star,
   deleteIcon,
   instagram,
+  confetti,
+  paymentFailed,
 };

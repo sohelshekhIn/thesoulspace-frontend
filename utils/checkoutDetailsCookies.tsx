@@ -62,9 +62,10 @@ async function setShippingAddressDetails(
 
 async function getSavedShippingAddressDetails(session: any) {
   const shippingAddressDetails = cookies().get("shipping-address-details");
+
   if (shippingAddressDetails != undefined) {
     const add = JSON.parse(shippingAddressDetails.value);
-    if (add.userEmail === session.user.email) {
+    if (session && add.userEmail === session.user.email) {
       return add;
     }
   }
@@ -75,7 +76,7 @@ async function getSavedCheckoutContactDetails(session: any) {
   const checkoutContactDetails = cookies().get("checkout-contact-details");
   if (checkoutContactDetails != undefined) {
     const chDts = JSON.parse(checkoutContactDetails.value);
-    if (chDts.userEmail === session.user.email) {
+    if (session && chDts.userEmail === session.user.email) {
       return chDts;
     }
   }

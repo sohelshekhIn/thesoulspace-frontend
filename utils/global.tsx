@@ -20,8 +20,7 @@ async function getCityDistrictState(pincode: string) {
     const response = await fetch(
       `https://www.postpincode.in/api/getCityName.php?pincode=${pincode}`,
       {
-        // dont cache this
-        cache: "no-cache",
+        next: { revalidate: 3600 }, // 1 hour
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -31,7 +30,11 @@ async function getCityDistrictState(pincode: string) {
       }
     );
     const data = await response.json();
-    return data[0];
+    if (data.error) {
+      return data;
+    } else {
+      return data[0];
+    }
   } catch (error) {
     return error;
   }

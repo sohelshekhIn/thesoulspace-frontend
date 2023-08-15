@@ -10,12 +10,13 @@ import { createContext, useContext, useEffect, useState } from "react";
 const StateContext = createContext<any>(null);
 
 export const StateProvider = ({ children }: { children: React.ReactNode }) => {
-  const [cartItems, setCartItems] = useState<any[]>([]);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [cartItems, setCartItems] = useState<any[]>([]); // [array of cart items]
+  const [totalPrice, setTotalPrice] = useState<number>(0); // [sum of all product price]
+  const [grandTotal, setGrandTotal] = useState<number>(0); // [totalPrice + shippingCharge - discount
   const [totalQuantity, setTotalQuantity] = useState<number>(0);
-  const [checkoutAuthType, setCheckoutAuthType] = useState<string>("register");
+  const [checkoutAuthType, setCheckoutAuthType] = useState<string>("register"); // [register, login] for checkout login form
 
-  const [cartOpen, setCartOpen] = useState<boolean>(false);
+  const [cartOpen, setCartOpen] = useState<boolean>(false); // [true, false] for menu drawer for mobile
   const [qty, setQty] = useState<number>(1);
   const [shippingCharge, setShippingCharge] = useState<number>(40);
 
@@ -33,7 +34,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     setCartItems(localCartItems ? JSON.parse(localCartItems) : []);
     setTotalPrice(localTotalPrice ? JSON.parse(localTotalPrice) : 0);
     setTotalQuantity(localTotalQuantity ? JSON.parse(localTotalQuantity) : 0);
-    setOffer(localOffer ? JSON.parse(localOffer) : {});
+    setOffer(localOffer ? JSON.parse(localOffer) : null);
   }, []);
 
   useEffect(() => {
@@ -131,6 +132,8 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
         offer,
         checkoutAuthType,
         shippingCharge,
+        grandTotal,
+        setGrandTotal,
         setShippingCharge,
         setCheckoutAuthType,
         setOffer,

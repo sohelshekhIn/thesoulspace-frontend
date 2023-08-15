@@ -27,7 +27,10 @@ const CheckoutPaymentPage = async () => {
         savedShippingAddressDetails={savedShippingAddressDetails}
       />
       <CartSummary />
-      <PlaceOrder />
+      <PlaceOrder
+        contactDetails={savedCheckoutContactDetails}
+        shippingAddress={savedShippingAddressDetails}
+      />
     </div>
   );
 };

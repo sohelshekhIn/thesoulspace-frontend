@@ -5,10 +5,10 @@ import * as Yup from "yup";
 import LoadingSpinner from "../../Global/LoadingSpinner";
 
 import { setShippingAddressDetails } from "@/utils/checkoutDetailsCookies";
-import { showToast } from "@/components/Global/Toast";
 import { useRouter } from "next/navigation";
 import { getCityDistrictState } from "@/utils/global";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { showToast } from "@/components/Global/Toast";
 
 const ShippingAddressForm = ({
   shippingAddressDetails,
@@ -19,7 +19,79 @@ const ShippingAddressForm = ({
 }) => {
   const localShippingAddressDetails = shippingAddressDetails;
   const router = useRouter();
-  const [pinCodeLoading, setPinCodeLoading] = useState<boolean>(false);
+
+  const [pincode, setPincode] = useState(
+    localShippingAddressDetails?.pincode || ""
+  );
+  const [city, setCity] = useState("");
+  const [pincodeError, setPincodeError] = useState({
+    error: false,
+    message: "",
+  });
+  const [cityError, setCityError] = useState({
+    error: false,
+    message: "",
+  });
+  const [district, setDistrict] = useState("");
+  const [state, setState] = useState("");
+
+  const getDetailsfromPincode = async () => {
+    const data = await getCityDistrictState(pincode);
+    if (data.error) {
+      setPincodeError({
+        error: true,
+        message: data.error,
+      });
+    } else {
+      setCity(data.City);
+      setDistrict(data.District);
+      setState(data.State);
+    }
+  };
+
+  useEffect(() => {
+    // convert string to number
+    const pincodeNumber = parseInt(pincode);
+    // if pincodeNumber between 100000 and 999999
+    if (pincodeNumber >= 100000 && pincodeNumber <= 999999) {
+      setPincodeError({
+        error: false,
+        message: "",
+      });
+      if (localShippingAddressDetails?.city != undefined) {
+        setCity(localShippingAddressDetails?.city);
+        setDistrict(localShippingAddressDetails?.district);
+        setState(localShippingAddressDetails?.state);
+      } else {
+        getDetailsfromPincode();
+      }
+    } else {
+      setPincodeError({
+        error: true,
+        message: "Pincode must be 6 digits",
+      });
+      4;
+    }
+  }, [pincode]);
+
+  useEffect(() => {
+    if (
+      city === "" ||
+      city === undefined ||
+      city.length < 3 ||
+      city.length > 25
+    ) {
+      setCityError({
+        error: true,
+        message: "Enter valid city",
+      });
+    } else {
+      setCityError({
+        error: false,
+        message: "",
+      });
+    }
+  }, [city]);
 
   return (
     <Formik
@@ -27,10 +99,6 @@ const ShippingAddressForm = ({
         addressLine1: localShippingAddressDetails?.addressLine1 || "",
         addressLine2: localShippingAddressDetails?.addressLine2 || "",
         landmark: localShippingAddressDetails?.landmark || "",
-        city: localShippingAddressDetails?.city || "",
-        district: localShippingAddressDetails?.district || "",
-        state: localShippingAddressDetails?.state || "",
-        pincode: localShippingAddressDetails?.pincode || "",
       }}
       validationSchema={Yup.object({
         addressLine1: Yup.string()
@@ -44,45 +112,27 @@ const ShippingAddressForm = ({
         landmark: Yup.string()
           .min(3, "Landmark must be at least 3 characters")
           .max(50, "Landmark must be at most 50 characters"),
-        pincode: Yup.number()
-          .required("Pincode is required")
-          .min(100000, "Enter valid pincode")
-          .max(999999, "Enter valid pincode"),
-        city: Yup.string()
-          .required("City is required")
-          .min(3, "City must be at least 3 characters")
-          .max(25, "City must be at most 25 characters"),
-        district: Yup.string()
-          .required("District is required")
-          .min(3, "District must be at least 3 characters")
-          .max(25, "District must be at most 25 characters"),
-        state: Yup.string()
-          .required("State is required")
-          .min(3, "State must be at least 3 characters")
-          .max(25, "State must be at most 25 characters"),
       })}
-      onSubmit={(values) => {
-        setShippingAddressDetails(
-          session,
-          values.addressLine1,
-          values.addressLine2,
-          values.landmark,
-          values.city,
-          values.district,
-          values.state,
-          values.pincode
-        );
-        router.push("/checkout/payment");
+      onSubmit={(values, { setSubmitting }) => {
+        if (pincodeError.error === false && cityError.error === false) {
+          setShippingAddressDetails(
+            session,
+            values.addressLine1,
+            values.addressLine2,
+            values.landmark,
+            city,
+            district,
+            state,
+            pincode
+          );
+          router.push("/checkout/payment");
+        } else {
+          setSubmitting(false);
+          showToast("Please enter valid pincode or city!", "error");
+        }
       }}
     >
-      {({
-        handleSubmit,
-        errors,
-        touched,
-        isSubmitting,
-        setFieldValue,
-        values,
-      }) => (
+      {({ handleSubmit, errors, touched, isSubmitting }) => (
         <div className="">
           <div className="mb-4">
             <h1 className="text-2xl font-semibold">Shipping Address</h1>
@@ -149,74 +199,55 @@ const ShippingAddressForm = ({
                   {/* label */}
                   {/* pincode */}
                   <label htmlFor="pincode">Pincode</label>
-                  <Field
+                  <input
                     className="w-full p-3 rounded-md border border-gray-300"
                     type="number"
                     name="pincode"
                     aria-label="Enter your pincode"
                     placeholder="Enter your pincode"
-                  />
-                </div>
-                <div className="w-1/3 flex flex-col justify-end">
-                  <button
-                    type="button"
-                    onClick={async () => {
-                      setPinCodeLoading(true);
-                      if (values.pincode.toString().length !== 6) {
-                        showToast("Invalid Pincode", "error");
-                        return;
-                      }
-                      const data = await getCityDistrictState(values.pincode);
-                      setPinCodeLoading(false);
-                      if (data.error) {
-                        showToast(data.error, "error");
-                        return;
-                      }
-                      setFieldValue("city", data.City);
-                      setFieldValue("district", data.District);
-                      setFieldValue("state", data.State);
+                    value={pincode}
+                    onChange={(e) => {
+                      setPincode(e.target.value);
                     }}
-                    className="bg-gray-200 text-gray-900 px-5 py-3 rounded-md"
-                  >
-                    {pinCodeLoading ? (
-                      <div className="flex items-center gap-2">
-                        <LoadingSpinner color="black" />
-                        <p>Getting Info...</p>
-                      </div>
-                    ) : (
-                      <p>Get Info</p>
-                    )}
-                  </button>
+                  />
                 </div>
               </div>
               {/* error */}
               <p className="text-red-500 text-sm ">
                 {/* @ts-ignore */}
-                {errors.pincode && touched.pincode && errors.pincode}
+                {pincodeError.error === true ? pincodeError.message : ""}
               </p>
             </div>
             <div className="flex gap-2">
               <div className="w-1/2">
                 {/* noneditable */}
                 <label htmlFor="city">City</label>
-                <Field
+                <input
                   className="w-full p-3 rounded-md border border-gray-300"
                   type="text"
                   name="city"
                   aria-label="Get City from Pincode"
                   placeholder="Get City from Pincode"
-                  disabled
+                  onChange={(e) => {
+                    setCity(e.target.value);
+                  }}
+                  value={city}
                 />
+                <p className="text-red-500 text-sm ">
+                  {/* @ts-ignore */}
+                  {cityError.error === true ? cityError.message : ""}
+                </p>
               </div>
               <div className="w-1/2">
                 {/* noneditable */}
                 <label htmlFor="district">District</label>
-                <Field
+                <input
                   className="w-full p-3 rounded-md border border-gray-300"
                   type="text"
                   name="district"
                   aria-label="Get District from Pincode"
                   placeholder="Get District from Pincode"
+                  value={district}
                   disabled
                 />
               </div>
@@ -224,12 +255,13 @@ const ShippingAddressForm = ({
             <div className="">
               {/* noneditable */}
               <label htmlFor="state">State</label>
-              <Field
+              <input
                 className="w-full p-3 rounded-md border border-gray-300"
                 type="text"
                 name="state"
                 aria-label="Get State from Pincode"
                 placeholder="Get State from Pincode"
+                value={state}
                 disabled
               />
             </div>
@@ -237,7 +269,7 @@ const ShippingAddressForm = ({
               <button
                 disabled={isSubmitting}
                 type="submit"
-                className="bg-yellow-500 text-white px-5 py-3 rounded-md"
+                className="bg-yellow-500 transition-all text-white px-5 py-3 rounded-md"
               >
                 {isSubmitting ? (
                   <div className="flex items-center gap-2">
