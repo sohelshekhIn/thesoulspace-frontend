@@ -67,17 +67,27 @@ const ProductPage = async (context: any) => {
               ))}
             </ProductCarouselComp>
           </div>
+
           <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2">
+              {Object.keys(data.categories).map((category: any) => (
+                <div className="bg-gray-200/90 px-3 py-1 rounded-full">
+                  <p className="text-xs font-medium text-gray-500">
+                    {data.categories[category].Name}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <h1 className="text-3xl font-semibold">{data.Name}</h1>
+            <p className="text-sm text-gray-600 max-w-2xl">
+              {data.Short_Description}
+            </p>
             <div className="flex gap-1 lg:mt-2">
               <div>
                 <Image src={star} width={14} height={14} alt="Product Rating" />
               </div>
               <p className="text-sm">4/5</p>
             </div>
-            <h1 className="text-3xl font-semibold">{data.Name}</h1>
-            <p className="text-sm text-gray-700 max-w-2xl">
-              {data.Short_Description}
-            </p>
             <div className="flex pr-10 mt-5 justify-between lg:justify-normal lg:gap-24 items-center">
               <h1 className="text-2xl font-semibold">₹ {data.Price}</h1>
               <CartInputComp />
@@ -87,7 +97,7 @@ const ProductPage = async (context: any) => {
               <BuyNowButton product={data} />
             </div>
             <div className="my-5">
-              <p className="font-semibold">Description</p>
+              <p className="font-semibold text-gray-600">Description</p>
               <RichTextMarkdown>
                 {data.Product_Description || ""}
               </RichTextMarkdown>

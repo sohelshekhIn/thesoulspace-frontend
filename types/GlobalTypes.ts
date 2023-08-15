@@ -130,6 +130,27 @@ type OfferDetailsType = {
   offerType: string;
 };
 
+// Instamojo Payment Options Types
+type RequestOptions = {
+  method: "POST";
+  headers: any;
+  body: URLSearchParams;
+};
+
+type BodyParams = {
+  amount: string;
+  purpose: string;
+  buyer_name: string;
+  email: string;
+  phone: string;
+  redirect_url: string;
+  webhook: string;
+  allow_repeated_payments: boolean;
+  send_email: boolean;
+  send_sms: boolean;
+  expires_at: string;
+};
+
 export type {
   CartProductType,
   foundProductType,
@@ -138,4 +159,6 @@ export type {
   BannerDataType,
   ProductType,
   OfferDetailsType,
+  RequestOptions,
+  BodyParams,
 };

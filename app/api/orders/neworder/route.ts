@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { RequestOptions } from "@/types/GlobalTypes";
 
 const shippingFee: number = 40;
 
@@ -66,8 +67,6 @@ export async function POST(request: Request) {
     products,
   } = req;
 
-  console.log("start");
-
   const urlFilterQuery = generateURLFilterQuery(products);
   const productsResponse = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/products${urlFilterQuery}`,
@@ -77,7 +76,6 @@ export async function POST(request: Request) {
       },
     }
   );
-  console.log("after products");
 
   let offerData = null;
   // fetch data if offer is passed in request
@@ -97,7 +95,6 @@ export async function POST(request: Request) {
     );
     offerData = await offerResponse.json();
   }
-  console.log("after offer");
 
   // fetch both simultaneously
   const [{ data: productData }] = await Promise.all([
@@ -108,7 +105,6 @@ export async function POST(request: Request) {
   if (offer && offerData.error) {
     return ReturnError();
   }
-  console.log("feth both");
 
   // returns calculated total price and quantity from strapi data
   const { calculatedTotalPrice, calculatedTotalQuantity } = products.reduce(
@@ -131,7 +127,6 @@ export async function POST(request: Request) {
     },
     { calculatedTotalPrice: 0, calculatedTotalQuantity: 0 }
   );
-  console.log("after reduce");
 
   if (calculatedTotalPrice != totalPrice) {
     return ReturnError();
@@ -140,8 +135,6 @@ export async function POST(request: Request) {
   if (calculatedTotalQuantity != totalQuantity) {
     return ReturnError();
   }
-  console.log("after if");
-
   if (offer && offerData?.data?.valid) {
     if (
       calculatedTotalPrice -
@@ -156,7 +149,6 @@ export async function POST(request: Request) {
       return ReturnError();
     }
   }
-  console.log("new start");
 
   const refferenceId = Date.now();
   const orderId = refferenceId.toString(36);
@@ -168,7 +160,59 @@ export async function POST(request: Request) {
     timeZone: "Asia/Kolkata",
   });
 
-  console.log("before save");
+  // Payment Options for Instamojo
+  // Convert BodyParams to a Record<string, string>
+
+  // Generate Expiry Time for Payment Request
+  const currentTime = new Date();
+  // Add 5 minutes (300,000 milliseconds) to the current time
+  const expirationTime = new Date(currentTime.getTime() + 5 * 60 * 1000);
+  // Format the expiration time in the desired format
+  const formattedExpiry = expirationTime.toISOString();
+
+  const bodyParams: Record<string, string> = {
+    amount: grandTotal.toString(),
+    purpose: `Order #${orderId}`,
+    buyer_name: `${firstName} ${lastName}`,
+    email: email,
+    phone: phone,
+    redirect_url: `${process.env.NEXT_PUBLIC_BASE_URL}/orders/${orderId}`,
+    webhook: `${process.env.INSTAMOJO_WEBHOOK_URL}/api/payment-webhook`,
+    allow_repeated_payments: "true",
+    send_email: "false",
+    send_sms: "false",
+    expires_at: formattedExpiry,
+  };
+
+  const headers = new Headers();
+  headers.append("accept", "application/json");
+  headers.append("content-type", "application/x-www-form-urlencoded");
+  headers.append("X-Api-Key", process.env.INSTAMOJO_API_KEY || "");
+  headers.append("X-Auth-Token", process.env.INSTAMOJO_AUTH_TOKEN || "");
+
+  const options: RequestOptions = {
+    method: "POST",
+    headers: headers,
+    body: new URLSearchParams(bodyParams),
+  };
+
+  const paymentReqResponse = await fetch(
+    `${process.env.INSTAMOJO_API_URL}/payment-requests/`,
+    options
+  );
+  const paymentReqData = await paymentReqResponse.json();
+
+  if (paymentReqData.error) {
+    console.log(paymentReqData.error);
+    return NextResponse.json(
+      {
+        error: paymentReqData.error,
+      },
+      {
+        status: 500,
+      }
+    );
+  }
 
   const saveOrderResponse = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/up-orders`,
@@ -182,6 +226,7 @@ export async function POST(request: Request) {
         data: {
           orderId: orderId,
           refferenceId: refferenceId.toString(),
+          payment_id: paymentReqData.payment_request.id,
           dateTime: dateISTString,
           cart: products,
           contact: {
@@ -203,9 +248,6 @@ export async function POST(request: Request) {
   );
 
   const saveOrder = await saveOrderResponse.json();
-  console.log(saveOrder);
-
-  console.log("after save");
 
   // const saveOrder: any = { data: "hello" };
   // console.log("Order Saved");
@@ -220,10 +262,10 @@ export async function POST(request: Request) {
       }
     );
   }
+
   return NextResponse.json(
     {
-      orderId,
-      refferenceId,
+      link: paymentReqData.payment_request.longurl,
     },
     {
       status: 200,
