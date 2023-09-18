@@ -128,7 +128,7 @@ type OfferDetailsType = {
   maxDiscount: number;
   offerName: string;
   offerType: string;
-};
+} | null;
 
 // Instamojo Payment Options Types
 type RequestOptions = {

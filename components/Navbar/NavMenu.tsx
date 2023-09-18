@@ -32,7 +32,7 @@ const NavMenu = () => {
           <ul className="tracking-wide font-medium lg:text-base flex-col flex lg:flex-row gap-1 lg:gap-0">
             <NavLinks href="/">home</NavLinks>
             <NavLinks href="/shop/">shop</NavLinks>
-            <NavLinks href="/order-your-design/">order your design</NavLinks>
+            <NavLinks href="/custom-design/">custom design</NavLinks>
             <NavLinks href="/about/">about</NavLinks>
             <NavLinks href="/contact/">contact</NavLinks>
           </ul>

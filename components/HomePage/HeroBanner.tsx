@@ -30,7 +30,7 @@ const Banner = ({ data }: { data: BannerDataType }) => {
           </h1>
           <Link
             href={data.CTA_Button.Button_Link}
-            className="z-20 w-fit mt-5 px-5 py-3 bg-black text-white font-base text-lg hover:bg-gray-800"
+            className="z-20 w-fit mt-5 px-5 py-3 bg-black text-white font-base text-lg hover:bg-gray-800  rounded-md"
           >
             {data.CTA_Button.Button_Text}
           </Link>
