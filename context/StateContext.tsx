@@ -20,7 +20,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
   const [qty, setQty] = useState<number>(1);
   const [shippingCharge, setShippingCharge] = useState<number>(40);
 
-  const [offer, setOffer] = useState<OfferDetailsType>();
+  const [offer, setOffer] = useState<OfferDetailsType>(null);
 
   let foundProduct: foundProductType;
   let index: number;
@@ -47,6 +47,15 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     // save offer in localstorage
     localStorage.setItem("offer", JSON.stringify(offer));
   }, [offer]);
+
+  const clearCart = () => {
+    setCartItems([]);
+    setTotalPrice(0);
+    setTotalQuantity(0);
+    setGrandTotal(0);
+    setShippingCharge(40);
+    setOffer(null);
+  };
 
   const toggleCartItemQuantity = (id: number, value: string) => {
     foundProduct = cartItems.find((item: any) => item.id === id);
@@ -142,6 +151,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
         decQty,
         onAdd,
         toggleCartItemQuantity,
+        clearCart,
       }}
     >
       {children}

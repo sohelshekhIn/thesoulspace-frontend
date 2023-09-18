@@ -1,6 +1,7 @@
 "use client";
 
 import LoadingSpinner from "@/components/Global/LoadingSpinner";
+import { showToast } from "@/components/Global/Toast";
 import { useStateContext } from "@/context/StateContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -58,9 +59,14 @@ const PlaceOrder = ({
       body: JSON.stringify(order),
     });
     const data = await res.json();
+    console.log(data);
 
     if (data.error) {
-      router.push(`/`);
+      console.log(data.error);
+
+      setLoading(false);
+      showToast(data.error, "error");
+      return;
     } else {
       // redirect to payment page (other website)
       router.push(data.link);
@@ -73,6 +79,7 @@ const PlaceOrder = ({
       className="w-full bg-yellow-500 text-white p-4 rounded-md font-semibold"
       type="submit"
       onClick={() => createOrder(order)}
+      disabled={loading}
     >
       <span className="flex w-full justify-center">
         {loading && <LoadingSpinner color="white" />}

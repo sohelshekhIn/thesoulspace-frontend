@@ -82,7 +82,7 @@ const ProductPage = async (context: any) => {
               ))}
             </div>
             <h1 className="text-3xl font-semibold">{data.Name}</h1>
-            <p className="text-sm text-gray-600 max-w-2xl">
+            <p className="text-sm text-gray-700 max-w-2xl">
               {data.Short_Description}
             </p>
             <div className="flex gap-1 lg:mt-2">
@@ -100,7 +100,7 @@ const ProductPage = async (context: any) => {
               <BuyNowButton product={data} />
             </div>
             <div className="my-5">
-              <p className="font-semibold text-gray-600">Description</p>
+              <p className="font-semibold">Description</p>
               <RichTextMarkdown>
                 {data.Product_Description || ""}
               </RichTextMarkdown>
