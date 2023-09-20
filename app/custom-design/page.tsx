@@ -44,13 +44,16 @@ export default function CustomDesignPage() {
               Any Design
             </h1>
             <h1 className="text-gray-800 text-5xl font-bold">For any phone!</h1>
-            <p className="mt-4">
+            <p className="mt-4 mb-8">
               Design a phone case that matches your mood, style, or interests.
               It's your canvas – start creating now!
             </p>
-            <button className="py-3 px-5 bg-gray-800 mt-7 text-white rounded-md">
+            <Link
+              href="/custom-design/order-case"
+              className="py-3 px-5 bg-gray-800 mt-7 text-white rounded-md"
+            >
               Start Customizing Today
-            </button>
+            </Link>
           </div>
           <div className="mt-10 md:mt-0">
             <Image src={custom_design_banner} alt="Custom Phone Case Banner" />
@@ -63,21 +66,24 @@ export default function CustomDesignPage() {
             <Image
               className="rounded-md mt-10 md:mt-0"
               src={custom_wallart}
-              alt="Custom Phone Case Banner"
+              alt="Custom Wall Art Banner"
             />
           </div>
           <div className="p-2 w-full md:w-1/3">
             <h1 className="mt-0 md:mt-52 text-gray-800 text-5xl font-bold">
               Craft unique stories on your walls!
             </h1>
-            <p className="mt-4">
+            <p className="mt-4 mb-8">
               Personalize your living space with our stunning custom wall art
               creations. Crafted with precision, each piece is a testament to
               your individuality.
             </p>
-            <button className="py-3 px-5 bg-gray-800 mt-7 text-white rounded-md">
+            <Link
+              href="/custom-design/order-painting"
+              className="py-3 px-5 bg-gray-800 mt-7 text-white rounded-md"
+            >
               Design Your Dream Decor
-            </button>
+            </Link>
           </div>
         </div>
       </div>

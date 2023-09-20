@@ -4,8 +4,20 @@ import { Field, Formik } from "formik";
 import * as Yup from "yup";
 import LoadingSpinner from "./LoadingSpinner";
 import { showToast } from "@/components/Global/Toast";
+import ReCAPTCHA from "react-google-recaptcha";
+import { verifyCaptcha } from "@/utils/ServerActions";
+import { useRef, useState } from "react";
 
 export default function ContactForm() {
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [isVerified, setIsverified] = useState<boolean>(false);
+
+  async function handleCaptchaSubmission(token: string | null) {
+    // Server function to verify captcha
+    await verifyCaptcha(token)
+      .then(() => setIsverified(true))
+      .catch(() => setIsverified(false));
+  }
   return (
     <Formik
       initialValues={{
@@ -21,10 +33,17 @@ export default function ContactForm() {
         message: Yup.string().required("Required"),
       })}
       onSubmit={(values, { setSubmitting }) => {
+        if (!isVerified) {
+          showToast("Please verify captcha", "error");
+          return;
+        }
         setTimeout(() => {
-          showToast(JSON.stringify(values), "success");
+          showToast(
+            "Your response has been submitted, we'll reach back to you soon.",
+            "success"
+          );
           setSubmitting(false);
-        }, 400);
+        }, 500);
       }}
     >
       {({ handleSubmit, isSubmitting, errors, touched }) => (
@@ -101,8 +120,13 @@ export default function ContactForm() {
               {errors.message && touched.message && errors.message}
             </p>
           </div>
+          <ReCAPTCHA
+            sitekey="6LdLxjMoAAAAAKzNCf27CtzvXKRkC-NfiSCuGcE1"
+            ref={recaptchaRef}
+            onChange={handleCaptchaSubmission}
+          />
           <button
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isVerified}
             type="submit"
             className="bg-yellow-500 transition-all text-white px-5 py-3 rounded-md"
           >
