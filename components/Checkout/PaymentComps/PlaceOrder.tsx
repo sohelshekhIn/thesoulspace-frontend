@@ -24,6 +24,7 @@ const PlaceOrder = ({
     return {
       product: item.id,
       quantity: item.quantity,
+      sizeDescription: item.sizeDescription,
     };
   });
 

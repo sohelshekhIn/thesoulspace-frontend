@@ -21,6 +21,8 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
   const [shippingCharge, setShippingCharge] = useState<number>(40);
 
   const [offer, setOffer] = useState<OfferDetailsType>(null);
+  // size desscription state for product page (case for phone, size for painting)
+  const [sizeDescription, setSizeDescription] = useState<string>("");
 
   let foundProduct: foundProductType;
   let index: number;
@@ -101,6 +103,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
             ...cartProduct,
             Total_Price: cartProduct.Price * quantity,
             quantity: cartProduct.quantity + quantity,
+            sizeDescription: sizeDescription,
           };
         }
         return cartProduct;
@@ -110,6 +113,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     } else {
       product.quantity = quantity;
       product.Total_Price = product.Price * quantity;
+      product.sizeDescription = sizeDescription;
       setCartItems([...cartItems, { ...product }]);
     }
     setQty(1);
@@ -142,6 +146,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
         checkoutAuthType,
         shippingCharge,
         grandTotal,
+        sizeDescription,
         setGrandTotal,
         setShippingCharge,
         setCheckoutAuthType,
@@ -152,6 +157,8 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
         onAdd,
         toggleCartItemQuantity,
         clearCart,
+        setQty,
+        setSizeDescription,
       }}
     >
       {children}
