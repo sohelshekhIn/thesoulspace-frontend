@@ -138,7 +138,7 @@ const SelectAvailableSizes = ({ categories }: { categories: any }) => {
       </label>
       <select
         id="size"
-        className="block text-sm w-full mt-1 p-2 border rounded-md"
+        className="block text-sm w-full max-w-sm mt-1 p-2 border rounded-md"
         value={sizeDescription}
         onChange={handleSizeChange}
       >
