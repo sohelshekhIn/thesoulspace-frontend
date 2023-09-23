@@ -15,9 +15,11 @@ export default function Error({
   }, [error]);
 
   return (
-    <div>
-      <h2>Something went wrong!</h2>
-      <p>
+    <div className="w-[90vw] maxx-w-3xl mx-auto p-2 md:p-10">
+      <h2 className="font-semibold text-gray-800 text-3xl">
+        Something went wrong!
+      </h2>
+      <p className="text-red-500 text-sm">
         {
           // convert the error to a string to display to the user
           error.toString()
@@ -31,6 +33,9 @@ export default function Error({
       >
         Try again
       </button>
+      <p className="text-gray-500 text-sm mt-24">
+        Please contact us if you think this is a mistake.
+      </p>
     </div>
   );
 }

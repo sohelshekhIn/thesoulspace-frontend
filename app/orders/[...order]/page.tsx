@@ -66,7 +66,8 @@ const SuccessComp = ({ orderId }: { orderId: string }) => {
   const { clearCart } = useStateContext();
   // Clear Cart after successful payment
   useEffect(() => {
-    clearCart();
+    clearCart(true);
+    console.log("cleared cart");
   }, []);
   return (
     <div className="h-[70vh] w-full flex justify-center items-center">

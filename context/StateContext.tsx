@@ -57,6 +57,10 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     setGrandTotal(0);
     setShippingCharge(40);
     setOffer(null);
+    localStorage.removeItem("cartItems");
+    localStorage.removeItem("totalPrice");
+    localStorage.removeItem("totalQuantity");
+    localStorage.removeItem("offer");
   };
 
   const toggleCartItemQuantity = (id: number, value: string) => {
