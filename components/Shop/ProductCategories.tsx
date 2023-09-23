@@ -113,7 +113,7 @@ const SelectAvailableSizes = ({ categories }: { categories: any }) => {
       // Fetch the data based on the category
       const fetchData = async () => {
         try {
-          const fetchedData = await getStaticData(apiUrl, 0);
+          const fetchedData = await getStaticData(apiUrl, 60);
           setAvailableData(fetchedData);
         } catch (error) {
           console.error("Error fetching data:", error);

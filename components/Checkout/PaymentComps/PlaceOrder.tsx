@@ -9,9 +9,11 @@ import { useState } from "react";
 const PlaceOrder = ({
   contactDetails,
   shippingAddress,
+  userId,
 }: {
   contactDetails: any;
   shippingAddress: any;
+  userId: number;
 }) => {
   const router = useRouter();
   const { cartItems, grandTotal, totalPrice, totalQuantity, offer } =
@@ -29,6 +31,7 @@ const PlaceOrder = ({
   });
 
   const order = {
+    userId: userId,
     firstName: contactDetails.firstName,
     lastName: contactDetails.lastName,
     email: contactDetails.email,
@@ -64,9 +67,8 @@ const PlaceOrder = ({
 
     if (data.error) {
       console.log(data.error);
-
       setLoading(false);
-      showToast(data.error, "error");
+      showToast(data.error.message, "error");
       return;
     } else {
       // redirect to payment page (other website)
