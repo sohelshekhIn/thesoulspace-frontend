@@ -55,6 +55,7 @@ const ReturnError = (
 export async function POST(request: Request) {
   const req = await request.json();
   const {
+    userId,
     firstName,
     lastName,
     email,
@@ -223,6 +224,7 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         data: {
+          userId: userId.toString(),
           orderId: orderId,
           refferenceId: refferenceId.toString(),
           payment_id: paymentReqData.payment_request.id,
