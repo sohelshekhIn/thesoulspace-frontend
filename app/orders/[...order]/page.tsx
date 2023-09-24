@@ -68,7 +68,7 @@ const SuccessComp = ({ orderId }: { orderId: string }) => {
   useEffect(() => {
     clearCart(true);
     console.log("cleared cart");
-  }, []);
+  }, [clearCart]);
   return (
     <div className="h-[70vh] w-full flex justify-center items-center">
       <div className="w-[90vw] rounded-lg max-w-xl  shadow-md p-14 flex flex-col items-center">
