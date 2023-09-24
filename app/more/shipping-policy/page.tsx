@@ -8,11 +8,11 @@ const ShippingPolicyPage = () => {
       </h1>
       <p className="font-sm py-4">Last updated: February 22, 2023</p>
       <p>
-        Welcome to The SoulSpace's Shipping & Delivery Policy. We are delighted
-        to have you here and want to ensure that your shopping experience with
-        us is as smooth and informed as possible. Please take a moment to review
-        this policy, which provides important information about shipping and
-        delivery options for our custom artworks.
+        Welcome to The SoulSpace&apos;s Shipping & Delivery Policy. We are
+        delighted to have you here and want to ensure that your shopping
+        experience with us is as smooth and informed as possible. Please take a
+        moment to review this policy, which provides important information about
+        shipping and delivery options for our custom artworks.
       </p>
       <h2 className="font-semibold mt-5 text-xl">Our Commitment to you</h2>
       <p>
@@ -44,9 +44,9 @@ const ShippingPolicyPage = () => {
       <p>
         We currently provide shipping services exclusively within India.
         Regrettably, we do not offer international shipping at this time.
-        However, if you're located outside India and are interested in our
-        products, please don't hesitate to reach out to us, and we'll explore
-        alternative arrangements where possible.
+        However, if you&apos;re located outside India and are interested in our
+        products, please don&apos;t hesitate to reach out to us, and we&apos;ll
+        explore alternative arrangements where possible.
       </p>
       <h2 className="font-semibold mt-5 text-xl">
         Are there other shipping restrictions?

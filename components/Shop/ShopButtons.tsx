@@ -16,10 +16,14 @@ const AddToCartButton = ({
   const { onAdd, qty, sizeDescription, setSizeDescription, setQty } =
     useStateContext();
 
-  // On Add To Cart Button Load, empty sizeDescription state and set qty to 1
-  useEffect(() => {
+  const resetProductKeys = () => {
     setSizeDescription("");
     setQty(1);
+  };
+
+  // On Add To Cart Button Load, empty sizeDescription state and set qty to 1
+  useEffect(() => {
+    resetProductKeys();
   }, []);
 
   const handelAddToCartClick = () => {

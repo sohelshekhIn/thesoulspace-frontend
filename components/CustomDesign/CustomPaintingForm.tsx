@@ -238,7 +238,8 @@ export default function CustomPaintingForm() {
             <div {...getRootProps({ style })}>
               <input {...getInputProps()} />
               <p className="text-center">
-                Drag 'n' drop some files here, or click to select files
+                Drag &apos;n&apos; drop some files here, or click to select
+                files
                 <br />
                 Only images/pdf (max 10 files & 10 MB)
               </p>

@@ -15,9 +15,9 @@ const AboutUsPage = () => {
       <div className="">
         <h1 className="text-5xl font-bold">About Us</h1>
         <p className="text-gray-800/80 font-normal text-lg mt-8">
-          Welcome to The SoulSpace, where creativity knows no bounds. We're not
-          just an eCommerce platform; we're your personal gateway to unique,
-          handcrafted artistry.
+          Welcome to The SoulSpace, where creativity knows no bounds. We&apos;re
+          not just an eCommerce platform; we&apos;re your personal gateway to
+          unique, handcrafted artistry.
         </p>
       </div>
       <div className="flex flex-col md:flex-row mt-16">
@@ -27,14 +27,14 @@ const AboutUsPage = () => {
         <div className="w-full md:w-2/3 py-4 md:p-16">
           <h1 className="text-3xl font-semibold">Our Story</h1>
           <p className="font-normal mt-5">
-            The SoulSpace was born out of a single woman's passion for art and
-            design. What began as a small, local custom phone case design studio
-            is now a budding with aspirations to flourish into a thriving for
-            one-of-a-kind artwork. Our journey started with a few brushes,
+            The SoulSpace was born out of a single woman&apos;s passion for art
+            and design. What began as a small, local custom phone case design
+            studio is now a budding with aspirations to flourish into a thriving
+            for one-of-a-kind artwork. Our journey started with a few brushes,
             paints, and a dream – a dream to turn every phone case into a
             canvas, every design into a masterpiece, and every customer into an
-            art connoisseur. We're on a mission to transition our beloved local
-            brand into a prominent online presence, connecting with art
+            art connoisseur. We&apos;re on a mission to transition our beloved
+            local brand into a prominent online presence, connecting with art
             enthusiasts worldwide.
           </p>
         </div>
@@ -42,14 +42,15 @@ const AboutUsPage = () => {
       <div className="py-4 md:p-16">
         <h1 className="text-3xl font-semibold">Meaning Behind the Name:</h1>
         <p className="font-normal mt-5">
-          "the soulspace" isn't just a name; it's a reflection of my core
-          philosophy. Each piece of artwork I create is a piece of my soul. It's
-          an expression of my passion, creativity, and love for the arts. I
-          believe that art has the power to touch the soul, stir emotions, and
-          transform ordinary objects into extraordinary treasures. In this
-          space, I pour my heart and soul into every stroke of the brush, every
-          pixel on the screen, and every piece I curate. It's not just about
-          art; it's about creating a space where souls connect through art.
+          &quot;the soulspace&quot; isn&apos;t just a name; it&apos;s a
+          reflection of my core philosophy. Each piece of artwork I create is a
+          piece of my soul. It&apos;s an expression of my passion, creativity,
+          and love for the arts. I believe that art has the power to touch the
+          soul, stir emotions, and transform ordinary objects into extraordinary
+          treasures. In this space, I pour my heart and soul into every stroke
+          of the brush, every pixel on the screen, and every piece I curate.
+          It&apos;s not just about art; it&apos;s about creating a space where
+          souls connect through art.
         </p>
       </div>
       <div className="flex flex-col md:flex-row mt-16 gap-16">
@@ -58,9 +59,9 @@ const AboutUsPage = () => {
           <p className="font-normal mt-5">
             Our chosen color theme, a harmonious blend of black and goldish
             yellow, represents the essence of The SoulSpace. Black symbolizes
-            sophistication, elegance, and the depth of artistic expression. It's
-            the canvas on which I create magic. Goldish yellow, on the other
-            hand, embodies the radiance, creativity, and optimism that art
+            sophistication, elegance, and the depth of artistic expression.
+            It&apos;s the canvas on which I create magic. Goldish yellow, on the
+            other hand, embodies the radiance, creativity, and optimism that art
             brings to our lives. Together, these colors signify the fusion of
             timeless artistry with a touch of modernity and innovation.
           </p>
@@ -119,8 +120,8 @@ const AboutUsPage = () => {
             Customer-Centric Approach
           </h1>
           <p className="text-gray-800/80 text-center mt-2">
-            We're dedicated to providing exceptional service and products that
-            exceed your expectations.
+            We&apos;re dedicated to providing exceptional service and products
+            that exceed your expectations.
           </p>
         </div>
         <div className="flex flex-col justify-center items-center bg-gray-100 rounded-lg p-4">
@@ -129,7 +130,7 @@ const AboutUsPage = () => {
           </div>
           <h1 className="text-xl font-semibold mt-4">Happy Customers</h1>
           <p className="text-gray-800/80 text-center mt-2">
-            Your satisfaction is our priority. We're proud to have positive
+            Your satisfaction is our priority. We&apos;re proud to have positive
             reviews from our customers.
           </p>
         </div>
@@ -137,8 +138,8 @@ const AboutUsPage = () => {
       <div className="py-4 md:p-16">
         <h1 className="text-3xl font-semibold">Contact Me:</h1>
         <p className="font-normal mt-5">
-          Have questions, ideas, or just want to say hello? I'd love to hear
-          from you. Reach out to me at{" "}
+          Have questions, ideas, or just want to say hello? I&apos;d love to
+          hear from you. Reach out to me at{" "}
           <a
             className="text-blue-500 hover:bg-blue-500 hover:text-white transition-colors duration-200 ease-in-out"
             href="mailto:hi@thesoulspace.in"
@@ -153,12 +154,12 @@ const AboutUsPage = () => {
           >
             contact form
           </Link>
-          . Let's paint the world with creativity, one artwork at a time.
+          . Let&apos;s paint the world with creativity, one artwork at a time.
         </p>
         <p className="mt-3">
-          Thank you for being a part of The SoulSpace journey. Together, we'll
-          create, inspire, and transform lives through art. Welcome to my
-          vibrant and soulful world!
+          Thank you for being a part of The SoulSpace journey. Together,
+          we&apos;ll create, inspire, and transform lives through art. Welcome
+          to my vibrant and soulful world!
         </p>
       </div>
     </div>

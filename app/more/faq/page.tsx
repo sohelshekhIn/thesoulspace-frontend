@@ -18,8 +18,9 @@ const FaqPage = () => {
           <h2 className="font-semibold text-xl">2. How do I place an order?</h2>
           <p>
             Placing an order on The SoulSpace is easy. Simply browse our
-            collection, choose the artwork you love, and click the "Add to Cart"
-            button. Follow the checkout process to complete your order.
+            collection, choose the artwork you love, and click the &quot;Add to
+            Cart&quot; button. Follow the checkout process to complete your
+            order.
           </p>
         </div>
 
@@ -41,7 +42,7 @@ const FaqPage = () => {
           <p>
             We offer free standard shipping on orders above Rs. 1499. For
             expedited shipping, rates may vary based on your location and the
-            product's weight. You can select your preferred shipping option
+            product&apos;s weight. You can select your preferred shipping option
             during checkout.
           </p>
         </div>
@@ -52,9 +53,9 @@ const FaqPage = () => {
           </h2>
           <p>
             Standard shipping typically takes 3-5 business days from the
-            product's dispatch date. If you choose expedited shipping, you'll
-            receive your order faster, with exact delivery times communicated
-            after purchase.
+            product&apos;s dispatch date. If you choose expedited shipping,
+            you&apos;ll receive your order faster, with exact delivery times
+            communicated after purchase.
           </p>
         </div>
 
@@ -74,8 +75,8 @@ const FaqPage = () => {
           </h2>
           <p>
             While we aim to deliver promptly, unforeseen circumstances can lead
-            to delays. If your order is delayed, we'll notify you promptly and
-            provide a revised estimated delivery date.
+            to delays. If your order is delayed, we&apos;ll notify you promptly
+            and provide a revised estimated delivery date.
           </p>
         </div>
 
@@ -106,8 +107,8 @@ const FaqPage = () => {
           </h2>
           <p>
             Yes, we provide opportunities for artists to showcase their work on
-            our platform. If you're an artist interested in commissions, please
-            contact us for more information.
+            our platform. If you&apos;re an artist interested in commissions,
+            please contact us for more information.
           </p>
         </div>
 
@@ -156,7 +157,7 @@ const FaqPage = () => {
           </h2>
           <p>
             If you have a specific request for custom artwork, please contact
-            us, and we'll be happy to discuss your requirements with you.
+            us, and we&apos;ll be happy to discuss your requirements with you.
           </p>
         </div>
       </div>

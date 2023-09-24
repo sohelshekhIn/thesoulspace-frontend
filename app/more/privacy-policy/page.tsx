@@ -6,8 +6,8 @@ const PrivacyPolicyPage = () => {
       <h1 className="font-semibold text-4xl text-gray-800">Privacy Policy</h1>
       <p className="font-sm py-4">Last updated: February 23, 2023</p>
       <p>
-        Welcome to The SoulSpace's Privacy Policy. We value your trust and are
-        committed to protecting your privacy. This policy explains how we
+        Welcome to The SoulSpace&apos;s Privacy Policy. We value your trust and
+        are committed to protecting your privacy. This policy explains how we
         collect, use, disclose, and safeguard your personal information. By
         using our website, you consent to the practices described in this
         Privacy Policy.
