@@ -235,7 +235,12 @@ export default function CustomPaintingForm() {
                 suggest!
               </p>
             </label>
-            <div {...getRootProps({ style })}>
+            <div
+              {...getRootProps({
+                // @ts-ignore
+                style,
+              })}
+            >
               <input {...getInputProps()} />
               <p className="text-center">
                 Drag &apos;n&apos; drop some files here, or click to select
