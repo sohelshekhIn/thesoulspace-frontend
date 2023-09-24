@@ -55,6 +55,7 @@ const ReturnError = (
 export async function POST(request: Request) {
   const req = await request.json();
   const {
+    userId,
     firstName,
     lastName,
     email,
@@ -162,7 +163,6 @@ export async function POST(request: Request) {
 
   // Payment Options for Instamojo
   // Convert BodyParams to a Record<string, string>
-
   // Generate Expiry Time for Payment Request
   const currentTime = new Date();
   // Add 5 minutes (300,000 milliseconds) to the current time
@@ -224,6 +224,7 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         data: {
+          userId: userId.toString(),
           orderId: orderId,
           refferenceId: refferenceId.toString(),
           payment_id: paymentReqData.payment_request.id,

@@ -1,6 +1,4 @@
-import Image from "next/image";
 import Link from "next/link";
-import brushStroke from "@/public/images/brush-stroke.png";
 
 const RequestArtBanner = () => {
   return (
@@ -24,7 +22,7 @@ const RequestArtBanner = () => {
         </p>
         <Link
           href="/request-artwork"
-          className="bg-black text-white px-5 py-4 w-fit hover:bg-gray-800 transition-all duration-200 "
+          className="bg-black text-white px-5 rounded-md py-4 w-fit hover:bg-gray-800 transition-all duration-200 "
         >
           Start Your Personalized Creation
         </Link>

@@ -44,20 +44,24 @@ const Footer = () => {
               </ul>
 
               <ul className="flex flex-col gap-1 w-1/2">
-                <FooterLink href="/order-status">order status</FooterLink>
-                <FooterLink href="/shipping">shipping</FooterLink>
-                <FooterLink href="/privacy-policy">privacy policy</FooterLink>
-                <FooterLink href="/terms-and-conditions">
+                <FooterLink href="/account/my-orders">my orders</FooterLink>
+                <FooterLink href="/more/shipping-policy">
+                  shipping policy
+                </FooterLink>
+                <FooterLink href="/more/privacy-policy">
+                  privacy policy
+                </FooterLink>
+                <FooterLink href="/more/terms-and-conditions">
                   terms and conditions
                 </FooterLink>
               </ul>
 
               {/* other links visible only in desktop */}
               <ul className="hidden lg:flex flex-col gap-1 w-1/2">
-                <FooterLink href="/faq">faq</FooterLink>
-                <FooterLink href="/returns">returns</FooterLink>
-                <FooterLink href="/size-guide">size guide</FooterLink>
-                <FooterLink href="/payment">payment</FooterLink>
+                <FooterLink href="/more/faq">faq</FooterLink>
+                <FooterLink href="/more/shipping-policy">returns</FooterLink>
+                <FooterLink href="/more/size-guide">size guide</FooterLink>
+                <FooterLink href="/more/shipping-policy">payment</FooterLink>
               </ul>
             </div>
           </div>

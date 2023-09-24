@@ -20,7 +20,9 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
   const [qty, setQty] = useState<number>(1);
   const [shippingCharge, setShippingCharge] = useState<number>(40);
 
-  const [offer, setOffer] = useState<OfferDetailsType>();
+  const [offer, setOffer] = useState<OfferDetailsType>(null);
+  // size desscription state for product page (case for phone, size for painting)
+  const [sizeDescription, setSizeDescription] = useState<string>("");
 
   let foundProduct: foundProductType;
   let index: number;
@@ -47,6 +49,19 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     // save offer in localstorage
     localStorage.setItem("offer", JSON.stringify(offer));
   }, [offer]);
+
+  const clearCart = () => {
+    setCartItems([]);
+    setTotalPrice(0);
+    setTotalQuantity(0);
+    setGrandTotal(0);
+    setShippingCharge(40);
+    setOffer(null);
+    localStorage.removeItem("cartItems");
+    localStorage.removeItem("totalPrice");
+    localStorage.removeItem("totalQuantity");
+    localStorage.removeItem("offer");
+  };
 
   const toggleCartItemQuantity = (id: number, value: string) => {
     foundProduct = cartItems.find((item: any) => item.id === id);
@@ -92,6 +107,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
             ...cartProduct,
             Total_Price: cartProduct.Price * quantity,
             quantity: cartProduct.quantity + quantity,
+            sizeDescription: sizeDescription,
           };
         }
         return cartProduct;
@@ -101,6 +117,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
     } else {
       product.quantity = quantity;
       product.Total_Price = product.Price * quantity;
+      product.sizeDescription = sizeDescription;
       setCartItems([...cartItems, { ...product }]);
     }
     setQty(1);
@@ -133,6 +150,7 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
         checkoutAuthType,
         shippingCharge,
         grandTotal,
+        sizeDescription,
         setGrandTotal,
         setShippingCharge,
         setCheckoutAuthType,
@@ -142,6 +160,9 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
         decQty,
         onAdd,
         toggleCartItemQuantity,
+        clearCart,
+        setQty,
+        setSizeDescription,
       }}
     >
       {children}

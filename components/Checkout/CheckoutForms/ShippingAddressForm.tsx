@@ -58,13 +58,15 @@ const ShippingAddressForm = ({
         error: false,
         message: "",
       });
-      if (localShippingAddressDetails?.city != undefined) {
-        setCity(localShippingAddressDetails?.city);
-        setDistrict(localShippingAddressDetails?.district);
-        setState(localShippingAddressDetails?.state);
-      } else {
-        getDetailsfromPincode();
-      }
+      getDetailsfromPincode();
+      // if (localShippingAddressDetails?.city != undefined) {
+      //   setCity(localShippingAddressDetails?.city);
+      //   setDistrict(localShippingAddressDetails?.district);
+      //   setState(localShippingAddressDetails?.state);
+      // } else {
+      //   console.log("get details from pincode");
+      //   getDetailsfromPincode();
+      // }
     } else {
       setPincodeError({
         error: true,
@@ -72,6 +74,7 @@ const ShippingAddressForm = ({
       });
       4;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pincode]);
 
   useEffect(() => {

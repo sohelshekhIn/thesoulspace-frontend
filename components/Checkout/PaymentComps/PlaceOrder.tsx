@@ -1,6 +1,7 @@
 "use client";
 
 import LoadingSpinner from "@/components/Global/LoadingSpinner";
+import { showToast } from "@/components/Global/Toast";
 import { useStateContext } from "@/context/StateContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -8,9 +9,11 @@ import { useState } from "react";
 const PlaceOrder = ({
   contactDetails,
   shippingAddress,
+  userId,
 }: {
   contactDetails: any;
   shippingAddress: any;
+  userId: number;
 }) => {
   const router = useRouter();
   const { cartItems, grandTotal, totalPrice, totalQuantity, offer } =
@@ -23,10 +26,12 @@ const PlaceOrder = ({
     return {
       product: item.id,
       quantity: item.quantity,
+      sizeDescription: item.sizeDescription,
     };
   });
 
   const order = {
+    userId: userId,
     firstName: contactDetails.firstName,
     lastName: contactDetails.lastName,
     email: contactDetails.email,
@@ -58,9 +63,13 @@ const PlaceOrder = ({
       body: JSON.stringify(order),
     });
     const data = await res.json();
+    console.log(data);
 
     if (data.error) {
-      router.push(`/`);
+      console.log(data.error);
+      setLoading(false);
+      showToast(data.error.message, "error");
+      return;
     } else {
       // redirect to payment page (other website)
       router.push(data.link);
@@ -73,6 +82,7 @@ const PlaceOrder = ({
       className="w-full bg-yellow-500 text-white p-4 rounded-md font-semibold"
       type="submit"
       onClick={() => createOrder(order)}
+      disabled={loading}
     >
       <span className="flex w-full justify-center">
         {loading && <LoadingSpinner color="white" />}

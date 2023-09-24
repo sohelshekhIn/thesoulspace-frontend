@@ -7,6 +7,7 @@ import { showToast } from "../Global/Toast";
 
 export const CheckCartExists = () => {
   const [reallyEmpty, setReallyEmpty] = useState<boolean>(false);
+
   const { totalQuantity } = useStateContext();
   useEffect(() => {
     if (totalQuantity === 0 && !reallyEmpty) {
@@ -20,6 +21,7 @@ export const CheckCartExists = () => {
       showToast("Cart is empty!", "error");
       redirect("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [totalQuantity]);
   return <div className="hidden"></div>;
 };

@@ -7,7 +7,7 @@ const AboutSection = () => {
       <span className="flex flex-col gap-4 z-10 max-w-4xl mx-auto">
         <blockquote className="mt-6 text-center italic text-gray-800">
           <span className="opacity-40 text-5xl leading-none">&ldquo;</span>
-          <h1 className="font-semibold text-2xl">
+          <h1 className="font-semibold text-3xl">
             Art is the bridge that connects imagination to reality, transforming
             dreams into tangible beauty.
           </h1>
