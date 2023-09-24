@@ -46,7 +46,7 @@ export default function CustomDesignPage() {
             <h1 className="text-gray-800 text-5xl font-bold">For any phone!</h1>
             <p className="mt-4 mb-8">
               Design a phone case that matches your mood, style, or interests.
-              It's your canvas – start creating now!
+              It&apos;s your canvas – start creating now!
             </p>
             <Link
               href="/custom-design/order-case"

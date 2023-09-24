@@ -55,7 +55,7 @@ const SizeGuidePage = () => {
           </li>
           <li>
             <strong>Camera Cutouts:</strong> Our phone cases have precise camera
-            cutouts to ensure the camera's functionality is not obstructed.
+            cutouts to ensure the camera&apos;s functionality is not obstructed.
             Choose a case that fits your specific phone model.
           </li>
         </ul>

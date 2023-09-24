@@ -7,7 +7,7 @@ const TermsAndConditionsPage = () => {
 
       <p>
         These terms and conditions outline the rules and regulations for the use
-        of the soulspace's Website, located at{" "}
+        of the soulspace&apos;s Website, located at{" "}
         <a
           href="https://www.thesoulspace.in"
           className="text-blue-500 underline"
@@ -25,30 +25,33 @@ const TermsAndConditionsPage = () => {
 
       <p>
         The following terminology applies to these Terms and Conditions, Privacy
-        Statement, and Disclaimer Notice, and all Agreements: "Client," "You,"
-        and "Your" refer to you, the person who logs on this website and
-        complies with the Company's terms and conditions. "The Company,"
-        "Ourselves," "We," "Our," and "Us" refer to our Company. "Party,"
-        "Parties," or "Us" refer to both the Client and ourselves. All terms
-        refer to the offer, acceptance, and consideration of payment necessary
-        to undertake the process of our assistance to the Client in the most
-        appropriate manner for the express purpose of meeting the Client's needs
-        in respect to the provision of the Company's stated services, in
-        accordance with and subject to the prevailing law of in. Any use of the
-        above terminology or other words in the singular, plural,
-        capitalization, and/or he/she or they are taken as interchangeable and
-        therefore as referring to the same.
+        Statement, and Disclaimer Notice, and all Agreements:
+        &quot;Client,&quot; &quot;You,&quot; and &quot;Your&quot; refer to you,
+        the person who logs on this website and complies with the Company&apos;s
+        terms and conditions. &quot;The Company,&quot; &quot;Ourselves,&quot;
+        &quot;We,&quot; &quot;Our,&quot; and &quot;Us&quot; refer to our
+        Company. &quot;Party,&quot; &quot;Parties,&quot; or &quot;Us&quot; refer
+        to both the Client and ourselves. All terms refer to the offer,
+        acceptance, and consideration of payment necessary to undertake the
+        process of our assistance to the Client in the most appropriate manner
+        for the express purpose of meeting the Client&apos;s needs in respect to
+        the provision of the Company&apos;s stated services, in accordance with
+        and subject to the prevailing law of in. Any use of the above
+        terminology or other words in the singular, plural, capitalization,
+        and/or he/she or they are taken as interchangeable and therefore as
+        referring to the same.
       </p>
 
       <h3 className="text-xl font-semibold mt-4">Cookies</h3>
 
       <p>
         We employ the use of cookies. By accessing thesoulspace, you agree to
-        the use of cookies in agreement with the the soulspace's Privacy Policy.
+        the use of cookies in agreement with the the soulspace&apos;s Privacy
+        Policy.
       </p>
 
       <p>
-        Most interactive websites use cookies to let us retrieve the user's
+        Most interactive websites use cookies to let us retrieve the user&apos;s
         details for each visit. Cookies are used by our website to enable the
         functionality of certain areas to make it easier for people visiting our
         website. Some of our affiliate/advertising partners may also use
@@ -147,7 +150,7 @@ const TermsAndConditionsPage = () => {
         other Website information so long as the link: (a) is not in any way
         deceptive; (b) does not falsely imply sponsorship, endorsement, or
         approval of the linking party and its products and/or services; and (c)
-        fits within the context of the linking party's site.
+        fits within the context of the linking party&apos;s site.
       </p>
 
       <p>
@@ -178,7 +181,8 @@ const TermsAndConditionsPage = () => {
         These organizations may link to our home page so long as the link: (a)
         is not in any way deceptive; (b) does not falsely imply sponsorship,
         endorsement, or approval of the linking party and its products or
-        services; and (c) fits within the context of the linking party's site.
+        services; and (c) fits within the context of the linking party&apos;s
+        site.
       </p>
 
       <p>
@@ -199,12 +203,12 @@ const TermsAndConditionsPage = () => {
         <li>
           By use of any other description of our Website being linked to that
           makes sense within the context and format of content on the linking
-          party's site.
+          party&apos;s site.
         </li>
       </ul>
 
       <p>
-        No use of the soulspace's logo or other artwork will be allowed for
+        No use of the soulspace&apos;s logo or other artwork will be allowed for
         linking absent a trademark license agreement.
       </p>
 
