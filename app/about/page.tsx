@@ -70,7 +70,7 @@ const AboutUsPage = () => {
           <div className="w-full flex">
             <div className="w-1/2 h-96 bg-primary group">
               <div className="flex h-full justify-center items-center cursor-none">
-                <div className="text-center text-white scale-100 md:scale-0  md:transition-transform md:ease-out md:duration-200 md:group-hover:scale-100">
+                <div className="text-center text-gray-800 scale-100 md:scale-0  md:transition-transform md:ease-out md:duration-200 md:group-hover:scale-100">
                   #ead83a
                 </div>
               </div>
@@ -84,7 +84,7 @@ const AboutUsPage = () => {
             </div>
             <div className="w-1/2 h-96 bg-gray-200 group">
               <div className="flex h-full justify-center items-center cursor-none">
-                <div className="text-center text-white scale-100 md:scale-0  md:transition-transform md:ease-out md:duration-200 md:group-hover:scale-100">
+                <div className="text-center text-gray-800 scale-100 md:scale-0  md:transition-transform md:ease-out md:duration-200 md:group-hover:scale-100">
                   #e5e7eb
                 </div>
               </div>
@@ -92,7 +92,7 @@ const AboutUsPage = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4 mt-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-16">
         {/* hover features card */}
         <div className="flex flex-col justify-center items-center bg-gray-100 rounded-lg p-4">
           <div className="w-24 h-24 rounded-full bg-gray-200 flex justify-center items-center p-4">
@@ -135,7 +135,7 @@ const AboutUsPage = () => {
           </p>
         </div>
       </div>
-      <div className="py-4 md:p-16">
+      <div className="py-4 md:p-16 mt-10 md:mt-0">
         <h1 className="text-3xl font-semibold">Contact Me:</h1>
         <p className="font-normal mt-5">
           Have questions, ideas, or just want to say hello? I&apos;d love to
