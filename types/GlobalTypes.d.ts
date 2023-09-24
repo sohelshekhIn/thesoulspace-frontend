@@ -6,6 +6,7 @@ type CartProductType = {
   Total_Price: number;
   Name: string;
   Price: number;
+  sizeDescription: string;
   Product_Image: {
     data: {
       attributes: {
@@ -103,6 +104,7 @@ type ProductType = {
   Price: number;
   Short_Description: string;
   slug: string;
+  categories: Object[];
   Product_Image:
     | {
         data: {
@@ -128,7 +130,7 @@ type OfferDetailsType = {
   maxDiscount: number;
   offerName: string;
   offerType: string;
-};
+} | null;
 
 // Instamojo Payment Options Types
 type RequestOptions = {

@@ -12,7 +12,7 @@ const PopularCategories = ({
       <h1 className={`text-gray-800 font-bold text-3xl text-center`}>
         popular categories
       </h1>
-      <div className="mt-3 flex justify-center flex-wrap w-[90dvw] mx-auto gap-5 p-3">
+      <div className="mt-5 flex justify-center flex-wrap w-[90dvw] mx-auto gap-5 p-3">
         {categoriesData.map((category: any) => (
           <ProductCard key={category.id} category={category} />
         ))}
@@ -25,7 +25,10 @@ export default PopularCategories;
 
 const ProductCard = ({ category }: { category: ProductCategoryCardType }) => {
   return (
-    <Link href={"/somewhere"} className="w-fit flex items-center">
+    <Link
+      href={"/somewhere"}
+      className="w-fit flex items-center hover:scale-110 transition-all duration-200"
+    >
       <div className="relative overflow-hidden">
         <Image
           alt="Popular Categories"

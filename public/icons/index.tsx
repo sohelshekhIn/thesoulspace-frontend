@@ -11,6 +11,10 @@ import deleteIcon from "./delete.png";
 import instagram from "./instagram.png";
 import confetti from "./confetti.png";
 import paymentFailed from "./credit-card.png";
+import freeShipping from "./free-shipping.png";
+import qualitySeal from "./medal.png";
+import customerCentric from "./chat.png";
+import happyCustomer from "./feedback.png";
 
 export {
   cart,
@@ -26,4 +30,8 @@ export {
   instagram,
   confetti,
   paymentFailed,
+  freeShipping,
+  qualitySeal,
+  customerCentric,
+  happyCustomer,
 };

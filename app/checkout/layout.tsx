@@ -7,7 +7,7 @@ export default function ShopLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-[90dvw] lg:w-[70dvw] h-[90vh] mx-auto p-3">
+    <div className="w-[90dvw] lg:w-[70dvw] min-h-[90vh] mx-auto p-3">
       <CheckCartExists />
       <div className="">
         <CheckoutSteps />

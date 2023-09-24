@@ -2,9 +2,12 @@
 
 import { useStateContext } from "@/context/StateContext";
 import { showToast } from "../Global/Toast";
+import { useState } from "react";
 
 const OfferComp = () => {
   const { offer, setOffer } = useStateContext();
+  const [loading, setLoading] = useState<boolean>(false);
+
   const checkOffer = async () => {
     const offerCode = (
       document.getElementById("offerCodeInput") as HTMLInputElement
@@ -63,6 +66,7 @@ const OfferComp = () => {
           className="
               w-1/2 bg-gray-200 text-black text-sm
               px-4 py-2 rounded-lg"
+          disabled={loading}
         >
           Apply
         </button>

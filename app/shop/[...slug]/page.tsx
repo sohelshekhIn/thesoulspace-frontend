@@ -4,9 +4,10 @@ import { RichTextMarkdown } from "@/components/Global/RichTextMarkdown";
 import { getStaticData } from "@/utils/global";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { AddToCartButton, BuyNowButton } from "@/components/Shop/ShopButtons";
 import { star } from "@/public/icons";
 import Link from "next/link";
+import { SelectAvailableSizes } from "@/components/Shop/ProductCategories";
+import { AddToCartButton, BuyNowButton } from "@/components/Shop/ShopButtons";
 
 const ProductPage = async (context: any) => {
   const slug = context.params.slug[0];
@@ -70,7 +71,7 @@ const ProductPage = async (context: any) => {
 
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
-              {Object.keys(data.categories).map((category: any) => (
+              {Object.keys(data.categories).map((category) => (
                 <div
                   className="bg-gray-200/90 px-3 py-1 rounded-full"
                   key={data.categories[category].Name}
@@ -82,7 +83,7 @@ const ProductPage = async (context: any) => {
               ))}
             </div>
             <h1 className="text-3xl font-semibold">{data.Name}</h1>
-            <p className="text-sm text-gray-600 max-w-2xl">
+            <p className="text-sm text-gray-700 max-w-2xl">
               {data.Short_Description}
             </p>
             <div className="flex gap-1 lg:mt-2">
@@ -95,12 +96,14 @@ const ProductPage = async (context: any) => {
               <h1 className="text-2xl font-semibold">₹ {data.Price}</h1>
               <CartInputComp />
             </div>
+            {/* <UserShopActions data={data} /> */}
+            <SelectAvailableSizes categories={data.categories} />
             <div className="flex items-center mt-5 gap-2 w-full">
               <AddToCartButton product={data} />
               <BuyNowButton product={data} />
             </div>
             <div className="my-5">
-              <p className="font-semibold text-gray-600">Description</p>
+              <p className="font-semibold">Description</p>
               <RichTextMarkdown>
                 {data.Product_Description || ""}
               </RichTextMarkdown>

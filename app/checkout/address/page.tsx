@@ -12,7 +12,7 @@ const CheckoutAddress = async () => {
 
   return (
     <div className="w-full">
-      <div className="w-full bg-white mx-auto py-10">
+      <div className="w-full bg-white mx-auto py-10 pb-24">
         <ShippingAddressForm
           shippingAddressDetails={shippingAddressDetails}
           session={session}

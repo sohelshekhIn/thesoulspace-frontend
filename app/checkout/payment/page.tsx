@@ -7,9 +7,12 @@ import {
   getSavedCheckoutContactDetails,
   getSavedShippingAddressDetails,
 } from "@/utils/checkoutDetailsCookies";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const CheckoutPaymentPage = async () => {
-  const session = await getServerSession();
+  const session: {
+    id: number;
+  } | null = await getServerSession(authOptions);
   if (!session) {
     redirect("/checkout");
   }
@@ -28,6 +31,7 @@ const CheckoutPaymentPage = async () => {
       />
       <CartSummary />
       <PlaceOrder
+        userId={session?.id}
         contactDetails={savedCheckoutContactDetails}
         shippingAddress={savedShippingAddressDetails}
       />

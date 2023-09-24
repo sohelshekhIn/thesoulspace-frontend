@@ -1,9 +1,11 @@
 "use client";
 
+import { useStateContext } from "@/context/StateContext";
 import { confetti, paymentFailed } from "@/public/icons";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 const OrderConfirmedPage = (context: any) => {
   const orderId = context.params.order[0];
@@ -61,6 +63,12 @@ const FailedComp = ({ orderId }: { orderId: string }) => {
 };
 
 const SuccessComp = ({ orderId }: { orderId: string }) => {
+  const { clearCart } = useStateContext();
+  // Clear Cart after successful payment
+  useEffect(() => {
+    clearCart(true);
+    console.log("cleared cart");
+  }, []);
   return (
     <div className="h-[70vh] w-full flex justify-center items-center">
       <div className="w-[90vw] rounded-lg max-w-xl  shadow-md p-14 flex flex-col items-center">
