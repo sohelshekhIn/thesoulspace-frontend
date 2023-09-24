@@ -16,6 +16,7 @@ import customer_mihir_kushwa from "./customer_mihir_kushwa.jpg";
 import custom_design_banner from "./custom_design_banner.png";
 import custom_wallart from "./custom_wallart.jpg";
 import custom_shop_banner from "./custom_shop_banner.png";
+import AboutUsMainImage from "./AboutUsMainImg.jpg";
 
 export {
   logo,
@@ -36,4 +37,5 @@ export {
   custom_design_banner,
   custom_wallart,
   custom_shop_banner,
+  AboutUsMainImage,
 };

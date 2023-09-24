@@ -1,12 +1,17 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getStaticData } from "@/utils/global";
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 const AccountMyOrdersPage = async () => {
   const session: {
     id: string;
     jwt: string;
   } | null = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/login");
+  }
 
   const customerOrderData = await getStaticData(
     `/orders?filters[userId][$eq]=${session?.id}`,
