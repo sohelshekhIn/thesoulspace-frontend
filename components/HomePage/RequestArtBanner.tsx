@@ -21,7 +21,7 @@ const RequestArtBanner = () => {
           individuality.
         </p>
         <Link
-          href="/request-artwork"
+          href="/custom-design"
           className="bg-black text-white px-5 rounded-md py-4 w-fit hover:bg-gray-800 transition-all duration-200 "
         >
           Start Your Personalized Creation
