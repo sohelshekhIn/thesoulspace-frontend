@@ -33,9 +33,12 @@ export default function CustomDesignPage() {
           <br /> We then start painting your artwork on a phone case for your
           phone.
         </p>
-        <button className="py-3 px-5 bg-gray-800 mt-7 text-white rounded-md">
+        <Link
+          href="/custom-design/order-case"
+          className="py-3 px-5 bg-gray-800 mt-7 text-white rounded-md"
+        >
           Get yours now
-        </button>
+        </Link>
       </div>
       <div className="w-[90vw] max-w-4xl p-2 py-5 md:p-10 mx-auto mt-10">
         <div className="w-full flex flex-col-reverse md:flex-row">

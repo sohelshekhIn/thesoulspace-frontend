@@ -15,6 +15,7 @@ const generateURLFilterQuery = (
 
   if (query.length > 0) {
     query = `?${query.slice(0, -1)}`; // Remove the trailing '&' character
+    query += "&server=true"; // Server request: return only specific fields based on filters
   }
 
   return query;
