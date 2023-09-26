@@ -1,6 +1,8 @@
 const TermsAndConditionsPage = () => {
   return (
     <div className="w-[90vw] max-w-4xl p-2 md:p-10 mx-auto">
+      {/* hidden span to load different tailwind css classes */}
+      <span className="hidden pt-[1rem]"></span>
       <h2 className="text-2xl font-semibold">Terms and Conditions</h2>
 
       <p>Welcome to thesoulspace!</p>

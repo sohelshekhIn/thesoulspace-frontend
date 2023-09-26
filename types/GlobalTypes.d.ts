@@ -55,7 +55,8 @@ type ProductCardType = {
 
 // Category Product Card, Popular Categories - Homepage
 type ProductCategoryCardType = {
-  Title: string;
+  Title: string; // represents name to be displayed on card
+  Name: string; //represent actual name of category
   Description: string;
   Icon: {
     data: {
@@ -80,6 +81,7 @@ type BannerDataType = {
   Big_Text: string;
   Description_Title: string;
   Description_Text: string;
+  Image_Padding: string;
   CTA_Button: {
     Button_Text: string;
     Button_Link: string;

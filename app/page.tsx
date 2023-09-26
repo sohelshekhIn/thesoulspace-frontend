@@ -1,6 +1,7 @@
 import AboutSection from "@/components/HomePage/AboutSection";
 import BestSeller from "@/components/HomePage/BestSeller";
 import HeroBanner from "@/components/HomePage/HeroBanner";
+import HeroSection from "@/components/HomePage/HeroSection";
 import PopularCategories from "@/components/HomePage/PopularCategories";
 import RequestArtBanner from "@/components/HomePage/RequestArtBanner";
 import TestimonialSection from "@/components/HomePage/TestimonialSection";
@@ -12,7 +13,8 @@ const Home = async () => {
 
   return (
     <div>
-      <HeroBanner bannerData={data.attributes.HeroBanner} />
+      {/* <HeroBanner bannerData={data.attributes.HeroBanner} /> */}
+      <HeroSection bannerData={data.attributes.HeroBanner} />
       <BestSeller bestSellerData={data.attributes.BestSellers} />
       <PopularCategories categoriesData={data.attributes.PopularCategories} />
       <RequestArtBanner />
