@@ -20,8 +20,8 @@ const RegisterUser: any = async () => {
         </div>
         <div className="flex flex-col gap-5 transform lg:translate-y-14 2xl:items-end">
           <h1 className="font-extrabold md:font-bold text-gray-900 text-6xl xl:text-7xl font-sans flex flex-col 2xl:text-right">
-            Ready to dive into the world of
-            <span className="text-yellow-500"> fine art?</span>
+            Ready to dive into the world of{" "}
+            <span className="text-yellow-500">art?</span>
           </h1>
           <h1 className="font-medium text-lg text-gray-600 max-w-xl 2xl:text-right">
             Register now to start your journey and experience the joy of owning

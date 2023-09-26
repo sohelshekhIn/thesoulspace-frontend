@@ -24,7 +24,15 @@ const responsive = {
   },
 };
 
-const HeroBannerCarouselComp = ({ children }: { children: object }) => {
+const HeroBannerCarouselComp = ({
+  children,
+  autoPlay = true,
+  autoPlaySpeed = 5000,
+}: {
+  children: object;
+  autoPlay: boolean;
+  autoPlaySpeed: number;
+}) => {
   return (
     <Carousel
       responsive={responsive}
@@ -32,8 +40,8 @@ const HeroBannerCarouselComp = ({ children }: { children: object }) => {
       showDots={false}
       ssr={true}
       infinite={true}
-      autoPlay={true}
-      autoPlaySpeed={5000}
+      autoPlay={autoPlay}
+      autoPlaySpeed={autoPlaySpeed}
       removeArrowOnDeviceType={["tablet", "mobile"]}
       // deviceType={this.props.deviceType}
       containerClass="h-[110%] pb-[15%] md:h-[105%] md:pb-[5%]"

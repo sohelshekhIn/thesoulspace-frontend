@@ -26,7 +26,7 @@ export default PopularCategories;
 const ProductCard = ({ category }: { category: ProductCategoryCardType }) => {
   return (
     <Link
-      href={"/somewhere"}
+      href={`/shop?category=${category.Name}`}
       className="w-fit flex items-center hover:scale-110 transition-all duration-200"
     >
       <div className="relative overflow-hidden">
