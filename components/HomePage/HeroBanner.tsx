@@ -6,7 +6,7 @@ import { BannerDataType } from "@/types/GlobalTypes";
 const HeroBanner = ({ bannerData }: { bannerData: any }) => {
   return (
     <div className="h-[80dvh] md:h-[65dvh] bg-gray-300 m-2 rounded-lg sm:max-w-[95dvw] sm:mx-auto lg:max-w-[90dvw] lg:mt-8">
-      <HeroBannerCarouselComp>
+      <HeroBannerCarouselComp autoPlay={true} autoPlaySpeed={10000}>
         {bannerData.map((banner: any) => (
           <Banner key={banner.id} data={banner} />
         ))}
