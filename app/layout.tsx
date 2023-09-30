@@ -8,6 +8,7 @@ import Footer from "@/components/Footer/Footer";
 import { StateProvider } from "@/context/StateContext";
 import { LaunchingSoon } from "@/components/Global/CommingSoon";
 import Head from "next/head";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -104,6 +105,25 @@ export default function RootLayout({
         )}
         <ToastMessageContainer />
       </body>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-C671RSM83P"
+        strategy="afterInteractive"
+      />
+      <Script strategy="afterInteractive">
+        {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-C671RSM83P');`}
+      </Script>
+      <Script strategy="afterInteractive">
+        {` (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "j3doy1qlj8");`}
+      </Script>
     </html>
   );
 }
