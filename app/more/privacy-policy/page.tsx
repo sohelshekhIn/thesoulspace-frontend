@@ -12,6 +12,31 @@ const PrivacyPolicyPage = () => {
         using our website, you consent to the practices described in this
         Privacy Policy.
       </p>
+      <p>
+        We partner with Microsoft Clarity, Microsoft Advertising and Google
+        Analytics to capture how you use and interact with our website through
+        behavioral metrics, heatmaps, and session replay to improve and market
+        our products/services. Website usage data is captured using first and
+        third-party cookies and other tracking technologies to determine the
+        popularity of products/services and online activity. Additionally, we
+        use this information for site optimization, fraud/security purposes, and
+        advertising. For more information about how Microsoft collects and uses
+        your data, visit the
+        <a
+          href="https://privacy.microsoft.com/privacystatement"
+          target="_blank"
+        >
+          Microsoft Privacy Statement
+        </a>{" "}
+        or visit the{" "}
+        <a
+          href="http://www.google.com/intl/en/policies/privacy/"
+          target="_blank"
+        >
+          Google Privacy Policy
+        </a>{" "}
+        to learn more about how Google collects and uses your data.
+      </p>
 
       <h2 className="font-semibold mt-5 text-xl">Information We Collect</h2>
       <p>We may collect the following types of personal information:</p>

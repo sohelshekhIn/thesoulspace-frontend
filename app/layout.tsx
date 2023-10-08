@@ -8,69 +8,42 @@ import Footer from "@/components/Footer/Footer";
 import { StateProvider } from "@/context/StateContext";
 import { LaunchingSoon } from "@/components/Global/CommingSoon";
 import Head from "next/head";
+import Script from "next/script";
+import { Metadata } from "next";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   display: "swap",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "The Soul Space | Home",
-  description: "Find your aesthetic enjoyment through art",
-  keywords: [
-    "art",
-    "painting",
-    "art gallery",
-    "nadiad",
-    "gujarat",
-    "india",
-    "canvas painting for table decor",
-    "aesthetic art",
-    "aesthetic table painting",
-    "aesthetic wall painting",
-    "nature wall painting and decor",
-    "nature wall painting",
-    "nature wall decor",
-    "sketch wall painting",
-    "trusted art store",
-    "cutom art",
-    "custom painting",
-    "custom art work online",
-    "cutom phone case",
-    "custom phone case online",
-    "custom phone case india",
-    "online art store",
-    "online art store india",
-    "art decor online",
-    "handmade art",
-    "handmade phone case",
-    "handmade phone covers",
-    "handmade phone covers india",
-    "contemporary art",
-    "affordable art",
-    "affordable art online",
-    "unique art",
-    "unique art online",
-    "unique art gifts",
-    "art in nadiad",
-    "art in gujarat",
-    "art in india",
-    "vadodara",
-    "baroda",
-    "jamnagar",
-    "The Soul Space",
-    "The Soul Space nadiad",
-    "The Soul Space gujarat",
-    "The Soul Space india",
-    "The Soul Space art",
-    "The Chocolate Room",
-    "The Chocolate Room nadiad",
-    "Tomatoes The Diner",
-    "Tomatoes The Diner nadiad",
-    "Shere Radheshyam Hospitality",
-    "Shere Radheshyam Hospitality nadiad",
-    "Shree Radheshya Ventures",
-  ],
+  description:
+    "Custom Artwork eCommerce Store | The Soul Space - Nadiad / Vadodara Gujarat",
+  openGraph: {
+    title: "The Soul Space | Home",
+    description:
+      "Custom Artwork eCommerce Store | The Soul Space - Nadiad / Vadodara Gujarat",
+    type: "website",
+    locale: "en_IN",
+    url: "https://thesoulspace.in",
+    images: [
+      {
+        url: "https://thesoulspace.in/og-image.png",
+        width: 800,
+        height: 600,
+        alt: "The Soul Space",
+      },
+    ],
+  },
+  twitter: {
+    site: "https://thesoulspace.in",
+    card: "summary_large_image",
+    title: "The Soul Space | Home",
+    description:
+      "Custom Artwork eCommerce Store | The Soul Space - Nadiad / Vadodara Gujarat",
+    images: "https://thesoulspace.in/og-image.png",
+  },
 };
 
 export default function RootLayout({
@@ -104,6 +77,25 @@ export default function RootLayout({
         )}
         <ToastMessageContainer />
       </body>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-C671RSM83P"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-C671RSM83P');`}
+      </Script>
+      <Script id="microsoft-clarity" strategy="afterInteractive">
+        {` (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "j3doy1qlj8");`}
+      </Script>
     </html>
   );
 }
