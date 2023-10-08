@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     url: "https://thesoulspace.in",
     images: [
       {
-        url: "https://thesoulspace.in/og-image.jpg",
+        url: "https://thesoulspace.in/og-image.png",
         width: 800,
         height: 600,
         alt: "The Soul Space",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "The Soul Space | Home",
     description:
       "Custom Artwork eCommerce Store | The Soul Space - Nadiad / Vadodara Gujarat",
-    images: "https://thesoulspace.in/og-image.jpg",
+    images: "https://thesoulspace.in/og-image.png",
   },
 };
 
