@@ -118,7 +118,16 @@ const Footer = () => {
       <div className="">
         <p className=" text-xs w-full text-center mt-4">
           Developed by
-          <span className="font-semibold"> Sohel Shekh</span>
+          <span className="font-semibold">
+            <a
+              href="https://sohel.tech?ref=thesoulspace.in
+            "
+              target="_blank"
+            >
+              {" "}
+              Sohel Shekh
+            </a>
+          </span>
         </p>
       </div>
     </footer>

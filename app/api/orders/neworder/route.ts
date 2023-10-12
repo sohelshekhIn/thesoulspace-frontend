@@ -202,8 +202,7 @@ export async function POST(request: Request) {
     options
   );
   const paymentReqData = await paymentReqResponse.json();
-
-  if (paymentReqData.error) {
+  if (paymentReqData.success === false) {
     console.log(paymentReqData.error);
     return NextResponse.json(
       {
