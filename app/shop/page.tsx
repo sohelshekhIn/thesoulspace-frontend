@@ -26,28 +26,6 @@ const Shop = () => {
     };
     fetchData();
   }, [category]);
-  // if (category != null) {
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       const res = await getStaticData(
-  //         `/products?${category ? `category=${category}` : ""}`,
-  //         3600
-  //       );
-  //       console.log(res);
-  //       setData(res);
-  //     };
-  //     fetchData();
-  //   }, [category]);
-  // } else {
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       const res = await getStaticData(`/products?${category}`, 3600);
-  //       console.log(res);
-  //       setData(res);
-  //     };
-  //     fetchData();
-  //   }, []);
-  // }
 
   return (
     <div className="w-full pb-24">
