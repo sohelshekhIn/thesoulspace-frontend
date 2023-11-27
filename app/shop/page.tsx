@@ -14,28 +14,40 @@ const Shop = () => {
   // if category is not null then we will fetch data based on category
   // else we will fetch all the data
   console.log(category);
-  if (category != null) {
-    useEffect(() => {
-      const fetchData = async () => {
-        const res = await getStaticData(
-          `/products?${category ? `category=${category}` : ""}`,
-          3600
-        );
-        console.log(res);
-        setData(res);
-      };
-      fetchData();
-    }, [category]);
-  } else {
-    useEffect(() => {
-      const fetchData = async () => {
-        const res = await getStaticData(`/products?${category}`, 3600);
-        console.log(res);
-        setData(res);
-      };
-      fetchData();
-    }, []);
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      let requestUrl = "/products";
+      if (category != null) {
+        requestUrl = `/products?category=${category}`;
+      }
+      const res = await getStaticData(requestUrl, 3600);
+      console.log(res);
+      setData(res);
+    };
+    fetchData();
+  }, [category]);
+  // if (category != null) {
+  //   useEffect(() => {
+  //     const fetchData = async () => {
+  //       const res = await getStaticData(
+  //         `/products?${category ? `category=${category}` : ""}`,
+  //         3600
+  //       );
+  //       console.log(res);
+  //       setData(res);
+  //     };
+  //     fetchData();
+  //   }, [category]);
+  // } else {
+  //   useEffect(() => {
+  //     const fetchData = async () => {
+  //       const res = await getStaticData(`/products?${category}`, 3600);
+  //       console.log(res);
+  //       setData(res);
+  //     };
+  //     fetchData();
+  //   }, []);
+  // }
 
   return (
     <div className="w-full pb-24">
