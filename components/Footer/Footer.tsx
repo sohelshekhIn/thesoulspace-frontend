@@ -110,6 +110,7 @@ const Footer = () => {
         </div>
         {/* copyright 2023 of soul space */}
         <div className="">
+          <p>Dev Mode</p>
           <p className=" text-xs w-full text-center mt-4">
             © 2023 The Soul Space. All Rights Reserved.
           </p>
